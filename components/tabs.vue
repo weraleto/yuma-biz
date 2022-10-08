@@ -1,9 +1,9 @@
 <template>
     <div class="tabs-wrapper">
-        <el-tabs v-model="activeName">
+        <el-tabs v-model="activeName" :id="id">
             <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in tabsContent" :key="tab.label">
                 <div :class="`tab-content--${tab.type}`">
-                    <div :class="`tab-picture--${tab.type}`">
+                    <div :class="`tab-picture tab-picture--${tab.type}`">
                         <img :src="require(`../assets/img/${imageFolderName}/${tab.img}`)" alt="Рестораны, бары">
                     </div>
                     <div :class="`tabs-swiper__container--${tab.type}`">
@@ -56,7 +56,8 @@
     } from 'vue-awesome-swiper'
     export default {
         props: {
-            imageFolderName: String
+            imageFolderName: String,
+            id: String
         },
         components: {
             ElTabs,
@@ -67,15 +68,42 @@
         data: () => {
             return {
                 activeName: '0',
+                timer: null,
                 swiperOptionsHorizontal: {
                     slidesPerView: 3,
                     slidesPerGroup: 3,
-                    spaceBetween: 40
+                    spaceBetween: 40,
+                    breakpointsBase: 'container',
+                    breakpoints: {
+                        0: {
+                            enabled: false,
+                            allowTouchMove: false,
+                            allowSlideChange: false,
+                        },
+                        768: {
+                            enabled: true,
+                            allowTouchMove: true,
+                            allowSlideChange: true
+                        }
+                    }
                 },
                 swiperOptionsVertical: {
                     slidesPerView: 1,
                     slidesPerGroup: 1,
-                    spaceBetween: 40
+                    spaceBetween: 40,
+                    breakpointsBase: 'container',
+                    breakpoints: {
+                        0: {
+                            enabled: false,
+                            allowTouchMove: false,
+                            allowSlideChange: false,
+                        },
+                        768: {
+                            enabled: true,
+                            allowTouchMove: true,
+                            allowSlideChange: true
+                        }
+                    }
                 },
                 tabsContent: [{
                     label: 'Рестораны, бары',
@@ -319,6 +347,11 @@
 
             }
         },
+        mounted() {
+            let navEl = document.querySelector(`#${this.id} .el-tabs__nav-scroll`)
+            // navEl.addEventListener('scroll', this.handleTabScroll)
+            navEl.addEventListener('touchmove', this.handleTabScroll)
+        },
         methods: {
             getSwiperConfiguration(type, idx) {
                 let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
@@ -329,7 +362,24 @@
                         nextEl: `.tabs-swiper__navigation--next-${idx}`
                     }
                 }
-            }
+            },
+            debounce(timeout = 100, callback){
+                if(this.timer){
+                    clearTimeout(this.timer)
+                }
+                this.timer = setTimeout(callback, timeout)
+            },
+            
+            handleTabScroll(e) {
+                const target = document.querySelector(`#${this.id} .el-tabs__nav-scroll`)
+                let el = target.querySelector('.el-tabs__nav')
+                let tr = el.style.transform.replace("translateX(", "").replace(")", "")
+                if (target.scrollLeft == 0 && parseInt(tr) != 0) {
+                    this.debounce(150, function(){
+                        el.style.transform = "translateX(0px)"
+                    })
+                }
+            },
         }
     }
 </script>
@@ -337,8 +387,8 @@
 <style lang="scss">
 @import "~element-ui/packages/theme-chalk/src/tabs";
 @import "~element-ui/packages/theme-chalk/src/tab-pane";
-@import '@/assets/scss/_mixins.scss';
-@import '@/assets/scss/_variables.scss';
+@import '@/assets/scss/_mixins';
+@import '@/assets/scss/_variables';
 .tabs-wrapper {
     grid-column: 1/13;
 }
@@ -368,6 +418,9 @@
     height: 1px;
     background-color: #d9d9d9;
 }
+.el-tabs__nav-scroll {
+    overflow-x: scroll;
+}
 .el-tabs__item {
     height: 52px;
     line-height: 52px;
@@ -380,20 +433,65 @@
         color: $--main-black;
         font-weight: 500;
     }
+    &:hover {
+        color: $--main-black;
+    }
 }
 .el-tabs--top .el-tabs__item.is-top:nth-child(2) {
     padding-left: 24px;
 }
+
+
+.el-tabs__nav-wrap.is-scrollable {
+    padding: 0;
+}
 .el-tabs__content {
     margin-top: 40px;
+
+    @media screen and (max-width: $--screen-sm-min) {
+        margin-top: 20px;
+    }
 }
 
 .tab-picture {
+    position: relative;
+
     &--horizontal {
         margin-bottom: 40px;
     }
     &--vertical {
         flex: 1 0 65.63%;
+
+        @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
+            max-height: 35vw;
+            min-height: 35vw;
+            overflow-x: visible;
+            overflow-y: clip;
+            display: flex;
+            align-items: center;
+        }
+        @media screen and (max-width: $--screen-md-min) {
+            flex: 1 1 auto;
+            img {
+                width: 100vw;
+            }
+        }
+    }
+
+    @media screen and (max-width: $--screen-sm-min) {
+        margin-bottom: 20px;
+        max-height: 51.73vw;
+        min-height: 51.73vw;
+        min-width: 100vw;
+        overflow-y: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &--horizontal img {
+            height: 100%;
+            width: auto;
+        }
     }
 }
 
@@ -404,6 +502,14 @@
 
         display: flex;
         gap: 40px;
+
+        @media screen and (max-width: $--screen-md-min) {
+            flex-direction: column;
+            align-items: center;
+        }
+        @media screen and (max-width: $--screen-sm-min) {
+            gap: 0;
+        }
     }
 }
 
@@ -413,12 +519,37 @@
     &__slide {
         h3 {
             margin-bottom: 20px;
+            @media screen and (max-width: $--screen-sm-min) {
+                margin-bottom: 16px;
+            }
         }
         &--vertical {
             display: flex;
             height: 100%;
             flex-direction: column;
             gap: 3.89vw;
+
+            @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
+                flex-direction: row;
+                gap: 0;
+            }
+            @media screen and (max-width: $--screen-sm-min) {
+                gap: 40px;
+            }
+        }
+        &--horizontal {
+            @media screen and (max-width: $--screen-sm-min) {
+                min-width: 100%;
+            }
+        }
+
+        &--block {
+            @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
+                flex: 1 0 33.333333%;
+                &:not(:last-child) {
+                    padding-right: 40px;
+                }
+            }
         }
     }
     &__container {
@@ -434,7 +565,16 @@
                 flex-grow: 1;
                 height: auto;
             }
-
+        }
+        &--horizontal, &--vertical {
+            @media screen and (max-width: $--screen-sm-min) {
+                .swiper-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+                    height: 100%;
+                }
+            }
         }
     }
     &__navigation {
@@ -448,6 +588,10 @@
             &.swiper-button-disabled {
                 display: none;
             }
+        }
+
+        @media screen and (max-width: $--screen-sm-min) {
+            display: none;
         }
     }
 }

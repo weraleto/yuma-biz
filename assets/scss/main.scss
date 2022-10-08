@@ -35,7 +35,7 @@ a {
 html,
 body {
     font-family: 'Onest', sans-serif;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 1.2;
 
@@ -104,19 +104,6 @@ body {
         @include container;
         max-width: $--container-width-long;
     }
-
-    @media screen and (max-width: $--screen-lg-min) {
-        padding-left: 50px;
-        padding-right: 50px;
-    }
-    @media screen and (max-width: $--screen-sm-min) {
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-    @media screen and (max-width: $--screen-xxs-min) {
-        padding-left: 16px;
-        padding-right: 16px;
-    }
 }
 
 section {
@@ -124,6 +111,10 @@ section {
     padding-bottom: 120px;
     &.pt-large {
         padding-top: 120px;
+    }
+    @media screen and (max-width: $--screen-xs-min) {
+        padding-top: 12px;
+        padding-bottom: 68px;
     }
 }
 
@@ -148,9 +139,9 @@ section {
     font-size: 40px; 
     text-transform: uppercase;
 
-    // @media screen and (max-width: $--screen-lg-min) {
-    //     font-size: 5.84vw;
-    // }
+    @media screen and (max-width: $--screen-sm-min) {
+        font-size: 24px;
+    }
     // @media screen and (max-width: $--screen-md-min) {
     //     font-size: 6.25vw;
     // }
@@ -261,6 +252,7 @@ section {
         border: none;
         border-radius: $--border-radius-default;
         justify-content: center;
+        color: $--main-black;
 
         &:hover {
             background: $--yellow-hover;
@@ -517,9 +509,10 @@ input[type=checkbox]:checked + .label_checkbox {
     }
 
     @media screen and (max-width: $--screen-sm-min) {
-        &.block-offset-products {
-            grid-row-gap: 30px;
-        }
+        grid-row-gap: 24px;
+        // &.block-offset-products {
+        //     grid-row-gap: 30px;
+        // }
 
         &__content, 
         &__content.offset-sm {
@@ -527,6 +520,7 @@ input[type=checkbox]:checked + .label_checkbox {
         }
 
         &__title {
+            white-space: normal;
             &--btn {
                 position: static;
                 transform: none;

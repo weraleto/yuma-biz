@@ -17,13 +17,15 @@
       </div>
     </header>
     <main>
+      <!-- Система учитывает ваши особенности бизнеса -->
       <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">Система учитывает ваши 
           особенности бизнеса</h2>
-          <Peculiarities image-folder-name="peculiarities" />
+          <Peculiarities id="peculiarities" image-folder-name="peculiarities" />
       </section>
 
-      <section class="block-offset grid-layout container">
+      <!-- Поцесс подключения к системе -->
+      <!-- <section class="block-offset grid-layout container">
         <h2 class="title1 block-offset__title">Поцесс подключения
           к системе</h2>
         <div class="block-offset__content text-blocks plain">
@@ -60,21 +62,27 @@
             </div>
           </div>
         </div>
-      </section>
-      <section class="block-offset grid-layout">
+      </section> -->
+
+      <!-- С нами уже работают -->
+      <!-- <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">С нами уже работают</h2>
         <Partners />
-      </section>
-      <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
-        subtitle="Заполните форму, и мы вас проконсультируем" />
-      <section class="pt-large faq-section">
+      </section> -->
+
+      <!-- Форма -->
+      <!-- <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
+        subtitle="Заполните форму, и мы вас проконсультируем" /> -->
+      
+      <!-- FAQ -->
+      <!-- <section class="pt-large faq-section">
         <div class="container--large">
           <h3 class="title1">Ответы на вопросы бизнеса</h3>
         </div>
         <div class="container faq-section__content">
           <Collapse :data="faq" />
         </div>
-      </section>
+      </section> -->
     </main>
 
 
@@ -179,12 +187,22 @@
       text-transform: uppercase;
       font-weight: 800;
       margin-bottom: 24px;
+
+      @media screen and (max-width: $--screen-lg-min) {
+        font-size: 15vw;
+      }
+      @media screen and (max-width: $--screen-xs-min) {
+        margin-bottom: 12px;
+      }
     }
 
     h2 {
       font-weight: 500;
       font-size: 61px;
       text-transform: uppercase;
+      @media screen and (max-width: $--screen-lg-min) {
+        font-size: 7.47vw;
+      }
     }
 
     &__top {
@@ -198,6 +216,10 @@
     &__container {
       padding-top: 60px;
       padding-bottom: 100px;
+      @media screen and (max-width: $--screen-xs-min) {
+        padding-top: 32px;
+        padding-bottom: 72px;
+      }
     }
 
     &__promo {

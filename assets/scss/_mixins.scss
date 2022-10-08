@@ -7,4 +7,17 @@
 @mixin container {
     margin: 0 auto;
     width: 100%;
+
+    @media screen and (max-width: $--screen-lg-min) {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+    @media screen and (max-width: $--screen-sm-min) {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    @media screen and (max-width: $--screen-xs-min) {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
 }
