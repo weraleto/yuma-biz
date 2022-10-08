@@ -490,12 +490,12 @@ input[type=checkbox]:checked + .label_checkbox {
 
     @media screen and (max-width: $--screen-md-min) {
         // padding-top: 70px;
-        grid-row-gap: 8vw;
+        // grid-row-gap: 8vw;
 
         &__content {
-            grid-column: 2/11;
+            grid-column: 2/13;
             &.offset-sm {
-                grid-column: 1/11;
+                grid-column: 1/13;
             }
         }
 
@@ -589,7 +589,6 @@ input[type=checkbox]:checked + .label_checkbox {
                 }
             }
             .text-blocks__item {
-                max-width: 44.444%;
                 width: 100%;
                 
                 &:not(:last-child) {
@@ -599,26 +598,20 @@ input[type=checkbox]:checked + .label_checkbox {
         }
     }
     @media screen and (max-width: $--screen-xs-min) {
-        &.platform {
-            flex-direction: column;
-            .text-blocks__col {
-                width: 100%;
-            }
-        }
-        &.plain, &.platform {
+        &.plain {
 
             .text-blocks__col {
-                flex-wrap: wrap;
-
-                &:not(:last-child) {
-                    margin-bottom: 30px;
-                }
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                grid-row-gap: 32px;
             }
             .text-blocks__item {
+                grid-column: 1/5;
+                margin-bottom: 0;
                 max-width: 100%;
-                
-                &:not(:last-child) {
-                    margin-bottom: 30px;
+                padding-right: 0;
+                &:nth-child(2) {
+                    grid-column: 2/6;
                 }
             }
         }
@@ -640,6 +633,9 @@ input[type=checkbox]:checked + .label_checkbox {
 
     &-subtitle {
         margin-bottom: 20px;
+        @media screen and (max-width: $--screen-xs-min) {
+            margin-bottom: 16px;
+        }
     }
 
     &-icon {
@@ -653,22 +649,21 @@ input[type=checkbox]:checked + .label_checkbox {
         margin-bottom: 15px;
     }
 
-    // &, &--long {
-    
-    //     &:not(:last-child) {
-    //         margin-bottom: 76px;
-
-    //         @media screen and (max-width: $--screen-md-min) {
-    //             margin-bottom: 50px;
-    //         }
-    //     }
-    // }
-
     &--long {
         min-width: 101.91791%;
         position: relative;
         left: -1.91791%;
     }
+
+    @media screen and (max-width: $--screen-md-min) {
+        padding-right: 40px;
+    }
+    @media screen and (max-width: $--screen-sm-min) {
+        &-step {
+            font-size: 50px;
+        }
+    }
+
 }
 
 

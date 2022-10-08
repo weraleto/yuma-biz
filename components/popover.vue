@@ -43,7 +43,8 @@ export default {
 
 <style lang="scss">
 @import "~element-ui/packages/theme-chalk/src/popover";
-@import '@/assets/scss/_mixins.scss';
+@import '@/assets/scss/_variables';
+@import '@/assets/scss/_mixins';
 
 .hint-popover-trigger {
     display: inline-block;
@@ -59,5 +60,8 @@ export default {
     box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
     max-width: 399px;
     padding: 40px;
+    @media screen and (max-width: $--screen-xs-min) {
+        padding: 30px 36px;
+    }
 }
 </style>

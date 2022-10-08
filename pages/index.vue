@@ -30,7 +30,7 @@
       </section>
 
       <!-- Поцесс подключения к системе -->
-      <!-- <section class="block-offset grid-layout container">
+      <section class="block-offset grid-layout container">
         <h2 class="title1 block-offset__title">Поцесс подключения
           к системе</h2>
         <div class="block-offset__content text-blocks plain">
@@ -67,7 +67,7 @@
             </div>
           </div>
         </div>
-      </section> -->
+      </section>
 
       <!-- С нами уже работают -->
       <!-- <section class="block-offset grid-layout">
