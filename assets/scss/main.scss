@@ -489,7 +489,7 @@ input[type=checkbox]:checked + .label_checkbox {
     }
 
     @media screen and (max-width: $--screen-md-min) {
-        padding-top: 70px;
+        // padding-top: 70px;
         grid-row-gap: 8vw;
 
         &__content {

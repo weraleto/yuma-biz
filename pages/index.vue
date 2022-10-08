@@ -2,7 +2,12 @@
   <div>
     <header class="header">
       <div class="header__top">
-        <img src="~assets/img/header.png" alt="">
+        <picture>
+          <source media="(min-width:1900px)" srcset="~assets/img/header@2x.jpg">
+          <source media="(min-width:990px)" srcset="~assets/img/header.jpg">
+          <source media="(min-width:230px)" srcset="~assets/img/header@0.5.jpg">
+          <img src="~assets/img/header.jpg" alt="yuma pos">
+        </picture>
       </div>
       <div class="container header__container">
         <h1>YUMA-pos</h1>
@@ -210,7 +215,16 @@
       max-height: 70vh;
       overflow: hidden;
       display: flex;
+      justify-content: center;
       align-items: flex-end;
+      picture, source, img {
+        height: 100%;
+        width: auto;
+      }
+      @media screen and (max-width: $--screen-xs-min) {
+        height: 637px;
+        max-height: 65vh;
+      }
     }
 
     &__container {

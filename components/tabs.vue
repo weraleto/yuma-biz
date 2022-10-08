@@ -465,8 +465,7 @@
         @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
             max-height: 35vw;
             min-height: 35vw;
-            overflow-x: visible;
-            overflow-y: clip;
+            overflow: hidden;
             display: flex;
             align-items: center;
         }
@@ -483,7 +482,7 @@
         max-height: 51.73vw;
         min-height: 51.73vw;
         min-width: 100vw;
-        overflow-y: hidden;
+        overflow: hidden;
         display: flex;
         align-items: center;
         justify-content: center;
