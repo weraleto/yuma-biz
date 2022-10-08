@@ -420,6 +420,10 @@
 }
 .el-tabs__nav-scroll {
     overflow-x: scroll;
+    &::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
 }
 .el-tabs__item {
     height: 52px;

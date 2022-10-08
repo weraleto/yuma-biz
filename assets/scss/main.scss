@@ -112,9 +112,12 @@ section {
     &.pt-large {
         padding-top: 120px;
     }
-    @media screen and (max-width: $--screen-xs-min) {
+    @media screen and (max-width: $--screen-sm-min) {
         padding-top: 12px;
         padding-bottom: 68px;
+        &.pt-large {
+            padding-top: 84px;
+        }
     }
 }
 
@@ -142,62 +145,31 @@ section {
     @media screen and (max-width: $--screen-sm-min) {
         font-size: 24px;
     }
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 6.25vw;
-    // }
-    // @media screen and (max-width: $--screen-sm-min) {
-    //     font-size: 9.6vw;
-    // }
 }
 
 .title2 {
     font-weight: 500;
     font-size: 28px;
     text-transform: uppercase;
-
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 5.85vw;
-    // }
-    // @media screen and (max-width: $--screen-sm-min) {
-    //     font-size: 8vw;
-    // }
 }
 .title3 {
     font-weight: 500;
     font-size: 24px;
     text-transform: uppercase;
-
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 5.85vw;
-    // }
-    // @media screen and (max-width: $--screen-sm-min) {
-    //     font-size: 8vw;
-    // }
 }
 
 .subtitle {
     font-weight: 400;
     font-size: 22px;
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 1.125rem;
-    // }
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 5.85vw;
-    // }
-    // @media screen and (max-width: $--screen-sm-min) {
-    //     font-size: 8vw;
-    // }
 }
 
 .text4 {
     font-size: 18px;
     font-weight: 500;
-    // @media screen and (max-width: $--screen-md-min) {
-    //     font-size: 1rem;
-    // }
 }
 
 .text5 {
+    font-weight: 400;
     font-size: 18px;
 }
 

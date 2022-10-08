@@ -4,7 +4,8 @@
         <div class="contact-form__container">
             <div class="contact-form__text">
                 <h3 class="title1" v-html="title"></h3>
-                <h4 class="title2">{{subtitle}}</h4>
+                <h4 class="subtitle only-desktop">{{subtitle}}</h4>
+                <h4 class="text5 hidden-desktop">{{subtitle}}</h4>
                 <small v-if="small" class="text6">{{small}}</small>
             </div>
             <form action="#" class="contact-form__form" :class="{'hidden': formSubmitted}">
@@ -92,7 +93,12 @@ export default {
 @import '@/assets/scss/_variables.scss';
 
 .contact-form {
-    padding: 100px 0;
+    padding: 120px 0 108px;
+
+    background: url('~assets/img/left-plane.svg'), url('~assets/img/right-plane.svg');
+    background-position: 0 calc(100% - 115px), 100% 0;
+    background-repeat: no-repeat;
+    background-size: 50% auto, auto auto;
 
     &.submitted {
         padding: 89px 0;
@@ -103,10 +109,10 @@ export default {
         grid-column: 2/12;
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        // align-items: center;
         
-        @media screen and (max-width: 1180px) {
-            grid-column: 2/10;
+        @media screen and (max-width: $--screen-md-min) {
+            grid-column: 1/13;
         }
         @media screen and (max-width: $--screen-sm-min) {
             grid-column: 1/6;
@@ -116,20 +122,25 @@ export default {
     }
 
     &__text {
-        // max-width: 50%;
-        padding-right: 39px;
 
         h3 {
             margin-bottom: 28px;
+            @media screen and (max-width: $--screen-sm-min) {
+                margin-bottom: 24px;
+            }
         }
         small {
             display: block;
             margin-top: 10px;
         }
 
+        @media screen and (min-width: 768px) {
+            padding-right: 39px;
+        }
+
         @media screen and (max-width: $--screen-sm-min) {
-            max-width: 75.137%;
-            margin-bottom: 30px;
+            // max-width: 75.137%;
+            margin-bottom: 50px;
             text-align: center;
         }
     }
@@ -152,6 +163,7 @@ export default {
             }
             & + button {
                 margin-top: 13px;
+                min-width: 100%;
             }
         }
 
@@ -205,9 +217,14 @@ export default {
                 margin-bottom: 10px;
             }
         }
+        @media screen and (max-width: $--screen-lg-min) {
+            transform: translate(9.20vw, 0);
+        }
         @media screen and (max-width: $--screen-md-min) {
             height: 100%;
-            width: 35vw;
+            width: 30vw;
+            transform: translate(3.20vw, 0);
+            padding: 30px 45px;
         }
         @media screen and (max-width: $--screen-sm-min) {
             height: 279.391px;
@@ -234,11 +251,15 @@ export default {
         color: $--main-white;
     }
 
+    @media screen and (max-width: 1440px) {
+        background-size: 61.25% auto, auto auto;
+    }
     @media screen and (max-width: $--screen-md-min) {
-        padding: 58px 0;
+        padding: 60px 0 99px;
+        background-position: 0 calc(100% - 99px), 100% -50px;
     }
     @media screen and (max-width: $--screen-sm-min) {
-        padding: 53px 0;
+        background: none;
     }
 }
 </style>

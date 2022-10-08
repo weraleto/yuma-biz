@@ -72,18 +72,13 @@ export default {
     box-shadow: (0px 8px 60px rgba(46, 46, 46, 0.1));
     border-radius: 12px;
 
-    &.small {
-        .el-collapse-item__header {
-            padding: 10px 21.25% 10px 0;
-        }
-    }
     .el-collapse-item__wrap, .el-collapse-item__header  {
         border-bottom: none;
     }
     .el-collapse-item__header {
         display: flex;
         justify-content: space-between;
-        padding: 40px 40px 20px;
+        padding: 40px 80px 20px 40px;
         font-size: 22px;
         font-weight: 400;
         height: auto;
@@ -107,34 +102,14 @@ export default {
             }
         }
 
-        @media screen and (max-width: $--screen-md-min) {
-            padding: 10px 21.25% 10px 0;
-            font-size: 1.375rem;
-            &::after {
-                top: 10px;
-            }
-        }
+
     }
     .el-collapse-item__content {
         line-height: 1.2;
-        padding: 0 40px 20px;
+        padding: 0 80px 20px 40px;
     }
 
     &--content {
-
-        // &__text {
-        //     max-width: 62.5%;
-        //     @media screen and (max-width: $--screen-md-min) {
-        //         max-width: 77.777%;
-        //     }
-        //     @media screen and (max-width: $--screen-sm-min) {
-        //         max-width: 80%;
-        //     }
-        // }
-
-        // &__inner {
-        //     padding-bottom: 20px;
-        // }
 
         &__steps {
             display: flex;
@@ -178,6 +153,23 @@ export default {
             }
         }
 
+    }
+
+    @media screen and (max-width: $--screen-sm-min) {
+        padding-bottom: 4px;
+        margin-bottom: 12px;
+
+        .el-collapse-item__header {
+            padding: 28px 35px 24px 16px;
+            font-size: 18px;
+            &::after {
+                right: 16px;
+                top: 28px;
+            }
+        }
+        .el-collapse-item__content {
+            padding: 0 35px 24px 16px;
+        }
     }
 }
 

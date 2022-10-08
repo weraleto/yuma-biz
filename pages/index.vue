@@ -70,24 +70,24 @@
       </section>
 
       <!-- С нами уже работают -->
-      <!-- <section class="block-offset grid-layout">
+      <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">С нами уже работают</h2>
         <Partners />
-      </section> -->
+      </section>
 
       <!-- Форма -->
-      <!-- <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
-        subtitle="Заполните форму, и мы вас проконсультируем" /> -->
+      <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
+        subtitle="Заполните форму, и мы вас проконсультируем" />
       
       <!-- FAQ -->
-      <!-- <section class="pt-large faq-section">
+      <section class="pt-large faq-section">
         <div class="container--large">
           <h3 class="title1">Ответы на вопросы бизнеса</h3>
         </div>
         <div class="container faq-section__content">
           <Collapse :data="faq" />
         </div>
-      </section> -->
+      </section>
     </main>
 
 
@@ -218,12 +218,16 @@
       justify-content: center;
       align-items: flex-end;
       picture, source, img {
-        height: 100%;
-        width: auto;
+        height: auto;
+        width: 100%;
       }
-      @media screen and (max-width: $--screen-xs-min) {
+      @media screen and (max-width: $--screen-lg-min) {
         height: 637px;
         max-height: 65vh;
+        picture, source, img {
+          height: 100%;
+          width: auto;
+        }
       }
     }
 
@@ -250,6 +254,9 @@
   .faq-section {
     &__content {
       margin-top: 52px;
+      @media screen and (max-width: $--screen-sm-min) {
+        margin-top: 24px;
+      }
     }
   }
 </style>
