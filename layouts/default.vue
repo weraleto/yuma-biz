@@ -1,8 +1,8 @@
 <template>
   <div class="app">
-    <Navbar />
+    <!-- <Navbar /> -->
     <nuxt />
-    <Footer />
+    <!-- <Footer /> -->
 
     <FormModal 
         form-action="contact"

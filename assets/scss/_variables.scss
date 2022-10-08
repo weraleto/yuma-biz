@@ -1,4 +1,4 @@
-$--main-black:#2A2A2A;
+$--main-black:#111;
 $--main-gray:#999999;
 $--main-gray-light:#CCCCCC;
 $--main-white:#FFFFFF;
@@ -8,7 +8,13 @@ $--yellow-pressed: #FFEA28;
 $--yellow-default: #FFF6BE;
 $--color-error: #FF4A31;
 
+$--black-hover: #393937;
+$--black-disabled: #CBCBCB;
+
 $--border-radius-default: 10px;
+
+$--container-width-default: 1280px;
+$--container-width-long: 1340px;
 
 $--screen-lg-min: 1380px;
 $--screen-md-min: 1024px;

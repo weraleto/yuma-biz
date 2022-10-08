@@ -3,8 +3,8 @@
     <div class="grid-layout container">
         <div class="contact-form__container">
             <div class="contact-form__text">
-                <h3 class="title2" v-html="title"></h3>
-                <h4 class="subtitle">{{subtitle}}</h4>
+                <h3 class="title1" v-html="title"></h3>
+                <h4 class="title2">{{subtitle}}</h4>
                 <small v-if="small" class="text6">{{small}}</small>
             </div>
             <form action="#" class="contact-form__form" :class="{'hidden': formSubmitted}">
@@ -38,17 +38,17 @@
                         {{formValidation.phone.errorMessage}}
                     </small>
                 </div>
-                <div class="contact-form__form-group">
-                    <div class="label_checkbox text6">
+                <button type="submit" class="btn large" 
+                    :class="theme == 'dark' ? 'primary' : 'black'"
+                    @click.prevent="submitForm"
+                >{{actionButtonText}}</button>
+                <div class="contact-form__form-group policy-argreement">
+                    <div class="text6">
                         <div>
-                            Заполняя форму, я соглашаюсь с <NuxtLink to="/policy" target="_blank">политикой конфиденциальности</NuxtLink>.
+                            Заполняя форму, вы соглашаетесь с <NuxtLink to="/policy" target="_blank">политикой конфиденциальности</NuxtLink>.
                         </div>
                     </div>
                 </div>
-                <button type="submit" class="btn large" 
-                    :class="theme == 'dark' ? 'primary' : 'outlined'"
-                    @click.prevent="submitForm"
-                >{{actionButtonText}}</button>
             </form>
             <div v-if="formSubmitted" class="contact-form__thankyou">
                 <div class="contact-form__thankyou--close"
@@ -100,7 +100,7 @@ export default {
 
     &__container {
         position: relative;
-        grid-column: 3/9;
+        grid-column: 2/12;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -116,10 +116,11 @@ export default {
     }
 
     &__text {
-        max-width: 50%;
+        // max-width: 50%;
+        padding-right: 39px;
 
         h3 {
-            margin-bottom: 20px;
+            margin-bottom: 28px;
         }
         small {
             display: block;
@@ -134,11 +135,24 @@ export default {
     }
 
     &__form {
-        max-width: 33.333%;
+        max-width: 30%;
+        // max-width: 33.333%;
         width: 100%;
 
         &.hidden {
             opacity: 0;
+        }
+
+        &-group {
+            a {
+                text-decoration: underline;
+            }
+            &.policy-argreement {
+                margin-top: 12px;
+            }
+            & + button {
+                margin-top: 13px;
+            }
         }
 
         @media screen and (max-width: $--screen-md-min) {

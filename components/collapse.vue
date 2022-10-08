@@ -10,7 +10,7 @@
             <div class="collapsible__item--content">
                 <div class="collapsible__item--content__inner">
                     <div class="collapsible__item--content__text">
-                        <p class="text4">{{item.text}}</p>
+                        <p class="text6" v-html="item.text"></p>
                     </div>
                     <div v-if="item.steps" class="collapsible__item--content__steps">
                         <div v-for="(step, idx1) in item.steps" :key="step" class="collapsible__item--content__step">
@@ -66,22 +66,29 @@ export default {
 }
 
 .collapsible__item {
-    border-bottom: 2px solid;
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+
+    box-shadow: (0px 8px 60px rgba(46, 46, 46, 0.1));
+    border-radius: 12px;
 
     &.small {
         .el-collapse-item__header {
             padding: 10px 21.25% 10px 0;
         }
     }
-
+    .el-collapse-item__wrap, .el-collapse-item__header  {
+        border-bottom: none;
+    }
     .el-collapse-item__header {
         display: flex;
         justify-content: space-between;
-        padding: 20px 21.25% 20px 0;
-        font-size: 1.875rem;
-        font-variation-settings: "wght" 600;
+        padding: 40px 40px 20px;
+        font-size: 22px;
+        font-weight: 400;
         height: auto;
         line-height: 1.2;
+        background-color: unset;
         position: relative;
         &::after {
             content: '';
@@ -90,8 +97,8 @@ export default {
             height: 19px;
             background: url('../assets/img/arrow.svg') no-repeat center center;
             background-size: cover;
-            right: 0;
-            top: 20px;
+            right: 40px;
+            top: 40px;
             transition: transform .3s ease;
         }
         &.is-active {
@@ -110,24 +117,24 @@ export default {
     }
     .el-collapse-item__content {
         line-height: 1.2;
-        padding-bottom: 0;
+        padding: 0 40px 20px;
     }
 
     &--content {
 
-        &__text {
-            max-width: 62.5%;
-            @media screen and (max-width: $--screen-md-min) {
-                max-width: 77.777%;
-            }
-            @media screen and (max-width: $--screen-sm-min) {
-                max-width: 80%;
-            }
-        }
+        // &__text {
+        //     max-width: 62.5%;
+        //     @media screen and (max-width: $--screen-md-min) {
+        //         max-width: 77.777%;
+        //     }
+        //     @media screen and (max-width: $--screen-sm-min) {
+        //         max-width: 80%;
+        //     }
+        // }
 
-        &__inner {
-            padding-bottom: 20px;
-        }
+        // &__inner {
+        //     padding-bottom: 20px;
+        // }
 
         &__steps {
             display: flex;

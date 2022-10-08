@@ -19,10 +19,10 @@
 export default {
     data: () => {
         return {
-            speedX: -1,
+            speedX: -0.5,
             positionX: 0,
             isPaused: false,
-            defaultPadding: 70,
+            defaultPadding: 60,
             el: null
         }
     },
@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         randList() {
-            const a = [1, 2, 3, 4, 5, 6, 7]
+            const a = [1, 2, 3, 4, 5, 6, 7, 8]
             return a.concat(a).concat(a)
         }
     },
@@ -83,15 +83,15 @@ export default {
   align-items: center;
 
   &__wrapper {
-    grid-column: 1/11;
+    grid-column: 1/13;
     overflow: hidden;
     white-space: nowrap;
   }
 
   &__item {
-    flex: 1 0 200px;
+    flex: 1 0 auto;
     max-width: 200px;
-    margin-right: 70px;
+    margin-right: 60px;
   }
 }
 </style>
