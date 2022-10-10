@@ -223,7 +223,7 @@
         height: auto;
         width: 100%;
       }
-      @media screen and (max-width: $--screen-lg-min) {
+      @media screen and (max-width: 1133px) {
         height: 637px;
         max-height: 65vh;
         picture, source, img {
