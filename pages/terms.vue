@@ -9,7 +9,7 @@
                         <span>соглашение</span>
                     </h1>
                 </div>
-                <div class="block-offset__content">
+                <div class="terms-content">
                     <div class="text-page-block">
                         <h2 class="title2">ПРЕАМБУЛА</h2>
                         <p>Используя программное обеспечение «ЮМА» (далее – ЮМА), его пользователь – юридическое лицо
@@ -576,13 +576,17 @@ export default {
             }
         }
     }
-    .block-offset__content {
-        grid-column-end: 9;
+    &-content {
+        grid-column: 2/12;
     }
+
 
     @media screen and (max-width: $--screen-sm-min) {
         .title1 {
             font-size: 8vw;
+        }
+        &-content {
+            grid-column: 1/6;
         }
     }
 }

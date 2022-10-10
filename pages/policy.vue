@@ -10,7 +10,7 @@
                         <span>КОНФИДЕНЦИАЛЬНОСТИ</span>
                     </h1>
                 </div>
-                <div class="block-offset__content">
+                <div class="policy-content">
                     <div class="text-page-block">
                         <p>г. Санкт-Петербург</p>
                         <p>«Политика конфиденциальности» (далее – Политика) – официальный документ, являющийся
@@ -270,13 +270,16 @@ export default {
             grid-row: 2/3;
         }
     }
-    .block-offset__content {
-        grid-column-end: 9;
+    &-content {
+        grid-column: 2/12;
     }
 
     @media screen and (max-width: $--screen-sm-min) {
         .title2 {
             font-size: 7vw;
+        }
+        &-content {
+            grid-column: 1/6;
         }
     }
 }
