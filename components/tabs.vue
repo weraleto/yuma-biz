@@ -389,6 +389,7 @@
 <style lang="scss">
 @import "~element-ui/packages/theme-chalk/src/tabs";
 @import "~element-ui/packages/theme-chalk/src/tab-pane";
+@import "~swiper/swiper";
 @import '@/assets/scss/_mixins';
 @import '@/assets/scss/_variables';
 .tabs-wrapper {
@@ -477,7 +478,6 @@
             flex: 1 1 auto;
         }
     }
-
      @media screen and (max-width: $--screen-md-min) {
         max-height: 35vw;
         // min-height: 35vw;
@@ -493,12 +493,7 @@
     @media screen and (max-width: $--screen-sm-min) {
         margin-bottom: 20px;
         max-height: 51.73vw;
-        // min-height: 51.73vw;
         min-width: 100vw;
-        // overflow: hidden;
-        // display: flex;
-        // align-items: center;
-        // justify-content: center;
 
         &--horizontal img {
             height: 100%;
@@ -528,7 +523,7 @@
 
 .tabs-swiper {
     min-height: 100%;
-    display: flex;
+    // display: flex;
     &__slide {
         h3 {
             margin-bottom: 20px;
@@ -588,8 +583,8 @@
                 height: auto;
             }
             @media screen and (min-width: calc($--screen-md-min + 1px)) {
-                padding-left: 0;
-                padding-right: 0;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
             @media screen and (max-width: $--screen-sm-min) {
                 &, .swiper-wrapper {
