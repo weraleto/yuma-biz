@@ -74,7 +74,9 @@
       <!-- С нами уже работают -->
       <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">С нами уже работают</h2>
-        <Partners />
+        <client-only>
+          <Partners />
+        </client-only>
       </section>
       
       <!-- FAQ -->
