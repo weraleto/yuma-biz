@@ -19,7 +19,7 @@
 export default {
     data: () => {
         return {
-            speedX: -0.5,
+            speedX: -1,
             positionX: 0,
             isPaused: false,
             defaultPadding: 60,
