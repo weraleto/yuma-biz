@@ -7,27 +7,29 @@
                         <img :src="require(`../assets/img/${imageFolderName}/${tab.img}`)" alt="Рестораны, бары">
                     </div>
                     <div :class="`tabs-swiper__container--${tab.type}`">
-                        <swiper ref="tabsSwiper" 
-                            class="swiper tabs-swiper" 
-                            :options="getSwiperConfiguration(tab.type, String(i))"
-                        >   
-                            <swiper-slide 
-                                v-for="(slide, idx) in tab.slides" :key="idx"
-                                class="swiper-slide tabs-swiper__slide" 
-                                :class="`tabs-swiper__slide--${tab.type}`"
-                            >
-                                <template v-if="tab.type == 'horizontal'">
-                                    <h3 class="text4">{{slide.title}}</h3>
-                                    <p class="text6">{{slide.text}}</p>
-                                </template>
-                                <template v-else>
-                                    <div v-for="block in slide" :key="block.title" class="tabs-swiper__slide--block">
-                                        <h3 class="text4">{{block.title}}</h3>
-                                        <p class="text6">{{block.text}}</p>
-                                    </div>
-                                </template>
-                            </swiper-slide>
-                        </swiper>
+                        <client-only>
+                            <swiper ref="tabsSwiper" 
+                                class="swiper tabs-swiper" 
+                                :options="getSwiperConfiguration(tab.type, String(i))"
+                            >   
+                                <swiper-slide 
+                                    v-for="(slide, idx) in tab.slides" :key="idx"
+                                    class="swiper-slide tabs-swiper__slide" 
+                                    :class="`tabs-swiper__slide--${tab.type}`"
+                                >
+                                    <template v-if="tab.type == 'horizontal'">
+                                        <h3 class="text4">{{slide.title}}</h3>
+                                        <p class="text6">{{slide.text}}</p>
+                                    </template>
+                                    <template v-else>
+                                        <div v-for="block in slide" :key="block.title" class="tabs-swiper__slide--block">
+                                            <h3 class="text4">{{block.title}}</h3>
+                                            <p class="text6">{{block.text}}</p>
+                                        </div>
+                                    </template>
+                                </swiper-slide>
+                            </swiper>
+                        </client-only>
                     </div>
                 </div>
                 <div class="container" :class="`tabs-swiper__navigation tabs-swiper__navigation--${tab.type}`">
