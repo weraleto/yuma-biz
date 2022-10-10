@@ -71,13 +71,13 @@ body {
     }
 }
 .hidden-desktop {
-    @media screen and (min-width: 1025px) {
-        display: none;
+    @media screen and (min-width: calc($--screen-md-min + 1px)) {
+        display: none !important;
     }
 }
 .only-desktop {
     @media screen and (max-width: $--screen-md-min) {
-        display: none;
+        display: none !important;
     }
 }
 
@@ -88,12 +88,12 @@ body {
     left: 0;
     right: 0;
     z-index: 9996;
-    background-color: $--main-black;
+    background-color: rgba(#2A2A2A, .9);
     opacity: 0.9;
 
-    @media screen and (max-width: $--screen-sm-min) {
-        top: 48px;
-    }
+    // @media screen and (max-width: $--screen-sm-min) {
+    //     top: 48px;
+    // }
 }
 
 .container {
@@ -292,6 +292,12 @@ section {
             background: url('~assets/img/arrow-right-up.png');
             background-size: cover;
             margin-left: 21.5px;
+        }
+    }
+
+    &.subtitle {
+        @media screen and (max-width: $--screen-sm-min) {
+            font-size: 18px;
         }
     }
 }

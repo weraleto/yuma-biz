@@ -17,7 +17,9 @@
             <p class="text4">Попробуйте бесплатно!</p>
             <p class="text4">7 дней безлимитного доступа</p>
           </div>
-          <button class="btn primary large subtitle" @click.prevent>Попробовать</button>
+          <button class="btn primary large subtitle" 
+                  @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
+          >Попробовать</button>
         </div>
       </div>
     </header>
@@ -74,13 +76,9 @@
         <h2 class="title1 container block-offset__title">С нами уже работают</h2>
         <Partners />
       </section>
-
-      <!-- Форма -->
-      <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
-        subtitle="Заполните форму, и мы вас проконсультируем" />
       
       <!-- FAQ -->
-      <section class="pt-large faq-section">
+      <section class="faq-section">
         <div class="container--large">
           <h3 class="title1">Ответы на вопросы бизнеса</h3>
         </div>
@@ -88,6 +86,10 @@
           <Collapse :data="faq" />
         </div>
       </section>
+
+      <!-- Форма -->
+      <LeadForm theme="light" title="Наши специалисты помогут подобрать оптимальное решение ваших задач"
+        subtitle="Заполните форму, и мы вас проконсультируем" />
     </main>
 
 
@@ -252,6 +254,7 @@
   }
 
   .faq-section {
+    padding-bottom: 150px;
     &__content {
       margin-top: 52px;
       @media screen and (max-width: $--screen-sm-min) {

@@ -134,7 +134,7 @@ export default {
             margin-top: 10px;
         }
 
-        @media screen and (min-width: 768px) {
+        @media screen and (min-width: calc($--screen-sm-min + 1px)) {
             padding-right: 39px;
         }
 

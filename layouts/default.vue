@@ -2,25 +2,25 @@
   <div class="app">
     <!-- <Navbar /> -->
     <nuxt />
-    <!-- <Footer /> -->
+    <Footer />
 
-    <FormModal 
+    <!-- <FormModal 
         form-action="contact"
         action-button-text="Заказать звонок"
         v-if="$store.state.showContactForm"
-        @close="$store.commit('setShowModal', {key: 'showContactForm', val: false})" />
+        @close="$store.commit('setShowModal', {key: 'showContactForm', val: false})" /> -->
     <FormModal 
         form-action="application"
         form-size="medium"
         action-button-text="Отправить заявку"
-        :show-textarea="true"
+        :show-textarea="false"
         v-if="$store.state.showApplyForm"
         @close="$store.commit('setShowModal', {key: 'showApplyForm', val: false})" />
 
 
-    <div class="up-button" @click="scrollToTop" v-if="showUpButton">
+    <!-- <div class="up-button" @click="scrollToTop" v-if="showUpButton">
         <img src="~assets/img/arrow.svg" alt="Наверх страницы">
-    </div>
+    </div> -->
   </div>
   
 </template>

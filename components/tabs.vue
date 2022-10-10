@@ -2,7 +2,7 @@
     <div class="tabs-wrapper">
         <el-tabs v-model="activeName" :id="id">
             <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in tabsContent" :key="tab.label">
-                <div :class="`tab-content--${tab.type}`">
+                <div :class="`tab-content tab-content--${tab.type}`">
                     <div :class="`tab-picture tab-picture--${tab.type}`">
                         <img :src="require(`../assets/img/${imageFolderName}/${tab.img}`)" alt="Рестораны, бары">
                     </div>
@@ -458,7 +458,11 @@
 }
 
 .tab-picture {
+    @include container;
+    max-width: $--container-width-default;
+    
     position: relative;
+    padding: 0 !important;
 
     &--horizontal {
         margin-bottom: 40px;
@@ -466,30 +470,33 @@
     &--vertical {
         flex: 1 0 65.63%;
 
-        @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
-            max-height: 35vw;
-            min-height: 35vw;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-        }
+       
         @media screen and (max-width: $--screen-md-min) {
             flex: 1 1 auto;
-            img {
-                width: 100vw;
-            }
+        }
+    }
+
+     @media screen and (max-width: $--screen-md-min) {
+        max-height: 35vw;
+        // min-height: 35vw;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+            width: 100vw;
         }
     }
 
     @media screen and (max-width: $--screen-sm-min) {
         margin-bottom: 20px;
         max-height: 51.73vw;
-        min-height: 51.73vw;
+        // min-height: 51.73vw;
         min-width: 100vw;
-        overflow: hidden;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        // overflow: hidden;
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
 
         &--horizontal img {
             height: 100%;
@@ -509,6 +516,7 @@
         @media screen and (max-width: $--screen-md-min) {
             flex-direction: column;
             align-items: center;
+            padding: 0;
         }
         @media screen and (max-width: $--screen-sm-min) {
             gap: 0;
@@ -532,7 +540,7 @@
             flex-direction: column;
             gap: 3.89vw;
 
-            @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
+            @media screen and (min-width: calc($--screen-sm-min + 1px)) and (max-width: $--screen-md-min) {
                 flex-direction: row;
                 gap: 0;
             }
@@ -547,7 +555,7 @@
         }
 
         &--block {
-            @media screen and (min-width: $--screen-sm-min) and (max-width: $--screen-md-min) {
+            @media screen and (min-width: calc($--screen-sm-min + 1px)) and (max-width: $--screen-md-min) {
                 flex: 1 0 33.333333%;
                 &:not(:last-child) {
                     padding-right: 40px;
@@ -556,11 +564,20 @@
         }
     }
     &__container {
-        &--horizontal {
+        &--horizontal, &--vertical {
+            
             @include container;
             max-width: $--container-width-default;
+
+            @media screen and (max-width: $--screen-sm-min) {
+                .swiper-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 40px;
+                }
+            }
         }
-        &--vertical {
+        &--vertical {           
             width: 100%;
             overflow: hidden;
             &, .swiper-wrapper {
@@ -568,13 +585,12 @@
                 flex-grow: 1;
                 height: auto;
             }
-        }
-        &--horizontal, &--vertical {
+            @media screen and (min-width: calc($--screen-md-min + 1px)) {
+                padding-left: 0;
+                padding-right: 0;
+            }
             @media screen and (max-width: $--screen-sm-min) {
-                .swiper-wrapper {
-                    display: flex;
-                    flex-direction: column;
-                    gap: 40px;
+                &, .swiper-wrapper {
                     height: 100%;
                 }
             }
