@@ -143,13 +143,15 @@ section {
     text-transform: uppercase;
 
     @media screen and (max-width: $--screen-sm-min) {
-        font-size: 24px;
+        font-size: 28px;
+        line-height: 40px;
     }
 }
 
 .title2 {
     font-weight: 500;
     font-size: 28px;
+    line-height: 40px;
     text-transform: uppercase;
 }
 .title3 {

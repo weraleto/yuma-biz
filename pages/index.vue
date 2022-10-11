@@ -1,14 +1,6 @@
 <template>
   <div>
     <header class="header">
-      <div class="header__top">
-        <picture>
-          <source media="(min-width:1900px)" srcset="~assets/img/header@2x.jpg">
-          <source media="(min-width:990px)" srcset="~assets/img/header.jpg">
-          <source media="(min-width:230px)" srcset="~assets/img/header@0.5.jpg">
-          <img src="~assets/img/header.jpg" alt="yuma pos">
-        </picture>
-      </div>
       <div class="container header__container">
         <h1>YUMA-pos</h1>
         <h2>Кастомная система автоматизации c бесплатной техподдержкой 24/7</h2>
@@ -21,6 +13,14 @@
                   @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
           >Попробовать</button>
         </div>
+      </div>
+      <div class="header__top">
+        <picture>
+          <source media="(min-width:1900px)" srcset="~assets/img/header@2x.jpg">
+          <source media="(min-width:990px)" srcset="~assets/img/header.jpg">
+          <source media="(min-width:0px)" srcset="~assets/img/header@0.5.jpg">
+          <img src="~assets/img/header.jpg" alt="yuma pos">
+        </picture>
       </div>
     </header>
     <main>
@@ -74,9 +74,7 @@
       <!-- С нами уже работают -->
       <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">С нами уже работают</h2>
-        <client-only>
-          <Partners />
-        </client-only>
+        <Partners />
       </section>
       
       <!-- FAQ -->
@@ -191,6 +189,7 @@
   @import '@/assets/scss/_variables.scss';
 
   .header {
+    margin-bottom: 50px;
     h1 {
       font-size: 134px;
       text-transform: uppercase;
@@ -211,6 +210,7 @@
       text-transform: uppercase;
       @media screen and (max-width: $--screen-lg-min) {
         font-size: 7.47vw;
+        line-height: 1.42em;
       }
     }
 
@@ -221,14 +221,15 @@
       display: flex;
       justify-content: center;
       align-items: flex-end;
-      picture, source, img {
+      position: relative;
+      picture, img {
         height: auto;
         width: 100%;
       }
-      @media screen and (max-width: 1133px) {
+      @media screen and (max-width: 990px) {
         height: 637px;
         max-height: 65vh;
-        picture, source, img {
+        picture, img {
           height: 100%;
           width: auto;
         }
@@ -236,8 +237,8 @@
     }
 
     &__container {
-      padding-top: 60px;
-      padding-bottom: 100px;
+      padding-top: 110px;
+      padding-bottom: 150px;
       @media screen and (max-width: $--screen-xs-min) {
         padding-top: 32px;
         padding-bottom: 72px;
@@ -252,6 +253,12 @@
       &--text {
         margin-bottom: 28px;
       }
+    }
+
+    @media screen and (max-width: $--screen-xs-min) {
+      display: flex;
+      flex-direction: column-reverse;
+      margin-bottom: 0;
     }
   }
 
