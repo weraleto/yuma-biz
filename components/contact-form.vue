@@ -39,7 +39,7 @@
                         {{formValidation.phone.errorMessage}}
                     </small>
                 </div>
-                <button type="submit" class="btn large" 
+                <button type="submit" class="btn large text4" 
                     :class="theme == 'dark' ? 'primary' : 'black'"
                     @click.prevent="submitForm"
                 >{{actionButtonText}}</button>
@@ -160,6 +160,9 @@ export default {
             }
             &.policy-argreement {
                 margin-top: 12px;
+                @media screen and (max-width: $--screen-sm-min) {
+                    text-align: center;
+                }
             }
             & + button {
                 margin-top: 13px;
@@ -172,7 +175,7 @@ export default {
         }
 
         @media screen and (max-width: $--screen-sm-min) {
-            max-width: 268px;
+            max-width: 290px;
             margin: auto;
         }
     }
@@ -255,8 +258,8 @@ export default {
         background-size: 61.25% auto, auto auto;
     }
     @media screen and (max-width: $--screen-md-min) {
-        padding: 60px 0 99px;
-        background-position: 0 calc(100% - 99px), 100% -50px;
+        padding: 60px 0 100px;
+        background-position: 0 calc(100% - 100px), 100% -50px;
     }
     @media screen and (max-width: $--screen-sm-min) {
         background: none;

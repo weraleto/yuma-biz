@@ -566,11 +566,6 @@
             @include container;
             max-width: $--container-width-default;
 
-            @media screen and (min-width: calc($--screen-md-min + 1px)) {
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
-
             @media screen and (max-width: $--screen-sm-min) {
                 .swiper-wrapper {
                     display: flex;
@@ -586,6 +581,11 @@
                 min-height: 100%;
                 flex-grow: 1;
                 height: auto;
+            }
+            
+            @media screen and (min-width: calc($--screen-md-min + 1px)) {
+                padding-left: 0 !important;
+                padding-right: 0 !important;
             }
             @media screen and (max-width: $--screen-sm-min) {
                 &, .swiper-wrapper {

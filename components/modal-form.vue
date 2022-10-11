@@ -38,7 +38,7 @@
                         <label class="contact-form__label text6" for="">Сообщение (по желанию)</label>
                         <textarea v-model="form.message" class="light" type="text" placeholder="Напишите что-нибудь" />
                     </div>
-                    <button type="submit" @click.prevent="submitForm" class="btn large primary subtitle">
+                    <button type="submit" @click.prevent="submitForm" class="btn large primary text4">
                         {{actionButtonText}}
                     </button>
                     <div class="contact-form__form-group policy-argreement">
@@ -134,7 +134,7 @@ export default {
     height: auto;
     z-index: 10013;
     position: relative;
-    padding: 20px 134px;
+    padding: 20px 123px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -224,7 +224,7 @@ export default {
         }
     }
     @media screen and (max-width: $--screen-xs-min) {
-        padding: 54px 38px 50px;
+        padding: 54px 26px 50px;
         height: 100%;
         max-height: 84vh;
     }

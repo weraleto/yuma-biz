@@ -11,7 +11,6 @@
         @close="$store.commit('setShowModal', {key: 'showContactForm', val: false})" /> -->
     <FormModal 
         form-action="application"
-        form-size="medium"
         action-button-text="Отправить заявку"
         :show-textarea="false"
         v-if="$store.state.showApplyForm"

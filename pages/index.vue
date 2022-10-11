@@ -9,7 +9,7 @@
             <p class="text4">Попробуйте бесплатно!</p>
             <p class="text4">7 дней безлимитного доступа</p>
           </div>
-          <button class="btn primary large subtitle" 
+          <button class="btn primary large text4" 
                   @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
           >Попробовать</button>
         </div>
