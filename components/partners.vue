@@ -81,6 +81,7 @@ export default {
 .partners-gallery {
   display: flex;
   align-items: center;
+  gap: 60px;
 
   &__wrapper {
     grid-column: 1/13;
@@ -91,7 +92,6 @@ export default {
   &__item {
     flex: 1 0 auto;
     max-width: 200px;
-    margin-right: 60px;
   }
 }
 </style>

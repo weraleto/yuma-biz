@@ -80,6 +80,8 @@ export default {
 .app {
     display: flex;
     flex-direction: column;
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 .el-message.el-message--error {
