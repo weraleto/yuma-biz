@@ -16,8 +16,8 @@
       </div>
       <div class="header__top">
         <picture>
-          <source media="(min-width:1900px)" srcset="~assets/img/header@2x.jpg">
-          <source media="(min-width:990px)" srcset="~assets/img/header.jpg">
+          <source media="(min-width:1500px)" srcset="~assets/img/header@2x.jpg">
+          <source media="(min-width:700px)" srcset="~assets/img/header.jpg">
           <source media="(min-width:0px)" srcset="~assets/img/header@0.5.jpg">
           <img src="~assets/img/header.jpg" alt="yuma pos">
         </picture>
@@ -215,7 +215,6 @@
     }
 
     &__top {
-      height: 700px;
       max-height: 70vh;
       overflow: hidden;
       display: flex;
@@ -226,22 +225,17 @@
         height: auto;
         width: 100%;
       }
-      @media screen and (max-width: 990px) {
-        height: 637px;
-        max-height: 65vh;
-        picture, img {
-          height: 100%;
-          width: auto;
-        }
-      }
+      
     }
 
     &__container {
       padding-top: 110px;
       padding-bottom: 150px;
+      @media screen and (max-width: $--screen-sm-min) {
+        padding-bottom: 72px;
+      }
       @media screen and (max-width: $--screen-xs-min) {
         padding-top: 32px;
-        padding-bottom: 72px;
       }
     }
 
@@ -256,9 +250,7 @@
     }
 
     @media screen and (max-width: $--screen-xs-min) {
-      display: flex;
-      flex-direction: column-reverse;
-      margin-bottom: 0;
+      margin-bottom: 32px;
     }
   }
 
