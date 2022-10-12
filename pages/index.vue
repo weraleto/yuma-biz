@@ -78,11 +78,9 @@
       </section>
       
       <!-- FAQ -->
-      <section class="faq-section">
-        <div class="container--large">
-          <h3 class="title1">Ответы на вопросы бизнеса</h3>
-        </div>
-        <div class="container faq-section__content">
+      <section class="faq-section container">
+        <h3 class="title1">Ответы на вопросы бизнеса</h3>
+        <div class="faq-section__content">
           <Collapse :data="faq" />
         </div>
       </section>
@@ -222,8 +220,14 @@
       align-items: flex-end;
       position: relative;
       picture, img {
-        height: auto;
+        height: 700px;
         width: 100%;
+        object-fit: cover;
+
+        @media screen and (max-width: 700px)  {
+          height: auto;
+          width: 100%;
+        }
       }
       
     }
