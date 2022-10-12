@@ -3,7 +3,7 @@ export default {
   ssr: true,
   target: 'server',
   head: {
-    title: 'YUMA-SMART',
+    title: 'YUMA-POS – Система автоматизации для ресторана, кафе, доставки еды',
     htmlAttrs: {
       lang: 'ru'
     },
@@ -11,13 +11,16 @@ export default {
       { charset: 'utf-8' },
       { name: 'robots', content: 'noindex'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Гибкие настройки для заведений любого формата и масштаба по всей России. Учет, кассовая программа, встроенная маркетинговая платформа. Мобильное приложение и сайт с онлайн-заказами. Бесплатная техподдержка 24/7.' },
       { name: 'format-detection', content: 'telephone=no' },
       {
         property: 'og:title',
-        content: 'YUMA-SMART',
+        content: 'YUMA-POS – система автоматизации для ресторана, кафе, доставки еды',
         vmid: 'og:title',
         hid: 'og:title'
+      },
+      { hid: 'og:description', property: 'og:description', vmid: 'og:description',
+        content: 'Гибкие настройки для заведений любого формата и масштаба по всей России. Учет, кассовая программа, встроенная маркетинговая платформа. Мобильное приложение и сайт с онлайн-заказами. Бесплатная техподдержка 24/7.' 
       },
       {
         property: 'og:image',
@@ -30,6 +33,24 @@ export default {
         content: 'website',
         vmid: 'og:type',
         hid: 'og:type'
+      },
+      {
+        property: 'og:site_name',
+        content: 'YUMA-POS',
+        vmid: 'og:site_name',
+        hid: 'og:site_name'
+      },
+      {
+        property: 'og:locale',
+        content: 'ru_RU',
+        vmid: 'og:locale',
+        hid: 'og:locale'
+      },
+      {
+        property: 'og:locale:alternate',
+        content: 'en_US',
+        vmid: 'og:locale:alternate',
+        hid: 'og:locale:alternate'
       },
       {
         name: 'yandex-verification',

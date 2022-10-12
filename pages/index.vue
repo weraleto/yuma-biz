@@ -111,24 +111,7 @@
     },
     head() {
       return {
-        title: 'HelloWorld',
-        meta: [{
-            hid: 'description',
-            name: 'description',
-            content: ''
-          },
-          {
-            property: 'og:title',
-            content: '',
-            vmid: 'og:title',
-            hid: 'og:title'
-          },
-          {
-            property: 'og:description',
-            content: '',
-            vmid: 'og:description',
-            hid: 'og:description'
-          },
+        meta: [
           {
             property: 'og:site_name',
             content: '',
