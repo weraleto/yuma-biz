@@ -38,8 +38,9 @@
                     >
                         <img src="~assets/img/swiper-arrow-prev.svg" alt="previous slide">
                     </div>
-                    <div class="tabs-swiper__navigation--item"
+                    <div class="tabs-swiper__navigation--item animate"
                         :class="`tabs-swiper__navigation--next-${String(i)}`"
+                        @click="handleSlideFirstChange"
                     >
                         <img src="~assets/img/swiper-arrow-next.svg" alt="next slide">
                     </div>
@@ -382,6 +383,12 @@
                     })
                 }
             },
+            handleSlideFirstChange() {
+                let el = event.target.closest('.tabs-swiper__navigation--item')
+                if (el.classList.contains('animate')) {
+                    el.classList.remove('animate')
+                }
+            }
         }
     }
 </script>
@@ -392,6 +399,17 @@
 @import "~swiper/swiper";
 @import '@/assets/scss/_mixins';
 @import '@/assets/scss/_variables';
+
+@keyframes arrowNextFullTiming {
+    0%, 33%, 49.5%, 66% {
+        transform: translateX(0);
+    }
+
+    41.25%, 57.75% {
+        transform: translateX(30%);
+    }
+}
+
 .tabs-wrapper {
     grid-column: 1/13;
 }
@@ -604,6 +622,12 @@
             cursor: pointer;
             &.swiper-button-disabled {
                 display: none;
+            }
+            &.animate {
+                animation-name: arrowNextFullTiming;
+                animation-duration: 3s;
+                animation-timing-function: linear;
+                animation-iteration-count: infinite;
             }
         }
 
