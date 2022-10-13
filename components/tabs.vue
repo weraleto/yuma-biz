@@ -625,7 +625,7 @@
             }
             &.animate {
                 animation-name: arrowNextFullTiming;
-                animation-duration: 3s;
+                animation-duration: 4s;
                 animation-timing-function: linear;
                 animation-iteration-count: infinite;
             }
