@@ -508,19 +508,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        img {
+        img, picture, source {
             width: 100vw;
         }
     }
 
-    @media screen and (max-width: $--screen-sm-min) {
+    @media screen and (max-width: $--screen-xs-min) {
         margin-bottom: 20px;
         max-height: 51.73vw;
         min-width: 100vw;
 
-        &--horizontal img {
-            height: 100%;
-            width: auto;
+        &--horizontal {
+            img, picture, source {
+                height: 100%;
+                width: auto;
+            }
         }
     }
 }

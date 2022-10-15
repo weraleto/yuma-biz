@@ -8,7 +8,7 @@
             @mouseleave="startAnimation"
         >
             <div class="partners-gallery__item " v-for="(i, idx) in randList" :key="idx">
-                <img :src="require('../assets/img/partners/p-'+i+'.svg')" alt="">
+                <img :src="require('../assets/img/partners/p-'+i+'.svg')" alt="" data-not-lazy>
             </div>
         </div>
 
