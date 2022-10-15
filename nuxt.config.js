@@ -98,6 +98,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    'nuxt-lazy-load',
     [
       '@nuxtjs/yandex-metrika',
       {

@@ -4,7 +4,12 @@
             <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in tabsContent" :key="tab.label">
                 <div :class="`tab-content tab-content--${tab.type}`">
                     <div :class="`tab-picture tab-picture--${tab.type}`">
-                        <img :src="require(`../assets/img/${imageFolderName}/${tab.img}`)" alt="Рестораны, бары">
+                        <picture v-lazy-load>
+                        <source media="(min-width:1440px)" :data-srcset="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)">
+                        <source media="(min-width:990px)" :data-srcset="require(`../assets/img/${imageFolderName}/${tab.img}0.75.jpg`)">
+                        <source media="(min-width:0px)" :data-srcset="require(`../assets/img/${imageFolderName}/${tab.img}0.5.jpg`)">
+                        <img :data-src="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)" :alt="tab.label">
+                        </picture>
                     </div>
                     <div :class="`tabs-swiper__container--${tab.type}`">
                         <client-only>
@@ -111,7 +116,7 @@
                 tabsContent: [{
                     label: 'Рестораны, бары',
                     type: 'horizontal',
-                    img: 'rest.jpg',
+                    img: 'rest',
                     slides: [{
                             title: 'Предварительные заказы и бронирование онлайн',
                             text: 'В вашем приложении и на сайте гости смогут сами бронировать столики, видя реальную загрузку. А также заранее заказывать подачу блюд к удобному часу.'
@@ -140,7 +145,7 @@
                 }, {
                     label: 'Кафе',
                     type: 'vertical',
-                    img: 'cafe.jpg',
+                    img: 'cafe',
                     slides: [[{
                             title: 'QR-меню и онлайн-заказы',
                             text: 'С помощью QR-меню ваши гости смогут сами без кассира и официанта делать заказы прямо за столиком. В вашем мобильном приложении и на сайте им будет удобно заказывать доставку и самовывоз.'
@@ -169,7 +174,7 @@
                 }, {
                     label: 'Пекарни, кофейни',
                     type: 'vertical',
-                    img: 'bakery.jpg',
+                    img: 'bakery',
                     slides: [[{
                             title: 'Обслуживание нескольких покупателей одновременно',
                             text: 'Кассир может легко переключаться между заказами. Информация по каждому будет сохранена и доступна для дальнейшей работы до тех пор, пока заказ не будет завершён.'
@@ -194,7 +199,7 @@
                 }, {
                     label: 'Доставка',
                     type: 'horizontal',
-                    img: 'delivery.jpg',
+                    img: 'delivery',
                     slides: [{
                             title: 'Собственное мобильное приложение и сайт для заказов',
                             text: 'Мы запустим их на одном ядре с системой автоматизации, поэтому меню, цены и акции будут загружаться и обновляться автоматически.'
@@ -227,7 +232,7 @@
                 },{
                     label: 'Сети',
                     type: 'horizontal',
-                    img: 'franshise.jpg',
+                    img: 'franshise',
                     slides: [
                         {
                             title: 'Мобильное приложение и сайт под брендом вашей сети', 
@@ -269,7 +274,7 @@
                 },{
                     label: 'Столовые',
                     type: 'horizontal',
-                    img: 'cantines.jpg',
+                    img: 'cantines',
                     slides: [
                         {
                             title: 'Планирование производства и учёт',
@@ -299,7 +304,7 @@
                 }, {
                     label: 'Фудтраки',
                     type: 'vertical',
-                    img: 'foodtruck.jpg',
+                    img: 'foodtruck',
                     slides: [[{
                             title: 'Скорость работы с заказами',
                             text: 'Интерфейс кассы продуман для максимально быстрой обработки заказов. А для удобного процесса выдачи вы можете печатать номера заказов или имена клиентов на пречеках.'
@@ -328,7 +333,7 @@
                 },{
                     label: 'Кальянные',
                     type: 'vertical',
-                    img: 'hookah.jpg',
+                    img: 'hookah',
                     slides: [[{
                             title: 'Удобный учёт табака',
                             text: 'Табак добавляется в заказ прямо с весов, расчёт стоимости смеси и списание всех ингредиентов происходит автоматически. Достаточно отсканировать штрихкод с каждой упаковки и насыпать нужное количество.'
