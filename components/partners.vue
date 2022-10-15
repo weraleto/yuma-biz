@@ -8,7 +8,7 @@
             @mouseleave="startAnimation"
         >
             <div class="partners-gallery__item " v-for="(i, idx) in randList" :key="idx">
-                <img :src="require('../assets/img/partners/p-'+i+'.svg')" alt="" data-not-lazy>
+                <img :src="require('../assets/img/partners/p-'+i+'.png')" alt="" data-not-lazy>
             </div>
         </div>
 
@@ -19,7 +19,7 @@
 export default {
     data: () => {
         return {
-            speedX: -1,
+            speedX: -0.5,
             positionX: 0,
             isPaused: false,
             defaultPadding: 60,
@@ -35,7 +35,7 @@ export default {
     },
     computed: {
         randList() {
-            const a = [1, 2, 3, 4, 5, 6, 7, 8]
+            const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
             return a.concat(a).concat(a)
         }
     },
