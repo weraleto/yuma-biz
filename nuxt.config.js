@@ -9,7 +9,6 @@ export default {
     },
     meta: [
       { charset: 'utf-8' },
-      { name: 'robots', content: 'noindex'},
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: 'Гибкие настройки для заведений любого формата и масштаба по всей России. Учет, кассовая программа, встроенная маркетинговая платформа. Мобильное приложение и сайт с онлайн-заказами. Бесплатная техподдержка 24/7.' },
       { name: 'format-detection', content: 'telephone=no' },
