@@ -102,7 +102,7 @@ export default {
     [
       '@nuxtjs/yandex-metrika',
       {
-        id: '88835026',
+        id: '90798219',
         webvisor: true,
         clickmap: true,
         trackLinks:true,
@@ -112,7 +112,7 @@ export default {
       }
     ],
     ['@nuxtjs/google-analytics', {
-      id: 'UA-146332048-1'
+      id: 'G-YCDRYLNREC'
     }],
   ],
 
