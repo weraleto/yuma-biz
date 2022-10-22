@@ -10,16 +10,13 @@
             <div class="collapsible__item--content">
                 <div class="collapsible__item--content__inner">
                     <div class="collapsible__item--content__text">
-                        <p class="text6" v-html="item.text"></p>
-                    </div>
-                    <div v-if="item.steps" class="collapsible__item--content__steps">
-                        <div v-for="(step, idx1) in item.steps" :key="step" class="collapsible__item--content__step">
-                            <div class="collapsible__item--content__step--num">
-                                {{idx1 + 1}}
+                        <p class="text6" :class="{'price-text-bottom-margin': item.prices}" v-html="item.text"></p>
+
+                        <div v-if="item.prices" class="collapsible__item--price">
+                            <div class="collapsible__item--price__line text6" v-for="p in item.prices" :key="p.label">
+                                <p>{{p.label}}</p>
+                                <p>{{p.price}}</p>
                             </div>
-                            <p class="collapsible__item--content__step--text text5">
-                                {{step}}
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -106,53 +103,32 @@ export default {
     }
     .el-collapse-item__content {
         line-height: 1.2;
-        padding: 0 80px 20px 40px;
+        padding: 0 40px 20px;
+
+        .price-text-bottom-margin {
+            margin-bottom: 32px;
+        }
     }
 
-    &--content {
-
-        &__steps {
+    &--price {
+        padding-top: 32px;
+        border-top: 1px solid #e3e3e3;
+        &__line {
             display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-bottom: 8px;
-
-            @media screen and (max-width: $--screen-md-min) {
-                margin-top: 23px;
-            }
-            @media screen and (max-width: $--screen-sm-min) {
-                flex-direction: column;
-                margin-top: 20px;
-            }
-        }
-
-        &__step {
             width: 100%;
-            max-width: 25%;
-            display: flex;
-            align-items: center;
+            justify-content: space-between;
+            gap: 1em;
 
-            &--num {
-                font-size: 4.375rem;
-                line-height: 1;
-                font-variation-settings: 'wght' 900;
-                margin-right: 20px;
+            &:not(:last-child) {
+                margin-bottom: 24px;
             }
-
-            @media screen and (max-width: $--screen-md-min) {
-                max-width: 33.333%;
-                padding-right: 10px;
+            & > *{
+                max-width: 50%;
             }
-            @media screen and (max-width: $--screen-sm-min) {
-                max-width: 100%;
-                padding: 0 10vw;
-
-                &:not(:last-child) {
-                    margin-bottom: 20px;
-                }
+            & :last-child {
+                text-align: right;
             }
         }
-
     }
 
     @media screen and (max-width: $--screen-sm-min) {
@@ -168,7 +144,7 @@ export default {
             }
         }
         .el-collapse-item__content {
-            padding: 0 35px 24px 16px;
+            padding: 0 16px 24px;
         }
     }
 }
