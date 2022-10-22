@@ -1,4 +1,6 @@
 import { Message } from 'element-ui';
+import ElTabs from 'element-ui/lib/tabs'
+import ElTabPane from 'element-ui/lib/tab-pane'
 
 export const formMixin = {
     data: () => {
@@ -85,5 +87,43 @@ export const formMixin = {
                 phone: {result: true, errorMessage: ''},
             }
         }
+    }
+}
+
+export const tabsMixin = {
+    props: {
+        id: String,
+    },
+    data: () => {
+        return {
+            activeName: '0',
+            timer: null,
+        }
+    },
+    components: {
+        ElTabs,
+        ElTabPane
+    },
+    mounted() {
+        let navEl = document.querySelector(`#${this.id} .el-tabs__nav-scroll`)
+        navEl.addEventListener('touchmove', this.handleTabScroll)
+    },
+    methods: {
+        debounce(timeout = 100, callback){
+            if(this.timer){
+                clearTimeout(this.timer)
+            }
+            this.timer = setTimeout(callback, timeout)
+        },
+        handleTabScroll(e) {
+            const target = document.querySelector(`#${this.id} .el-tabs__nav-scroll`)
+            let el = target.querySelector('.el-tabs__nav')
+            let tr = el.style.transform.replace("translateX(", "").replace(")", "")
+            if (target.scrollLeft == 0 && parseInt(tr) != 0) {
+                this.debounce(150, function(){
+                    el.style.transform = "translateX(0px)"
+                })
+            }
+        },
     }
 }

@@ -48,15 +48,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-modal__contacts" v-if="showContactQr">
-                        <p class="text6">
-                            Или свяжитесь с нами через любой удобный месседжер
-                        </p>
-                        <div class="form-modal__contacts--qrs">
-                            <div><img src="~assets/img/telegram-qr.svg" alt="Контакт telegram"></div>
-                            <div><img src="~assets/img/QR-wa.svg" alt="Контакт whatsapp"></div>
-                        </div>
-                    </div>
                 </form>
                 <div class="form-modal__thankyou" v-else>
                     <div class="title3">заявка Отправлена</div>

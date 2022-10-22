@@ -48,10 +48,11 @@ export default {
     computed: {
         ...mapState([
             'showContactForm',
-            'showApplyForm'
+            'showApplyForm',
+            'otherModalsOpened'
         ]),
         isModalOpened() {
-            return this.showContactForm || this.showApplyForm
+            return this.showContactForm || this.showApplyForm || this.otherModalsOpened
         }
     },
     methods: {
