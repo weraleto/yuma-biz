@@ -12,20 +12,10 @@
                         Все компоненты синхронизируются между собой в режиме реального времени. Из них легко собрать решение для задач именно вашего бизнеса.
                     </p>
                 </div> 
-                <div class="sys-components__picture">
+                 <div class="sys-components__picture">
                     <img src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы">
-                </div>
-                <div class="sys-components__container grid-layout">
-                    <div v-for="(item, i) in systemComponentsData" :key="i"
-                        class="sys-components__item"
-                        :class="[`col-${item.colspan}`, `row-${item.rowspan}`]"
-                    >
-                        <div class="sys-components__item--front">
-                            <h4 class="subtitle sys-components__item--front__title">{{item.frontTitle}}</h4>
-                            <p>{{item.frontText}}</p>
-                        </div>
-                    </div>
-                </div>
+                </div> 
+                <systemComponents :data="systemComponentsData" />
             </section>
 
             <!-- Полный перечень тарифов YUMA-POS -->
@@ -60,13 +50,15 @@
 import { tariffs, systemComponentsData } from '@/assets/dataContent.js'
 import calculatorIcon from '../components/svg/сalculator'
 import LeadForm from '../components/contact-form'
+import systemComponents from '../components/system-components'
 import Tariffs from '../components/tabs-faq'
 export default {
     name: 'ProductsPage',
     components: {
         LeadForm,
         calculatorIcon,
-        Tariffs
+        Tariffs,
+        systemComponents
     }, 
     data: () => {
         return {
@@ -79,7 +71,6 @@ export default {
 
 <style lang="scss">
     @import '@/assets/scss/_variables';
-    $--products-default-border-radius: 12px;
 
     .products {
         &-title {
@@ -97,53 +88,6 @@ export default {
             border-radius: $--products-default-border-radius;
             overflow: hidden;
             margin-bottom: 36px;
-        }
-
-        &__container {
-            gap: 20px;
-            grid-auto-flow: column dense;
-            grid-template-rows: repeat(3, 240px);
-        }
-        
-        &__item {
-            border-radius: $--products-default-border-radius;
-            border: 1px solid $--gray-medium;
-            padding: 36px;
-            position: relative;
-            cursor: pointer;
-
-            &::after {
-                content: '';
-                width: 22px;
-                height: 22px;
-                position: absolute;
-                bottom: 33px;
-                right: 33px;
-                background: url('../assets/img/arrow.svg') no-repeat center center;
-                background-size: cover;
-                transition: transform .3s ease;
-            }
-
-            &:hover {
-                &::after {
-                    transform: translate(30%, 30%);
-                }
-            }
-
-            &.col-1 {
-                grid-column: span 3;
-            }
-            &.col-2 {
-                grid-column: span 6;
-            }
-            &.row-2 {
-                grid-row: span 2;
-            }
-            &--front {
-                &__title {
-                    margin-bottom: 12px;
-                }
-            }
         }
     }
 
