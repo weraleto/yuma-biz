@@ -13,7 +13,7 @@
                         <p class="text6" :class="{'price-text-bottom-margin': item.prices}" v-html="item.text"></p>
 
                         <div v-if="item.prices" class="collapsible__item--price">
-                            <div class="collapsible__item--price__line text6" v-for="p in item.prices" :key="p.label">
+                            <div class="collapsible__item--price__line text6" v-for="p in item.prices" :key="p.label+p.price">
                                 <p>{{p.label}}</p>
                                 <p>{{p.price}}</p>
                             </div>
@@ -145,6 +145,14 @@ export default {
         }
         .el-collapse-item__content {
             padding: 0 16px 24px;
+        }
+
+        &--price {
+            &__line {
+                &:not(:last-child) {
+                    margin-bottom: 30px;
+                }
+            }
         }
     }
 }

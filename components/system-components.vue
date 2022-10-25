@@ -21,12 +21,23 @@
                     <h4 class="subtitle">{{activeElData.title}}</h4>
                     <p class="text6">{{activeElData.description}}</p>
                 </div>
+                <template v-if="activeElData.tab">
+                    <SwiperWithPic
+                        :i="activeEl"
+                        image-folder-name="components"
+                        :tab="activeElData.tab"
+                        :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl)"
+                        :picture-bordered="true"
+                    />
+                </template>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import SwiperWithPic from '@/components/swiper-with-pic'
+
 export default {
     props: {
         data: {
@@ -39,9 +50,60 @@ export default {
             activeEl: null,
             visibleEl: null,
             contentVisible: false,
-            params: []
+            params: [],
+            swiperOptionsBase: {
+                spaceBetween: 40,
+                breakpointsBase: 'container',
+                on: {
+                    init: function() {
+                        const ctx = this
+                        setTimeout(()=>{
+                            ctx.update()
+                            ctx.updateSize()
+                        }, 310)
+                        
+                    }
+                }
+            },
+            swiperOptionsHorizontal: {
+                breakpoints: {
+                    0: {
+                        enabled: false,
+                        allowTouchMove: false,
+                        allowSlideChange: false,
+                    },
+                    768: {
+                        enabled: true,
+                        allowTouchMove: true,
+                        allowSlideChange: true,
+                        slidesPerView: 1.5,
+                        slidesPerGroup: 1
+                    },
+                    1024: {
+                        slidesPerView: 3,
+                        slidesPerGroup: 3,
+                    }
+                },
+            },
+            swiperOptionsVertical: {
+                breakpoints: {
+                    0: {
+                        enabled: false,
+                        allowTouchMove: false,
+                        allowSlideChange: false,
+                    },
+                    768: {
+                        enabled: true,
+                        allowTouchMove: true,
+                        allowSlideChange: true,
+                        slidesPerView: 1,
+                        slidesPerGroup: 1
+                    }
+                },
+            },
         }
     },
+    components: {SwiperWithPic},
     computed: {
         activeElData() {
             if (this.activeEl) {
@@ -51,6 +113,17 @@ export default {
         }
     },
     methods: {
+        getSwiperConfiguration(type, idx) {
+            let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
+            return {
+                ...this.swiperOptionsBase,
+                ...config,
+                navigation: {
+                    prevEl: `.tabs-swiper__navigation--prev-${idx}`,
+                    nextEl: `.tabs-swiper__navigation--next-${idx}`
+                }
+            }
+        },
         openPopoverCard(e) {
             const el = e.target.closest('.sys-components__item')
             let popoverEl = this.$refs.popoverComponent
@@ -58,12 +131,11 @@ export default {
             this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
             this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
             this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
+            this.setElProperty(popoverEl, 'zIndex', 5)
             this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
 
-            this.visibleEl = el.dataset.idx
-            this.activeEl = el.dataset.idx
-            // setTimeout(()=>{
-            // }, 100)
+            this.visibleEl = this.activeEl = el.dataset.idx
+
             setTimeout(()=>{
                 this.setElProperty(popoverEl, 'maxHeight', el.parentElement.clientHeight+2, 'px')
                 this.setElProperty(popoverEl, 'maxWidth', el.parentElement.clientWidth+2, 'px')
@@ -89,6 +161,7 @@ export default {
             }, 200)
             setTimeout(()=>{
                 this.visibleEl = null
+                this.setElProperty(popoverEl, 'zIndex', -1)
             }, 250)
         },
         setElProperty(el, prop, val, units='') {
@@ -98,7 +171,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 @import '@/assets/scss/_variables';
 
 .sys-components {
@@ -107,6 +180,17 @@ export default {
         grid-auto-flow: column dense;
         grid-template-rows: repeat(3, 240px);
         position: relative;
+
+        @media screen and (max-width: $--screen-md-min) {
+            grid-template-columns: repeat(6, 1fr);
+            grid-template-rows: repeat(5, 150px);
+            grid-auto-flow: row dense;
+            gap: 16px;
+        }
+        @media screen and (max-width: $--screen-xxs-min) {
+            gap: 12px;
+            grid-template-rows: 168px 278px 168px 278px 168px;
+        }
     }
 
     &__popover {
@@ -126,7 +210,6 @@ export default {
         transition: opacity .2s ease-in, z-index .2s ease-in;
 
         &.is_visible {
-            z-index: 2;
             opacity: 1;
         }
 
@@ -155,7 +238,7 @@ export default {
             display: flex;
             flex-direction: column;
             gap: 12px;
-            max-width: 375px;
+            max-width: 471px;
             margin-bottom: 32px;
         }
         &--content {
@@ -165,6 +248,8 @@ export default {
                 opacity: 1;
             }
         }
+
+        
     }
     
     &__item {
@@ -184,6 +269,7 @@ export default {
             background: url('../assets/img/arrow.svg') no-repeat center center;
             background-size: cover;
             transition: transform .3s ease;
+            z-index: 1;
         }
 
         &:hover {
@@ -201,10 +287,71 @@ export default {
         &.row-2 {
             grid-row: span 2;
         }
+        &[data-idx="6"] {
+            order: 10;
+        }
         &--front {
             &__title {
                 margin-bottom: 12px;
             }
+        }
+
+        @media screen and (max-width: $--screen-lg-min) {
+            padding: 20px;   
+
+            &::after {
+                bottom: 20px;
+                right: 20px;
+            }
+            &--front {
+                .subtitle {
+                    font-weight: 500;
+                }
+            }
+        }
+        @media screen and (max-width: $--screen-md-min) {
+            &.row-2 {
+                grid-row: span 1;
+            }
+        }
+        @media screen and (max-width: $--screen-xs-min) {
+            &[data-idx="4"] {
+                order: 9;
+            }
+            &[data-idx="2"] {
+                order: 8;
+                grid-column: span 3;
+            }
+            &[data-idx="5"] {
+                order: 7;
+                grid-column: span 6;
+            }
+        }
+        @media screen and (max-width: 330px) {
+            padding: 10px;
+
+            &::after {
+                bottom: 10px;
+                right: 10px;
+            }
+        }
+    }
+
+    .tab-picture--horizontal {
+        margin-bottom: 32px;
+    }
+
+    .tabs-swiper__navigation {
+        @media screen and (min-width: 1440px) {
+            margin-top: 10px;
+        }
+    }
+
+    .tab-picture {
+        picture, img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
         }
     }
 }

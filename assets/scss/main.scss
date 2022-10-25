@@ -391,7 +391,7 @@ input[type=checkbox]:checked + .label_checkbox {
     grid-template-columns: repeat(12, 1fr);
 
     @media screen and (max-width: $--screen-sm-min) {
-        &:not(.footer-bottom-layout) {
+        &:not(.footer-bottom-layout):not(.sys-components__container) {
             grid-template-columns: repeat(5, 1fr);
         }
     }

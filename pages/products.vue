@@ -4,7 +4,7 @@
         <div class="container">
             <!-- Компоненты системы -->
             <section class="section sys-components">
-                <div class="products-title">
+                <div class="products-title sys-components__title">
                     <h1 class="title1">
                         Компоненты системы
                     </h1>
@@ -75,31 +75,78 @@ export default {
     .products {
         &-title {
             max-width: 50%;
-            margin-bottom: 52px;
 
             p {
                 margin-top: 16px;
+            }
+
+            @media screen and (max-width: $--screen-md-min) {
+                max-width: 71%;
+            }
+            @media screen and (max-width: $--screen-sm-min) {
+                max-width: 100%;
+            }
+        }
+
+        .subtitle {
+            @media screen and (max-width: $--screen-lg-min) {
+                font-size: 18px;
+            }
+            @media screen and (max-width: 330px) {
+                font-size: 16px;
             }
         }
     }
 
     .sys-components {
-        &__picture {
-            border-radius: $--products-default-border-radius;
-            overflow: hidden;
+        &__title {
+            margin-bottom: 52px;
+        }
+        &__picture {        
             margin-bottom: 36px;
+
+            @media screen and (min-width: calc($--screen-xs-min + 1px)) {
+                border-radius: $--products-default-border-radius;
+                overflow: hidden;
+            }
+
+            @media screen and (max-width: $--screen-sm-min) {
+                picture, img {
+                    width: 100vw;
+                    height: 220px;
+                    object-fit: cover;
+                }
+            }
+            @media screen and (max-width: $--screen-xs-min) {
+                margin-bottom: 24px;
+                picture, img {
+                    transform: translateX(-16px);
+                    height: 51.73vw;
+                }
+            }
         }
     }
 
     .tariffs {
         &__title {
             display: flex;
+            margin-bottom: 68px;
 
             &--icon {
                 width: 100%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
+            }
+
+            @media screen and (max-width: $--screen-sm-min) {
+                flex-direction: column; 
+                gap: 16px;
+                margin-bottom: 54px;
+
+                &--icon {
+                    align-items: flex-start;
+                }   
             }
         }
     }
