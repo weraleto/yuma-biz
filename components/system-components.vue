@@ -97,7 +97,35 @@ export default {
                         allowTouchMove: true,
                         allowSlideChange: true,
                         slidesPerView: 1,
-                        slidesPerGroup: 1
+                        slidesPerGroup: 1,
+                        spaceBetween: 20
+                    },
+                },
+            },
+            swiperOptionsVerticalSmall: {
+                breakpoints: {
+                    0: {
+                        enabled: false,
+                        allowTouchMove: false,
+                        allowSlideChange: false,
+                    },
+                    768: {
+                        enabled: true,
+                        allowTouchMove: true,
+                        allowSlideChange: true,
+                        slidesPerView: 1,
+                        slidesPerGroup: 1,
+                        spaceBetween: 20
+                    },
+                    1024: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                        spaceBetween: 20
+                    },
+                    1380: {
+                        slidesPerView: 2,
+                        slidesPerGroup: 2,
+                        spaceBetween: 40
                     }
                 },
             },
@@ -115,6 +143,9 @@ export default {
     methods: {
         getSwiperConfiguration(type, idx) {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
+            if (this.data[idx].tab.pictureSize && this.data[idx].tab.pictureSize == 'small') {
+                config = this.swiperOptionsVerticalSmall
+            }
             return {
                 ...this.swiperOptionsBase,
                 ...config,
@@ -249,7 +280,15 @@ export default {
             }
         }
 
-        
+        @media screen and (max-width: $--screen-lg-min) {
+            &.is_active {
+                padding: 20px;
+            }
+            &--close {
+                top: 20px;
+                right: 20px;
+            }
+        }
     }
     
     &__item {
@@ -342,8 +381,13 @@ export default {
     }
 
     .tabs-swiper__navigation {
-        @media screen and (min-width: 1440px) {
+        width: auto;
+        @media screen and (min-width: 1024px) {
+            z-index: 3;
+            position: absolute;
             margin-top: 10px;
+            right: 40px;
+            bottom: 40px;
         }
     }
 
@@ -352,6 +396,48 @@ export default {
             height: 100%;
             width: 100%;
             object-fit: cover;
+        }
+    }
+    .size-reverse-vertical {
+        align-items: center;
+        .tab-picture {
+            &--vertical {
+                flex: 1 0 31.25%;
+                height: 560px;
+            }
+        }
+    }
+    .tab-content--vertical {
+        @media screen and (max-width: $--screen-lg-min) {
+            gap: 20px;
+            .tabs-swiper {
+                &__slide {
+                    &--vertical {
+                        gap: 20px;
+                    }
+                }
+            }
+            
+        }
+        @media screen and (max-width: $--screen-md-min) {
+            flex-direction: row;
+            .tab-picture {
+                &--vertical {
+                    height: 392px;
+                }
+            }
+        }
+        @media screen and (min-width: calc($--screen-sm-min + 1px)) and (max-width: $--screen-md-min) {
+            .tabs-swiper {
+                &__slide {
+                    &--vertical {
+                        flex-direction: column;
+                    }
+                    &--block {
+                        flex: 1 1 100%;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :class="['tab-content', `tab-content--${tab.type}`, {'size-reverse': tab.pictureSize == 'small'}]">
+        <div :class="['tab-content', `tab-content--${tab.type}`, {'size-reverse-vertical': tab.pictureSize == 'small'}]">
             <div 
                 :class="['tab-picture', `tab-picture--${tab.type}`, {'has-border-radius': pictureBordered}]"
             >
@@ -130,14 +130,17 @@
         display: flex;
         gap: 40px;
 
-        @media screen and (max-width: $--screen-md-min) {
-            flex-direction: column;
-            align-items: center;
-            padding: 0;
+        &:not(.size-reverse-vertical) {
+            @media screen and (max-width: $--screen-md-min) {
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
+            @media screen and (max-width: $--screen-sm-min) {
+                gap: 0;
+            }
         }
-        @media screen and (max-width: $--screen-sm-min) {
-            gap: 0;
-        }
+
     }
 }
 
@@ -232,36 +235,6 @@
 
         @media screen and (max-width: $--screen-sm-min) {
             display: none;
-        }
-    }
-}
-
-
-.size-reverse {
-    align-items: center;
-    .tab-picture {
-        &--vertical {
-            flex: 1 0 31.25%;
-            height: 560px;
-
-            @media screen and (max-width: $--screen-md-min) {
-                flex: 1 1 auto;
-                height: 130px;
-                width: 100%;
-            }
-        }
-    }
-
-    .tabs-swiper {
-        &__slide {
-            &--vertical {
-                flex-direction: row;
-                flex-wrap: wrap;
-                gap: 40px;
-            }
-            &--block {
-                flex: 1 1 46%;
-            }
         }
     }
 }
