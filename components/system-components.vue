@@ -354,14 +354,14 @@ export default {
             }
         }
         @media screen and (max-width: $--screen-xs-min) {
-            &[data-idx="4"] {
-                order: 9;
-            }
             &[data-idx="2"] {
-                order: 8;
+                order: 9;
                 grid-column: span 3;
             }
             &[data-idx="5"] {
+                order: 8;
+            }
+            &[data-idx="4"] {
                 order: 7;
                 grid-column: span 6;
             }
