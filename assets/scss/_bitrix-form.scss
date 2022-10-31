@@ -1,0 +1,102 @@
+.b24-form-content, .b24-form-padding-side {
+    padding: 0 !important;
+}
+
+.b24-form-control-string .b24-form-control {
+    width: 100%;
+    border-radius: 10px !important;
+    border: 2px solid transparent;
+    color: $--main-black !important;
+    font-family: 'Onest', sans-serif !important;
+    padding: 12.5px 20px;
+    font-size: 15px;
+    font-feature-settings: inherit;
+    border-color: $--main-gray-light !important;
+
+    &::placeholder {
+        color: $--main-gray-light !important;
+    }
+
+    &:focus {
+        outline: none;
+    }
+
+    &:focus, &:hover {
+        border-color: $--main-gray !important;
+    }
+
+    &:active {
+        border-color: $--main-black !important;
+    }
+
+    &:disabled {
+        background-color: #E4E4E4;
+    }
+}
+
+.b24-form-btn {
+    font-family: 'Onest';
+    font-weight: 500;
+    text-transform: uppercase;
+    // font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    font-feature-settings: 'pnum' on, 'lnum' on;
+
+    width: 100%;
+    display: flex;
+    align-items: center;
+
+    transition: all .3s ease;
+
+    background: $--yellow-primary;
+    border: none;
+    border-radius: $--border-radius-default !important;
+    justify-content: center;
+    color: $--main-black;
+
+    &:hover {
+        background: $--yellow-hover;
+    }
+
+    &:active {
+        background: $--yellow-pressed;
+    }
+
+    &:disabled,
+    &.disabled {
+        background: $--yellow-default;
+    }
+}
+
+.theme-light {
+    .b24-form-wrapper {
+        background-color: transparent !important;
+    }
+
+    .b24-form-control-string .b24-form-control {
+        background-color: white !important;
+        border-color: white !important;
+    }
+
+    .b24-form-btn {
+        background: $--main-black;
+        color: white;
+        border: none;
+        border-radius: $--border-radius-default;
+        justify-content: center;
+
+        &:hover {
+            background: $--black-hover;
+        }
+
+        &:active {
+            background: $--main-black;
+        }
+
+        &:disabled,
+        &.disabled {
+            background: $--black-disabled;
+        }
+    }
+}
