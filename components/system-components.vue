@@ -602,6 +602,7 @@ export default {
         }
         @media screen and (max-width: $--screen-sm-min) {
             flex-direction: column;
+            gap: 20px;
             .tab-picture {
                 &--vertical {
                     flex: 1 1 auto;
