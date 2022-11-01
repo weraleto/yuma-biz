@@ -12,23 +12,53 @@
             </div>
         </div>
         <div class="sys-components__popover" 
-            :class="{'is_active': activeEl, 'is_visible': visibleEl}"
+            :class="{'is_active': activeEl, 'is_visible': visibleEl, 'is_first': activeEl && activeEl == 0}"
             ref="popoverComponent"
         >
             <div class="sys-components__popover--content" :class="{'visible': contentVisible}">
                 <div class="sys-components__popover--close" @click="hidePopoverCard"></div>
-                <div class="sys-components__popover--heading">
-                    <h4 class="subtitle">{{activeElData.title}}</h4>
-                    <p class="text6">{{activeElData.description}}</p>
-                </div>
-                <template v-if="activeElData.tab">
-                    <SwiperWithPic
-                        :i="activeEl"
-                        image-folder-name="components"
-                        :tab="activeElData.tab"
-                        :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl)"
-                        :picture-bordered="true"
-                    />
+                <template v-if="activeEl==0">
+                    <div ref="popoverCard" class="sys-components__popover--card" v-for="(tab, i) in activeElData.tabs" :key="tab.title">
+                        <div class="sys-components__popover--heading__wrapper">
+                            <div class="sys-components__popover--heading">
+                                <h4 class="subtitle hidden-mobile">{{tab.title}}</h4>
+                                <h4 class="subtitle hidden-desktop">Кассовая программа + бэк-офис</h4>
+                                <p class="text6 hidden-mobile">{{tab.description}}</p>
+                                <p class="text6 hidden-desktop">{{activeElData.frontText}}</p>
+                            </div>
+                            <div class="sys-components__popover--subheading hidden-desktop container">
+                                <h4 class="subtitle">{{activeCategoryCard}}</h4>
+                            </div>
+                        </div>
+                        <template v-if="tab">
+                            <SwiperWithPic
+                                :i="activeEl"
+                                :index-subprefix="String(i)"
+                                image-folder-name="components"
+                                :tab="tab"
+                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, String(i))"
+                                :picture-bordered="true"
+                            />
+                        </template>
+                    </div>
+                </template>
+                <template v-else>
+                    <div class="sys-components__popover--heading__wrapper">
+                        <div class="sys-components__popover--heading">
+                            <h4 class="subtitle">{{activeElData.title}}</h4>
+                            <p class="text6 hidden-mobile">{{activeElData.description}}</p>
+                            <p class="text6 hidden-desktop">{{activeElData.frontText}}</p>
+                        </div>
+                    </div>
+                    <template v-if="activeElData.tab">
+                        <SwiperWithPic
+                            :i="activeEl"
+                            image-folder-name="components"
+                            :tab="activeElData.tab"
+                            :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl)"
+                            :picture-bordered="true"
+                        />
+                    </template>
                 </template>
             </div>
         </div>
@@ -50,6 +80,7 @@ export default {
             activeEl: null,
             visibleEl: null,
             contentVisible: false,
+            activeCategoryCard: '',
             params: [],
             swiperOptionsBase: {
                 spaceBetween: 40,
@@ -141,38 +172,75 @@ export default {
         }
     },
     methods: {
-        getSwiperConfiguration(type, idx) {
+        getSwiperConfiguration(type, idx, subprefix='') {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
-            if (this.data[idx].tab.pictureSize && this.data[idx].tab.pictureSize == 'small') {
+            if (idx > 0 && this.data[idx].tab.pictureSize && this.data[idx].tab.pictureSize == 'small') {
                 config = this.swiperOptionsVerticalSmall
             }
             return {
                 ...this.swiperOptionsBase,
                 ...config,
                 navigation: {
-                    prevEl: `.tabs-swiper__navigation--prev-${idx}`,
-                    nextEl: `.tabs-swiper__navigation--next-${idx}`
+                    prevEl: `.tabs-swiper__navigation--prev-${idx}${subprefix?'-'+subprefix:''}`,
+                    nextEl: `.tabs-swiper__navigation--next-${idx}${subprefix?'-'+subprefix:''}`
                 }
             }
         },
         openPopoverCard(e) {
             const el = e.target.closest('.sys-components__item')
             let popoverEl = this.$refs.popoverComponent
-            this.setElProperty(popoverEl, 'top', el.offsetTop, 'px')
-            this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
-            this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
-            this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
-            this.setElProperty(popoverEl, 'zIndex', 5)
-            this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
+            let isMobile = window.innerWidth <= 767
+            if (isMobile) {
+                this.visibleEl = this.activeEl = el.dataset.idx
+                this.setElProperty(popoverEl, 'zIndex', 5)
+                this.$store.commit('setShowModal', {key: 'otherModalsOpened', val: true})
+                
+                setTimeout(()=>{
+                    this.setElProperty(popoverEl, 'maxHeight', window.innerHeight, 'px')
+                    this.setElProperty(popoverEl, 'maxWidth', window.innerWidth, 'px')
+                    this.setElProperty(popoverEl, 'top', 0, 'px')
+                    this.setElProperty(popoverEl, 'left', 0, 'px')
 
-            this.visibleEl = this.activeEl = el.dataset.idx
+                    this.setElProperty(popoverEl.firstElementChild, 'paddingTop', 
+                        popoverEl.querySelector('.sys-components__popover--heading__wrapper').offsetHeight,
+                        'px'
+                    )
 
-            setTimeout(()=>{
-                this.setElProperty(popoverEl, 'maxHeight', el.parentElement.clientHeight+2, 'px')
-                this.setElProperty(popoverEl, 'maxWidth', el.parentElement.clientWidth+2, 'px')
-                this.setElProperty(popoverEl, 'top', 0, 'px')
-                this.setElProperty(popoverEl, 'left', 0, 'px')
-            }, 100)
+                    if (el.dataset.idx == 0) {
+                        this.activeCategoryCard = this.activeElData.tabs[0].title
+                        popoverEl.addEventListener('touchmove', this.handleMultipleCardsScroll)
+                        popoverEl.addEventListener('scroll', this.handleMultipleCardsScroll)
+                    }
+                }, 100)
+
+            } else {
+                this.setElProperty(popoverEl, 'top', el.offsetTop, 'px')
+                this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
+                this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
+                this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
+                this.setElProperty(popoverEl, 'zIndex', 5)
+                this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
+    
+                this.visibleEl = this.activeEl = el.dataset.idx
+                
+                setTimeout(()=>{
+                    if (el.dataset.idx == 0) {
+                        this.setElProperty(popoverEl, 'maxHeight', 300, 'vh')
+                    } else {
+                        this.setElProperty(popoverEl, 'maxHeight', el.parentElement.clientHeight+2, 'px')
+                    }
+                    this.setElProperty(popoverEl, 'maxWidth', el.parentElement.clientWidth+2, 'px')
+                    this.setElProperty(popoverEl, 'top', 0, 'px')
+                    this.setElProperty(popoverEl, 'left', 0, 'px')
+                }, 100)
+                setTimeout(()=>{
+                    // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
+                    let containerHeight = this.$refs.popoverCard.reduce((prev, next)=>{
+                        return prev += next.offsetHeight 
+                    }, 80)
+                    this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
+                }, 300)
+            }
             setTimeout(()=>{
                 this.contentVisible = true
             }, 200)
@@ -185,15 +253,24 @@ export default {
             this.setElProperty(popoverEl, 'left', left, 'px')
             this.setElProperty(popoverEl, 'maxWidth', width, 'px')
             this.setElProperty(popoverEl, 'maxHeight', height, 'px')
+            if (this.activeEl == 0) {
+                document.querySelector('.sys-components__container').style = {}
+            }
             this.params = []
                         
             setTimeout(()=>{
                 this.activeEl = null
+                this.$store.commit('setShowModal', {key: 'otherModalsOpened', val: false})
+                popoverEl.firstElementChild.style = null
             }, 200)
             setTimeout(()=>{
                 this.visibleEl = null
                 this.setElProperty(popoverEl, 'zIndex', -1)
             }, 250)
+        },
+        handleMultipleCardsScroll(){
+            let cardIdx = (this.$refs.popoverCard[0].offsetHeight - 60) < this.$refs.popoverComponent.scrollTop ? 1 : 0
+            this.activeCategoryCard = this.activeElData.tabs[cardIdx].title
         },
         setElProperty(el, prop, val, units='') {
             el.style[prop] = `${val}${units}`
@@ -211,6 +288,7 @@ export default {
         grid-auto-flow: column dense;
         grid-template-rows: repeat(3, 240px);
         position: relative;
+        transition: min-height .2s ease-in;
 
         @media screen and (max-width: $--screen-md-min) {
             grid-template-columns: repeat(6, 1fr);
@@ -238,7 +316,7 @@ export default {
         overflow: hidden;
         z-index: -1;
         opacity: 0;
-        transition: opacity .2s ease-in, z-index .2s ease-in;
+        transition: opacity .2s ease-in;
 
         &.is_visible {
             opacity: 1;
@@ -247,7 +325,14 @@ export default {
         &.is_active {
             padding: 40px;
             transition: all .2s ease-in;
+
+            &.is_first {
+                padding-left: 0;
+                padding-right: 0;
+            }
         }
+
+        
 
         &--close {
             position: absolute;
@@ -259,9 +344,42 @@ export default {
             right: 42px;
             cursor: pointer;
             transition: all .3s ease;
+            z-index: 7;
 
             &:hover {
                 transform: scale(1.15);
+            }
+
+            @media screen and (max-width: $--screen-sm-min) {
+                position: fixed;
+                top: 30px;
+                right: 30px;
+            }
+        }
+
+        &--card {
+            position: relative;
+            padding-left: 40px;
+            padding-right: 40px;
+            &:not(:last-child) {
+                padding-bottom: 72px;
+                margin-bottom: 40px;
+            }
+            &:last-child {
+                padding-bottom: 32px;
+            }
+            @media screen and (min-width: calc($--screen-sm-min + 1px)) {
+                &:not(:last-child) {
+                    border-bottom: 1px solid $--gray-medium;
+                }
+            }
+            @media screen and (max-width: $--screen-md-min) {
+                padding-left: 20px;
+                padding-right: 20px;
+                &:not(:last-child) {
+                    padding-bottom: 56px;
+                    margin-bottom: 20px;
+                }
             }
         }
 
@@ -271,7 +389,34 @@ export default {
             gap: 12px;
             max-width: 471px;
             margin-bottom: 32px;
+
+            @media screen and (max-width: $--screen-sm-min) {
+                max-width: 100%;
+                margin-bottom: 0;
+                padding: 12px 50px 12px 16px ;
+                gap: 8px;
+                border-bottom: 1px solid $--gray-medium;
+
+                &__wrapper {
+                    z-index: 6;
+                    background-color: white;
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    right: 0;
+
+                    h4 {
+                        font-weight: 500;
+                    }
+                }
+            }
         }
+
+        &--subheading {
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
         &--content {
             opacity: 0;
             transition: opacity .2s ease-in-out;
@@ -287,6 +432,17 @@ export default {
             &--close {
                 top: 20px;
                 right: 20px;
+            }
+        }
+
+        @media screen and (max-width: $--screen-sm-min) {
+            position: fixed;
+            border-radius: 0;
+            border: none;
+            overflow-y: scroll;
+
+            &.is_active {
+                padding-bottom: 52px;
             }
         }
     }
@@ -378,6 +534,11 @@ export default {
 
     .tab-picture--horizontal {
         margin-bottom: 32px;
+        @media screen and (max-width: $--screen-sm-min) {
+            margin-bottom: 24px;
+            // height: 170px;
+            height: 45vw;
+        }
     }
 
     .tabs-swiper__navigation {
@@ -435,6 +596,23 @@ export default {
                     }
                     &--block {
                         flex: 1 1 100%;
+                    }
+                }
+            }
+        }
+        @media screen and (max-width: $--screen-sm-min) {
+            flex-direction: column;
+            .tab-picture {
+                &--vertical {
+                    flex: 1 1 auto;
+                    width: 100%;
+                    height: 45vw;
+                }
+            }
+            .tabs-swiper {
+                &__slide {
+                    &--vertical {
+                        gap: 36px;
                     }
                 }
             }

@@ -13,7 +13,7 @@
                     </p>
                 </div> 
                  <div class="sys-components__picture">
-                    <img src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы">
+                    <img v-lazy-load data-src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы">
                 </div> 
                 <systemComponents :data="systemComponentsData" />
             </section>

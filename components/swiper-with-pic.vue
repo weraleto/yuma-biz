@@ -4,7 +4,7 @@
             <div 
                 :class="['tab-picture', `tab-picture--${tab.type}`, {'has-border-radius': pictureBordered}]"
             >
-                <picture v-lazy-load>
+                <!-- <picture v-lazy-load>
                     <source media="(min-width:1440px)"
                         :data-srcset="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)">
                     <source media="(min-width:990px)"
@@ -12,6 +12,15 @@
                     <source media="(min-width:0px)"
                         :data-srcset="require(`../assets/img/${imageFolderName}/${tab.img}0.5.jpg`)">
                     <img :data-src="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)" :alt="tab.label">
+                </picture> -->
+                <picture data-not-lazy>
+                    <source media="(min-width:1440px)"
+                        :srcset="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)">
+                    <source media="(min-width:990px)"
+                        :srcset="require(`../assets/img/${imageFolderName}/${tab.img}0.75.jpg`)">
+                    <source media="(min-width:0px)"
+                        :srcset="require(`../assets/img/${imageFolderName}/${tab.img}0.5.jpg`)">
+                    <img :src="require(`../assets/img/${imageFolderName}/${tab.img}.jpg`)" :alt="tab.label">
                 </picture>
             </div>
             <div :class="`tabs-swiper__container--${tab.type}`">
@@ -36,10 +45,10 @@
             </div>
         </div>
         <div class="container" :class="`tabs-swiper__navigation tabs-swiper__navigation--${tab.type}`">
-            <div class="tabs-swiper__navigation--item" :class="`tabs-swiper__navigation--prev-${i}`">
+            <div class="tabs-swiper__navigation--item" :class="`tabs-swiper__navigation--prev-${i}${indexSubprefix?'-'+indexSubprefix:''}`">
                 <img src="~assets/img/swiper-arrow-prev.svg" alt="previous slide">
             </div>
-            <div class="tabs-swiper__navigation--item animate" :class="`tabs-swiper__navigation--next-${i}`"
+            <div class="tabs-swiper__navigation--item animate" :class="`tabs-swiper__navigation--next-${i}${indexSubprefix?'-'+indexSubprefix:''}`"
                 @click="handleSlideFirstChange">
                 <img src="~assets/img/swiper-arrow-next.svg" alt="next slide">
             </div>
@@ -64,6 +73,10 @@
             i: {
                 type: String,
                 default: '0'
+            },
+            indexSubprefix: {
+                type: String,
+                default: ''
             },
             swiperOptions: {
                 type: Object,
@@ -110,7 +123,7 @@
     padding: 0 !important;
 
     &.has-border-radius {
-        img, picture, source {
+        img, picture {
             border-radius: $--products-default-border-radius;
         }
     }

@@ -1,6 +1,7 @@
 export const state = () => ({
     showContactForm: false,
-    showApplyForm: false
+    showApplyForm: false,
+    otherModalsOpened: false
 })
 
 export const mutations = {

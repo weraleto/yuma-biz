@@ -3,7 +3,7 @@
         <el-tabs v-model="activeName" :id="id">
             <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in tabsContent" :key="tab.label">
                 <SwiperWithPic 
-                    :i="i" 
+                    :i="String(i)" 
                     :tab="tab" 
                     :image-folder-name="imageFolderName" 
                     :swiper-options="getSwiperConfiguration(tab.type, String(i))"
@@ -106,22 +106,28 @@
         }
 
         @media screen and (max-width: $--screen-md-min) {
-            max-height: 35vw;
+            height: 35vw;
+            width: 100vw;
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-bottom: 20px;
+
+            &--vertical {
+                position: relative;
+                left: -16px;
+            }
+
             img, picture, source {
-                width: 100vw;
+                width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
         }
 
         @media screen and (max-width: $--screen-xs-min) {
-            margin-bottom: 20px;
-            max-height: 51.73vw;
-            min-width: 100vw;
+            height: 51.73vw;
 
             &--horizontal {
                 img, picture, source {
