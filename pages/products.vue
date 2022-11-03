@@ -4,11 +4,11 @@
         <div class="container">
             <!-- Компоненты системы -->
             <section class="section sys-components">
-                <div class="products-title sys-components__title">
+                <div class="section-title sys-components__title">
                     <h1 class="title1">
                         Компоненты системы
                     </h1>
-                    <p class="subtitle">
+                    <p class="section-subtitle subtitle">
                         Все компоненты синхронизируются между собой в режиме реального времени. Из них легко собрать решение для задач именно вашего бизнеса.
                     </p>
                 </div> 
@@ -71,32 +71,6 @@ export default {
 
 <style lang="scss">
     @import '@/assets/scss/_variables';
-
-    .products {
-        &-title {
-            max-width: 50%;
-
-            p {
-                margin-top: 16px;
-            }
-
-            @media screen and (max-width: $--screen-md-min) {
-                max-width: 71%;
-            }
-            @media screen and (max-width: $--screen-sm-min) {
-                max-width: 100%;
-            }
-        }
-
-        .subtitle {
-            @media screen and (max-width: $--screen-lg-min) {
-                font-size: 18px;
-            }
-            @media screen and (max-width: 330px) {
-                font-size: 16px;
-            }
-        }
-    }
 
     .sys-components {
         &__title {

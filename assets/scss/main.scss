@@ -106,11 +106,33 @@ body {
     }
 }
 
-section {
+.section {
     padding-top: 50px;
     padding-bottom: 120px;
     &.pt-large {
         padding-top: 120px;
+    }
+    &-title {
+        max-width: 50%;
+
+        p {
+            margin-top: 16px;
+        }
+
+        @media screen and (max-width: $--screen-md-min) {
+            max-width: 71%;
+        }
+        @media screen and (max-width: $--screen-sm-min) {
+            max-width: 100%;
+        }
+    }
+    &-subtitle {
+        @media screen and (max-width: $--screen-lg-min) {
+            font-size: 18px;
+        }
+        @media screen and (max-width: 330px) {
+            font-size: 16px;
+        }
     }
     @media screen and (max-width: $--screen-sm-min) {
         padding-top: 12px;
@@ -180,7 +202,7 @@ section {
 }
 
 .text-bold {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .no-word-break {
@@ -391,7 +413,7 @@ input[type=checkbox]:checked + .label_checkbox {
     grid-template-columns: repeat(12, 1fr);
 
     @media screen and (max-width: $--screen-sm-min) {
-        &:not(.footer-bottom-layout):not(.sys-components__container) {
+        &:not(.footer-bottom-layout):not(.sys-components__container):not(.sertification__container) {
             grid-template-columns: repeat(5, 1fr);
         }
     }
@@ -511,10 +533,10 @@ input[type=checkbox]:checked + .label_checkbox {
     
 }
 
-// .card {
-//     border-radius: calc($--border-radius-default * 2);
-//     border: 2px solid $--main-gray;
-// }
+.card {
+    border-radius: calc($--border-radius-default * 2);
+    border: 2px solid $--gray-medium;
+}
 
 .title-ladder {
     margin-bottom: 50px;
