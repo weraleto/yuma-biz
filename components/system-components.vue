@@ -239,7 +239,7 @@ export default {
                         return prev += next.offsetHeight 
                     }, 80)
                     this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
-                }, 300)
+                }, 350)
             }
             setTimeout(()=>{
                 this.contentVisible = true
