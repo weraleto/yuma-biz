@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <!-- <Navbar /> -->
+    <Navbar />
     <nuxt />
     <Footer />
 
@@ -82,6 +82,7 @@ export default {
     flex-direction: column;
     overflow-x: hidden;
     max-width: 100vw;
+    margin-top: 80px;
 }
 
 .el-message.el-message--error {

@@ -2,34 +2,54 @@
     <div>
         <nav class="navigation bar" :class="{'opened': mobileMenuOpened}">
             <div class="container navigation-container grid-layout">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='menu'">
+                    <img src="../assets/img/menu.svg" alt="Открыть меню">
+                </div>
                 <YumaLogo />
                 <div class="navigation-inner" :class="{'opened': mobileMenuOpened}">
-                    <div class="navigation-part left">
-                        <NuxtLink @click.native="mobileMenuOpened=false" to="/" class="navigation-link__item text5"><span>Главная</span></NuxtLink>
-                        <NuxtLink @click.native="mobileMenuOpened=false" to="/products" class="navigation-link__item text5"><span>Наши продукты</span></NuxtLink>
-                    </div>
-                    <div class="navigation-part right">
-                        <!-- <div class="navigation-tel__item text5" v-for="p in cities" :key="p.name">
-                            <span class="only-desktop">{{p.name}}</span>
-                            <div class="hidden-desktop">{{p.nameFull}}</div>
-                            <a class="navigation-tel__link text-bold" :href="`tel:${p.phone}`">{{p.phone}}</a>
-                        </div> -->
-                        <div class="navigation-tel__item text5">
-                            <a class="navigation-tel__link text-bold" href="tel:+78126059808">+7 (812) 605 98 08</a>
+                    <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
+                    <template v-if="activePopup=='menu'">
+                        <div class="navigation-part left">
+                            <div v-for="(it, idx) in navItems" :key="idx">
+                                <template v-if="it.is_dropdown">
+                                    <NavDropdown :title="it.title" :items="it.items" :menu-opened="mobileMenuOpened" />
+                                </template>
+                                <template v-else>
+                                    <NuxtLink @click.native="mobileMenuOpened=false" :to="it.path" class="navigation-link__item text4"><span>{{it.title}}</span></NuxtLink>
+                                </template>
+                            </div>
                         </div>
-
-
-                        <div class="navigation-btn">
-                            <a href="#" 
+                    </template>
+                    <template v-else>
+                        <h3 class="subtitle" style="margin-bottom: 56px">Мы работаем по всей России</h3>
+                        <div style="margin-bottom: 56px">
+                            <h3 class="subtitle" style="margin-bottom: 8px">Офис в Санкт-Петербурге</h3>
+                            <p class="text6" style="margin-bottom: 20px">
+                                Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская
+                            </p>
+                            <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
+                        </div>
+                        <div>
+                            <h3 class="subtitle" style="margin-bottom: 8px">Офис в Москве</h3>
+                            <p class="text6" style="margin-bottom: 20px">
+                                Нововладыкинский проезд, 2 стр. 2, метро Владыкино
+                            </p>
+                            <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
+                        </div>
+                    </template>
+                    <!-- <div class="navigation-part right">
+                        <div class="navigation-btn"> -->
+                            <!-- <a href="#" 
                                 @click.prevent="mobileMenuOpened=false; $store.commit('setShowModal', {key: 'showContactForm', val: true})"
-                            class="btn medium outlined">связаться с нами</a>
+                            class="btn medium outlined">связаться с нами</a> -->
+                            <!-- <a href="#" 
+                                @click.prevent class="btn medium outlined">Войти</a>
                         </div>
-                    </div>
+                    </div> -->
 
                 </div>
-                <div class="navigation-burger hidden-desktop" @click="mobileMenuOpened=!mobileMenuOpened">
-                    <img v-if="mobileMenuOpened" src="../assets/img/cross.svg" alt="Закрыть меню">
-                    <img v-else src="../assets/img/menu.svg" alt="Открыть меню">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='contacts'">
+                    <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
             </div>
         </nav>
@@ -39,16 +59,34 @@
 
 <script>
 import YumaLogo from '@/components/logo'
+import NavDropdown from '@/components/navbar-dropdown'
 export default {
-    components: {YumaLogo},
+    components: {YumaLogo, NavDropdown},
     data: () => {
         return {
-            cities: [
-                {name: 'Спб', nameFull: 'Санкт-Петербург', phone: '+7 (812) 309 50 32'},
-                {name: 'Мск', nameFull: 'Москва', phone: '+7 (495) 108 11 78'},
-            ],
-            mobileMenuOpened: false
+            mobileMenuOpened: false,
+            activePopup: 'menu',
+            navItems: [
+                {
+                    is_dropdown: true,
+                    title: 'YUMA-POS',
+                    items: [{path: '/', name: 'О системе'}, {path: '/products', name: 'Компоненты и цены'}]
+                },
+                {
+                    is_dropdown: false,
+                    title: 'О нас',
+                    path: '/about'
+                }
+            ]
         }
+    },
+    mounted() {
+        window.addEventListener('resize', () => {
+            if (this.mobileMenuOpened) {
+                this.mobileMenuOpened=false
+                this.activePopup='menu'
+            }
+        })
     }
 
 }
@@ -71,10 +109,21 @@ export default {
         border-color: transparent;
     }
 
+    &-mobile-close {
+        width: 20px;
+        height: 20px;
+        position: absolute;
+        right: 17px;
+        top: 20px;
+        @media screen and (min-width: calc($--screen-xs-min + 1px)) {
+            display: none;
+        }
+    }
+
     &-container {
         align-items: center;
 
-        @media screen and (max-width: $--screen-md-min) {
+        @media screen and (max-width: $--screen-sm-min) {
             &.grid-layout {
                 display: flex;
                 justify-content: space-between;
@@ -86,42 +135,44 @@ export default {
         display: flex;
         width: 100%;
         align-items: center;
-        justify-content: space-between;
         
         &.left {
-            grid-column: 1/3;
-        }
-        &.right {
-            grid-column: 4/9;
-            padding-left: 2.84vw;
-            gap: 2.84vw;
-            justify-content: flex-end;
+            flex-grow: 1;
+            gap: 52px;
 
-            @media screen and (min-width: 1025px) and (max-width: 1180px) {
-                grid-column: 3/9;
+            @media screen and (min-width: calc($--screen-xs-min + 1px)) {
+                justify-content: flex-end;
             }
         }
-        @media screen and (max-width: $--screen-md-min) {
+        &.right {
+            flex-shrink: 1;
+            max-width: 123px;
+        }
+        @media screen and (max-width: $--screen-sm-min) {
             flex-direction: column;
             align-items: flex-start;
             width: 100%;
+
+            &.left {
+                gap: 20px;
+            }
 
             &.right {
                 padding-left: 0;
                 margin-top: 10px;
             }
         }
+        
     }
 
     &-inner {
-        grid-column: 3/11;
-        display: grid;
-        grid-template-columns: repeat(8, 1fr);
+        grid-column: 3/13;
+        display: flex;
         align-items: center;
+        gap: 6.46vw;
 
-        @media screen and (max-width: $--screen-md-min) {
+        @media screen and (max-width: $--screen-sm-min) {
             position: absolute;
-            display: flex;
             flex-wrap: wrap;
             
             flex-direction: column;
@@ -151,12 +202,18 @@ export default {
             }
         }
         @media screen and (max-width: $--screen-sm-min) {
-            right: 30px;
+            // right: 30px;
+            border-bottom-left-radius: 0;
+            right: auto;
+            left: 0;
         }
-        @media screen and (max-width: $--screen-xxs-min) {
-            transform: translate(100%, 0);
+        @media screen and (max-width: $--screen-xs-min) {
             right: 0;
+            top: 0;
             border-bottom-right-radius: 0;
+            min-height: 100vh;
+            padding-top: 10vh;
+
         }
     }
 
@@ -175,7 +232,7 @@ export default {
                 position: absolute;
                 display: block;
                 height: 3px;
-                background-color: $--yellow-primary;
+                background-color: $--main-black;
                 bottom: 0;
                 left: 0;
                 right: 0;
@@ -190,13 +247,13 @@ export default {
                 opacity: 1;
             }
         }
-        &:active, &.nuxt-link-exact-active {
+        &:active, &.nuxt-link-exact-active, &.active {
             span::after {
-                background-color: $--main-black;
+                opacity: 1;
             }
         }        
 
-        @media screen and (max-width: $--screen-md-min) {
+        @media screen and (max-width: $--screen-sm-min) {
             min-height: unset;
             margin-bottom: 20px;
         }
@@ -205,8 +262,6 @@ export default {
     &-burger {
         width: 24px;
         height: 24px;
-        grid-column: 10/11;
-        margin-right: 16px;
 
         @media screen and (max-width: $--screen-xxs-min) {
             margin-right: 0;
@@ -215,10 +270,13 @@ export default {
 
     &-btn {
         width: 100%;
-        @media screen and (min-width: $--screen-md-min) {
-            max-width: 180px;
+        .btn {
+            font-size: 18px;
         }
-        @media screen and (max-width: $--screen-md-min) {
+        // @media screen and (min-width: $--screen-md-min) {
+        //     max-width: 123px;
+        // }
+        @media screen and (max-width: $--screen-sm-min) {
             flex-grow: 1;
             display: flex;
             align-items: flex-end;
@@ -228,32 +286,6 @@ export default {
                 max-height: 48px;
             }
         }
-    }
-
-    &-tel {
-        &__link {
-            display: inline-block;
-            margin-left: 15px;
-            transition: color .3s ease;
-            &:hover {
-                color: $--yellow-hover;
-            }
-
-            @media screen and (min-width: 1025px) and (max-width: 1280px) {
-                margin-left: 8px;
-            }
-            @media screen and (max-width: $--screen-md-min) {
-                margin-left: 0;
-                margin-top: 5px;
-            }
-        }
-        // &__item {
-        //     @media screen and (max-width: $--screen-md-min) {
-        //         &:first-child {
-        //             margin-bottom: 20px;
-        //         }
-        //     }
-        // }
     }
 }
 

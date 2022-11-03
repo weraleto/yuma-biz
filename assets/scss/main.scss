@@ -121,15 +121,15 @@ section {
     }
 }
 
-// .bar {
-//     min-height: 70px;
-//     display: flex;
-//     align-items: center;
+.bar {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
 
-//     @media screen and (max-width: $--screen-md-min) {
-//         min-height: 50px;
-//     }
-// }
+    @media screen and (max-width: $--screen-md-min) {
+        min-height: 50px;
+    }
+}
 
 .body-scroll-lock {
     overflow: hidden;
@@ -265,16 +265,16 @@ section {
 
     &.outlined {
         background: $--main-white;
-        border: 2px solid $--main-gray;
+        border: 1px solid $--main-black;
         border-radius: $--border-radius-default;
         justify-content: center;
 
         &:hover {
-            border-color: $--main-black;
+            border-width: 2px;
         }
 
         &:active {
-            border-color: $--main-black;
+            // border-color: $--main-black;
             background: $--yellow-pressed;
         }
 
