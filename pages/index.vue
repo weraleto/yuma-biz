@@ -15,11 +15,11 @@
         </div>
       </div>
       <div class="header__top">
-        <picture v-lazy-load>
-          <source media="(min-width:1500px)" srcset="~assets/img/header2x.jpg" v-lazy-load>
-          <source media="(min-width:700px)" srcset="~assets/img/header.jpg" v-lazy-load>
-          <source media="(min-width:0px)" srcset="~assets/img/header0.5.jpg" v-lazy-load>
-          <img src="~assets/img/header.jpg" alt="yuma pos" v-lazy-load>
+        <picture data-not-lazy>
+          <source media="(min-width:1500px)" srcset="~assets/img/header2x.jpg" data-not-lazy>
+          <source media="(min-width:700px)" srcset="~assets/img/header.jpg" data-not-lazy>
+          <source media="(min-width:0px)" srcset="~assets/img/header0.5.jpg" data-not-lazy>
+          <img src="~assets/img/header.jpg" alt="yuma pos" data-not-lazy>
         </picture>
       </div>
     </header>

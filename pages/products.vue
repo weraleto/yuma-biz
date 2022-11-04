@@ -13,7 +13,13 @@
                     </p>
                 </div> 
                  <div class="sys-components__picture">
-                    <img v-lazy-load data-src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы">
+                    <picture data-not-lazy>
+                        <source media="(min-width:1500px)" srcset="~assets/img/products/sys-prod.jpg" data-not-lazy>
+                        <source media="(min-width:700px)" srcset="~assets/img/products/sys-prod@0.75x.jpg" data-not-lazy>
+                        <source media="(min-width:0px)" srcset="~assets/img/products/sys-prod@0.5x.jpg" data-not-lazy>
+                        <img src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы" data-not-lazy>
+                    </picture>
+                    <!-- <img v-lazy-load data-src="~assets/img/products/sys-prod.jpg" alt="Компоненты системы"> -->
                 </div> 
                 <systemComponents :data="systemComponentsData" />
             </section>
@@ -23,7 +29,7 @@
                 <div class="tariffs__title">
                     <div class="products-title">
                         <h1 class="title1">
-                            Полный перечень тарифов YUMA-POS
+                            Полный перечень тарифов <span class="no-word-break">YUMA-POS</span>
                         </h1>
                         <p class="subtitle">
                             Весь необходимый для запуска сервис мы предоставляем бесплатно. Если вам понадобится что-то большее, то можно заказать дополнительные услуги.

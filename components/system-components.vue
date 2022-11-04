@@ -529,6 +529,12 @@ export default {
                 bottom: 10px;
                 right: 10px;
             }
+
+            &--front {
+                .subtitle {
+                    font-size: 18px;
+                }
+            }
         }
     }
 
