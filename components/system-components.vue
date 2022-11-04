@@ -192,7 +192,7 @@ export default {
             let isMobile = window.innerWidth <= 767
             if (isMobile) {
                 this.visibleEl = this.activeEl = el.dataset.idx
-                this.setElProperty(popoverEl, 'zIndex', 5)
+                this.setElProperty(popoverEl, 'zIndex', 10001)
                 this.$store.commit('setShowModal', {key: 'otherModalsOpened', val: true})
                 
                 setTimeout(()=>{
@@ -218,7 +218,7 @@ export default {
                 this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
                 this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
                 this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
-                this.setElProperty(popoverEl, 'zIndex', 5)
+                this.setElProperty(popoverEl, 'zIndex', 10001)
                 this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
     
                 this.visibleEl = this.activeEl = el.dataset.idx
@@ -616,6 +616,15 @@ export default {
                 &__slide {
                     &--vertical {
                         gap: 36px;
+                    }
+                }
+            }
+
+
+            &.size-reverse-vertical {
+                .tab-picture {
+                    &--vertical {
+                        height: auto;
                     }
                 }
             }

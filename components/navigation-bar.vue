@@ -21,8 +21,8 @@
                         </div>
                     </template>
                     <template v-else>
-                        <h3 class="subtitle" style="margin-bottom: 56px">Мы работаем по всей России</h3>
-                        <div style="margin-bottom: 56px">
+                        <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
+                        <div style="margin-bottom: 8vh">
                             <h3 class="subtitle" style="margin-bottom: 8px">Офис в Санкт-Петербурге</h3>
                             <p class="text6" style="margin-bottom: 20px">
                                 Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская
@@ -195,6 +195,7 @@ export default {
                 visibility: visible;
                 transform: none;
             }
+
         }
         @media screen and (min-width: 1025px) and (max-width: 1280px) {
             .text5 {
@@ -213,7 +214,11 @@ export default {
             border-bottom-right-radius: 0;
             min-height: 100vh;
             padding-top: 10vh;
-
+        }
+        @media screen and (max-width: $--screen-xxs-min) {
+            .subtitle {
+                font-size: 18px;
+            }
         }
     }
 
