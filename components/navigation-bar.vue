@@ -187,7 +187,7 @@ export default {
 
             z-index: -1;
             visibility: hidden;
-            transform: translate(0, -150%);
+            transform: translate(-150%, 0%);
             transition: all .3s ease;
 
             &.opened {
@@ -203,7 +203,6 @@ export default {
             }
         }
         @media screen and (max-width: $--screen-sm-min) {
-            // right: 30px;
             border-bottom-left-radius: 0;
             right: auto;
             left: 0;
