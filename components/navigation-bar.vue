@@ -5,17 +5,25 @@
                 <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='menu'">
                     <img src="../assets/img/menu.svg" alt="Открыть меню">
                 </div>
-                <YumaLogo />
                 <div class="navigation-inner" :class="{'opened': mobileMenuOpened}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
                     <template v-if="activePopup=='menu'">
                         <div class="navigation-part left">
                             <div v-for="(it, idx) in navItems" :key="idx">
                                 <template v-if="it.is_dropdown">
-                                    <NavDropdown :title="it.title" :items="it.items" :menu-opened="mobileMenuOpened" />
+                                    <NavDropdown :title="it.title" 
+                                    :items="it.items || []" 
+                                    :menu-opened="mobileMenuOpened" 
+                                    :show-contacts="it.showContacts"
+                                    :class="it.class || ''"
+                                />
                                 </template>
                                 <template v-else>
-                                    <NuxtLink @click.native="mobileMenuOpened=false" :to="it.path" class="navigation-link__item text4"><span>{{it.title}}</span></NuxtLink>
+                                    <a :href="it.path" 
+                                        class="navigation-link__item text4"
+                                        :class="{'active': $route.path == it.path}"
+                                        :target="it.external ? '_blank': '_self'"
+                                    ><span>{{it.title}}</span></a>
                                 </template>
                             </div>
                         </div>
@@ -48,6 +56,7 @@
                     </div> -->
 
                 </div>
+                <YumaLogo />
                 <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='contacts'">
                     <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
@@ -76,7 +85,19 @@ export default {
                     is_dropdown: false,
                     title: 'О нас',
                     path: '/about'
-                }
+                },
+                {
+                    is_dropdown: false,
+                    external: true,
+                    title: 'Техподдержка',
+                    path: 'https://support.yumapos.ru/'
+                },
+                {
+                    is_dropdown: true,
+                    title: 'Контакты',
+                    showContacts: true,
+                    class: 'only-desktop'
+                },
             ]
         }
     },
@@ -102,7 +123,6 @@ export default {
     left: 0;
     right: 0;
     background-color: #fff;
-    border-bottom: 2px solid $--main-gray;
     z-index: 10000;
 
     &.opened {
@@ -139,10 +159,6 @@ export default {
         &.left {
             flex-grow: 1;
             gap: 52px;
-
-            @media screen and (min-width: calc($--screen-xs-min + 1px)) {
-                justify-content: flex-end;
-            }
         }
         &.right {
             flex-shrink: 1;
@@ -166,7 +182,7 @@ export default {
     }
 
     &-inner {
-        grid-column: 3/13;
+        grid-column: 1/12;
         display: flex;
         align-items: center;
         gap: 6.46vw;

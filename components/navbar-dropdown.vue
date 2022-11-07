@@ -1,9 +1,10 @@
 <template>
-  <div class="navigation-link__dropdown" :class="{'opened': dropdownOpened}">
-        <div class="dropdown__header navigation-link__item"
-            :class="{'active': dropdownOpened}"
+  <div class="navigation-link__dropdown" :class="{'opened': dropdownOpened,}">
+        <div class="dropdown__header"
+            :class="{'active': dropdownOpened || isDropdownActive}"
              @click="dropdownOpened=!dropdownOpened">
-            <span class="dropdown__selected-title text4">{{title}}
+            <span class="dropdown__selected-title text4">
+                <span class="dropdown__selected-title__text">{{title}}</span>
                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L5 5L10 0H0Z" fill="#111111"/>
                 </svg>
@@ -11,9 +12,21 @@
             
         </div>
         <div class="dropdown__items">
-            <a :href="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
-                :class="{'active': $route.path == link.path}"
-                >{{link.name}}</a>
+            <template v-if="showContacts">
+                <div style="margin-bottom: 20px">
+                    <h3 class="text6" style="margin-bottom: 4px">Офис в Санкт-Петербурге</h3>
+                    <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
+                </div>
+                <div>
+                    <h3 class="text6" style="margin-bottom: 4px">Офис в Москве</h3>
+                    <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
+                </div>
+            </template>
+            <template v-else>
+                <a :href="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
+                    :class="{'active': $route.path == link.path}"
+                    >{{link.name}}</a>
+            </template>
         </div>
     </div>
 </template>
@@ -32,7 +45,11 @@ export default {
         menuOpened: {
             type: Boolean,
             default: false
-        }
+        },
+        showContacts: {
+            type: Boolean,
+            default: false
+        },
     },
     data: () => {
         return {
@@ -45,6 +62,11 @@ export default {
             setTimeout(()=>{
                 ctx.dropdownOpened = false
             }, 2000)
+        }
+    },
+    computed: {
+        isDropdownActive() {
+            return this.items.some(it=>it.path == this.$route.path)
         }
     },
     watch: {
@@ -91,6 +113,11 @@ export default {
     min-height: 68px;
     background-color: white;
     width: 100%;
+    &.active {
+        .dropdown__selected-title__text::after {
+            opacity: 1;
+        }
+    }
     @media screen and (max-width: $--screen-sm-min) {
         padding: 0;
         min-height: unset;
@@ -103,6 +130,23 @@ export default {
     svg {
         margin-left: 8px;
     }
+    &__text {
+        position: relative;
+        display: block;
+        &::after {
+            content: '';
+            position: absolute;
+            display: block;
+            height: 3px;
+            background-color: $--main-black;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transform: translate(0, 8px);
+            transition: opacity .3s ease;
+        }
+    }
 }
 .dropdown__items {
     position: absolute;
@@ -112,7 +156,7 @@ export default {
     border-radius: 12px;
     padding: 16px;
     opacity: 0;
-    // min-width: 217px;
+    white-space: nowrap;
     z-index: -1;
     visibility: hidden;
     transform: translate(0, -100px);
