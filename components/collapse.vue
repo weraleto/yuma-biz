@@ -1,5 +1,5 @@
 <template>
-    <el-collapse v-model="activeItem" class="collapsible__blocks" accordion>
+    <el-collapse v-model="activeItem" class="collapsible__blocks" :accordion="accordion">
         <el-collapse-item
             v-for="(item, idx) in data" :key="idx"
             class="collapsible__item"
@@ -39,6 +39,10 @@ export default {
         active_default: {
             type: Number,
             default: undefined
+        },
+        accordion: {
+            type: Boolean,
+            default: true
         }
     },
     data: () => {

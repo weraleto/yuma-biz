@@ -2,7 +2,7 @@
     <div class="tabs-wrapper tabs-faq">
         <el-tabs v-model="activeName" :id="id">
             <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in data" :key="tab.label">
-                <Collapse :data="tab.content" />
+                <Collapse :data="tab.content" :accordion="false" />
             </el-tab-pane>
         </el-tabs>
     </div>
