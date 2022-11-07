@@ -120,14 +120,14 @@
                         </p>
                     </div>
                 </div>
-                <no-ssr>
+                <client-only>
                     <LightGallery
                         :images="['/sert/iso-9001.png', '/sert/iso-27001.png']"
                         :index="sertIdx"
                         :disable-scroll="true"
                         @close="sertIdx = null"
                         />
-                </no-ssr>
+                </client-only>
             </section>
         </div>
       </main>
