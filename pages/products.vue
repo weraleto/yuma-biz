@@ -60,6 +60,29 @@ import systemComponents from '../components/system-components'
 import Tariffs from '../components/tabs-faq'
 export default {
     name: 'ProductsPage',
+    head() {
+        return {
+            title: 'Компоненты и стоимость POS-системы для ресторана, франшизы – YUMA-POS',
+            meta: [{
+                    hid: 'description',
+                    name: 'description',
+                    content: 'Кассовая программа, облачный кабинет для управления рестораном, программа для киоска самообслуживания, кухонное приложение, курьерское приложение, мобильное приложение и сайт заведения с онлайн-заказами.'
+                },
+                {
+                    property: 'og:title',
+                    content: 'Компоненты и стоимость POS-системы для ресторана, франшизы – YUMA-POS',
+                    vmid: 'og:title',
+                    hid: 'og:title'
+                },
+                {
+                    hid: 'og:description',
+                    property: 'og:description',
+                    vmid: 'og:description',
+                    content: 'Кассовая программа, облачный кабинет для управления рестораном, программа для киоска самообслуживания, кухонное приложение, курьерское приложение, мобильное приложение и сайт заведения с онлайн-заказами.'
+                },
+            ]
+        }
+    },
     components: {
         LeadForm,
         calculatorIcon,
