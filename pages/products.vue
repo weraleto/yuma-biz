@@ -27,7 +27,7 @@
             <!-- Полный перечень тарифов YUMA-POS -->
             <section class="section tariffs">
                 <div class="tariffs__title">
-                    <div class="products-title">
+                    <div class="products-title section-title">
                         <h1 class="title1">
                             Полный перечень тарифов <span class="no-word-break">YUMA-POS</span>
                         </h1>
