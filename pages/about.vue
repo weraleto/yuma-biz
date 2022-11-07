@@ -109,17 +109,25 @@
                     </h2>
                 </div>
                 <div class="sertification__container grid-layout">
-                    <div class="card sertification__card">
+                    <div class="card sertification__card" @click="sertIdx=0">
                         <p class="title1">
                             ИСО 9001
                         </p>
                     </div>
-                    <div class="card sertification__card">
+                    <div class="card sertification__card" @click="sertIdx=1">
                         <p class="title1">
                             ИСО 27001
                         </p>
                     </div>
                 </div>
+                <no-ssr>
+                    <LightGallery
+                        :images="['/sert/iso-9001.png', '/sert/iso-27001.png']"
+                        :index="sertIdx"
+                        :disable-scroll="true"
+                        @close="sertIdx = null"
+                        />
+                </no-ssr>
             </section>
         </div>
       </main>
@@ -173,6 +181,7 @@ export default {
                 'back': 'Великобритания, Ирландия, США, Австралия, Швейцария, Нидерланды, Индия, ОАЭ, ЮАР, Украина, Казахстан, Беларусь, Россия.'
                 },
             ],
+            sertIdx: null
         }
     }
 }

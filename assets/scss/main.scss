@@ -685,3 +685,11 @@ li {
     list-style-position: inside;
     margin: .5em 0 .5em 1em;
 }
+
+.light-gallery__modal {
+    z-index: 10001;
+}
+
+.light-gallery__prev, .light-gallery__next {
+    display: none !important;
+}

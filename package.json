@@ -25,6 +25,7 @@
     "swiper": "^5.2.0",
     "vue": "^2.6.14",
     "vue-awesome-swiper": "^4.1.1",
+    "vue-light-gallery": "^1.0.1",
     "vue-scrollto": "^2.20.0",
     "vue-server-renderer": "^2.6.14",
     "vue-template-compiler": "^2.6.14",
