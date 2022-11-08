@@ -8,7 +8,7 @@
         >
             <div class="sys-components__item--front">
                 <h3 class="subtitle sys-components__item--front__title">{{item.title}}</h3>
-                <p>{{item.frontText}}</p>
+                <!-- <p>{{item.frontText}}</p> -->
             </div>
         </div>
         <div class="sys-components__popover" 
@@ -24,7 +24,7 @@
                                 <h4 class="subtitle hidden-mobile">{{tab.title}}</h4>
                                 <h4 class="subtitle hidden-desktop">Кассовая программа + бэк-офис</h4>
                                 <p class="text6 hidden-mobile">{{tab.description}}</p>
-                                <p class="text6 hidden-desktop">{{activeElData.frontText}}</p>
+                                <!-- <p class="text6 hidden-desktop">{{activeElData.frontText}}</p> -->
                             </div>
                             <div class="sys-components__popover--subheading hidden-desktop container">
                                 <h4 class="subtitle">{{activeCategoryCard}}</h4>
@@ -47,7 +47,7 @@
                         <div class="sys-components__popover--heading">
                             <h4 class="subtitle">{{activeElData.title}}</h4>
                             <p class="text6 hidden-mobile">{{activeElData.description}}</p>
-                            <p class="text6 hidden-desktop">{{activeElData.frontText}}</p>
+                            <!-- <p class="text6 hidden-desktop">{{activeElData.frontText}}</p> -->
                         </div>
                     </div>
                     <template v-if="activeElData.tab">

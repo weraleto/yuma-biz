@@ -2,50 +2,31 @@
     <div>
         <nav class="navigation bar" :class="{'opened': mobileMenuOpened}">
             <div class="container navigation-container grid-layout">
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='menu'">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
                     <img src="../assets/img/menu.svg" alt="Открыть меню">
                 </div>
-                <div class="navigation-inner" :class="{'opened': mobileMenuOpened}">
+                <div class="navigation-inner left" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
-                    <template v-if="activePopup=='menu'">
-                        <div class="navigation-part left">
-                            <div v-for="(it, idx) in navItems" :key="idx">
-                                <template v-if="it.is_dropdown">
-                                    <NavDropdown :title="it.title" 
-                                    :items="it.items || []" 
-                                    :menu-opened="mobileMenuOpened" 
-                                    :show-contacts="it.showContacts"
-                                    :class="it.class || ''"
-                                />
-                                </template>
-                                <template v-else>
-                                    <a :href="it.path" 
-                                        class="navigation-link__item text4"
-                                        :class="{'active': $route.path == it.path}"
-                                        :target="it.external ? '_blank': '_self'"
-                                    ><span>{{it.title}}</span></a>
-                                </template>
-                            </div>
+                    <div class="navigation-part left">
+                        <div v-for="(it, idx) in navItems" :key="idx">
+                            <template v-if="it.is_dropdown">
+                                <NavDropdown :title="it.title" 
+                                :items="it.items || []" 
+                                :menu-opened="mobileMenuOpened" 
+                                :show-contacts="it.showContacts"
+                                :class="it.class || ''"
+                            />
+                            </template>
+                            <template v-else>
+                                <a :href="it.path" 
+                                    class="navigation-link__item text4"
+                                    :class="{'active': $route.path == it.path}"
+                                    :target="it.external ? '_blank': '_self'"
+                                ><span>{{it.title}}</span></a>
+                            </template>
                         </div>
-                    </template>
-                    <template v-else>
-                        <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
-                        <div style="margin-bottom: 8vh">
-                            <h3 class="subtitle" style="margin-bottom: 8px">Офис в Санкт-Петербурге</h3>
-                            <p class="text6" style="margin-bottom: 20px">
-                                Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская
-                            </p>
-                            <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
-                        </div>
-                        <div>
-                            <h3 class="subtitle" style="margin-bottom: 8px">Офис в Москве</h3>
-                            <p class="text6" style="margin-bottom: 20px">
-                                Нововладыкинский проезд, 2 стр. 2, метро Владыкино
-                            </p>
-                            <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
-                        </div>
-                    </template>
-                    <!-- <div class="navigation-part right">
+                    </div>
+                <!-- <div class="navigation-part right">
                         <div class="navigation-btn"> -->
                             <!-- <a href="#" 
                                 @click.prevent="mobileMenuOpened=false; $store.commit('setShowModal', {key: 'showContactForm', val: true})"
@@ -56,8 +37,27 @@
                     </div> -->
 
                 </div>
+                <div class="navigation-inner right only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
+                    <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
+
+                    <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
+                    <div style="margin-bottom: 8vh">
+                        <h3 class="subtitle" style="margin-bottom: 8px">Офис в Санкт-Петербурге</h3>
+                        <p class="text6" style="margin-bottom: 20px">
+                            Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская
+                        </p>
+                        <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
+                    </div>
+                    <div>
+                        <h3 class="subtitle" style="margin-bottom: 8px">Офис в Москве</h3>
+                        <p class="text6" style="margin-bottom: 20px">
+                            Нововладыкинский проезд, 2 стр. 2, метро Владыкино
+                        </p>
+                        <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
+                    </div>
+                </div>
                 <YumaLogo />
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=true; activePopup='contacts'">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
                     <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
             </div>
@@ -195,16 +195,27 @@ export default {
             justify-content: flex-start;
             align-items: flex-start;
             background-color: #fff;
-            border-radius: 0 0 20px 20px;
-            right: 50px;
             top: calc(100% - 1px);
             min-width: 222px;
             padding: 20px;
-
             z-index: -1;
             visibility: hidden;
-            transform: translate(-150%, 0%);
+            
             transition: all .3s ease;
+
+            &.left {
+                right: auto;
+                left: 0;
+                transform: translate(-150%, 0%);
+                border-radius: 0 0 20px 0;
+            }
+
+            &.right {
+                left: auto;
+                right: 0;
+                transform: translate(150%, 0%);
+                border-radius: 0 0 0 20px;
+            }
 
             &.opened {
                 z-index: 9999;
@@ -218,15 +229,13 @@ export default {
                 font-size: 14px;
             }
         }
-        @media screen and (max-width: $--screen-sm-min) {
-            border-bottom-left-radius: 0;
-            right: auto;
-            left: 0;
-        }
         @media screen and (max-width: $--screen-xs-min) {
-            right: 0;
-            top: 0;
-            border-bottom-right-radius: 0;
+            &.left, &.right {
+                left: 0;
+                right: 0;
+                top: 0;
+                border-radius: 0;
+            }
             min-height: 100vh;
             padding-top: 10vh;
         }
