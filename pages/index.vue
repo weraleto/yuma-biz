@@ -15,11 +15,11 @@
         </div>
       </div>
       <div class="header__top">
-        <picture v-lazy-load>
-          <source media="(min-width:1500px)" data-srcset="~assets/img/header2x.jpg">
-          <source media="(min-width:700px)" data-srcset="~assets/img/header.jpg">
-          <source media="(min-width:0px)" data-srcset="~assets/img/header0.5.jpg">
-          <img data-src="~assets/img/header.jpg" alt="yuma pos">
+        <picture data-not-lazy>
+          <source media="(min-width:1500px)" srcset="~assets/img/header2x.jpg" data-not-lazy>
+          <source media="(min-width:700px)" srcset="~assets/img/header.jpg" data-not-lazy>
+          <source media="(min-width:0px)" srcset="~assets/img/header0.5.jpg" data-not-lazy>
+          <img src="~assets/img/header.jpg" alt="yuma pos" data-not-lazy>
         </picture>
       </div>
     </header>
@@ -28,7 +28,7 @@
       <section class="block-offset grid-layout">
         <h2 class="title1 container block-offset__title">Система учитывает ваши 
           особенности бизнеса</h2>
-          <Peculiarities id="peculiarities" image-folder-name="peculiarities" />
+          <Peculiarities id="peculiarities" :tabs-content="peculiarities" image-folder-name="peculiarities" />
       </section>
 
       <!-- Поцесс подключения к системе -->
@@ -95,10 +95,11 @@
 </template>
 
 <script>
+  import { peculiarities, mainPageFAQ } from '@/assets/dataContent.js'
   import Collapse from '../components/collapse'
   import Partners from '../components/partners'
   import Hint from '../components/popover'
-  import Peculiarities from '../components/tabs'
+  import Peculiarities from '../components/tabs-swipered'
   import LeadForm from '../components/contact-form'
   export default {
     name: 'IndexPage',
@@ -135,31 +136,8 @@
     },
     data: () => {
       return {
-        faq: [{
-            title: 'Как решает вопросы техподдержка?',
-            text: 'Наши специалисты ведут живое общение по телефону. А также вы всегда можете обратиться к ним в популярных мессенджерах.'
-          },
-          {
-            title: 'Как быстро получится начать работу в системе?',
-            text: 'Мы готовы подключить вам фронт кассира и бэк-офис в течение 1 рабочего дня. И ваши заведения уже смогут начать работу в системе.</br></br>Сроки по остальным компонентам мы согласуем с вами дополнительно. Они будут зависеть, в том числе, от скорости предоставления вами необходимых материалов (иллюстраций, описаний ваших блюд и акций, т.д.)'
-          },
-          {
-            title: 'Требуются ли для работы с YUMA-POS собственные серверы, а также технические специалисты или сисадмины?',
-            text: 'Никакой специальной техники и специалистов от вас не требуется. YUMA-POS - полностью облачное решение, работающее на российских серверах крупнейшей отечественной платформы Яндекс.Облако. Техподдержку вашей системы и приложений мы полностью берем на себя. '
-          },
-          {
-            title: 'Если у меня уже есть свой сайт или мобильное приложение, могу я подключить их к системе YUMA-POS?',
-            text: 'Сторонние мобильное приложение и сайт могут работать только без интеграции с нашей системой.</br></br>Как правило, бизнесу удобнее наше комплексное решение.  Мы запускаем наше мобильное приложение и сайт как часть системы автоматизации. Это просто, быстро и обеспечивает ресторанному предприятию полную синхронизацию учета и каналов продаж. '
-          },
-          {
-            title: 'Можно ли приобрести у вас только мобильное приложение и сайт?',
-            text: 'Это, к сожалению, невозможно, т.к. мобильное приложение и сайт являются частью системы автоматизации YUMA-POS и запускаются только на ее платформе.'
-          },
-          {
-            title: 'Как происходят обновления системы?',
-            text: 'Мы уже давно работаем в ресторанной сфере, ориентируемся в потребностях бизнеса и постоянно развиваем YUMA-POS в соответствии с ними. Все компоненты на устройствах наших пользователей обновляются дистанционно и полностью бесплатно.'
-          }
-        ]
+        peculiarities: peculiarities,
+        faq: mainPageFAQ
       }
     },
     methods: {}

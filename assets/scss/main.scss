@@ -106,11 +106,33 @@ body {
     }
 }
 
-section {
+section, .section {
     padding-top: 50px;
     padding-bottom: 120px;
     &.pt-large {
         padding-top: 120px;
+    }
+    &-title {
+        max-width: 50%;
+
+        p {
+            margin-top: 16px;
+        }
+
+        @media screen and (max-width: $--screen-md-min) {
+            max-width: 71%;
+        }
+        @media screen and (max-width: $--screen-sm-min) {
+            max-width: 100%;
+        }
+    }
+    &-subtitle {
+        @media screen and (max-width: $--screen-lg-min) {
+            font-size: 18px;
+        }
+        @media screen and (max-width: 330px) {
+            font-size: 16px;
+        }
     }
     @media screen and (max-width: $--screen-sm-min) {
         padding-top: 12px;
@@ -121,15 +143,15 @@ section {
     }
 }
 
-// .bar {
-//     min-height: 70px;
-//     display: flex;
-//     align-items: center;
+.bar {
+    min-height: 72px;
+    display: flex;
+    align-items: center;
 
-//     @media screen and (max-width: $--screen-md-min) {
-//         min-height: 50px;
-//     }
-// }
+    @media screen and (max-width: $--screen-md-min) {
+        min-height: 50px;
+    }
+}
 
 .body-scroll-lock {
     overflow: hidden;
@@ -180,7 +202,7 @@ section {
 }
 
 .text-bold {
-    font-weight: 600;
+    font-weight: 500;
 }
 
 .no-word-break {
@@ -265,16 +287,16 @@ section {
 
     &.outlined {
         background: $--main-white;
-        border: 2px solid $--main-gray;
+        border: 1px solid $--main-black;
         border-radius: $--border-radius-default;
         justify-content: center;
 
         &:hover {
-            border-color: $--main-black;
+            border-width: 2px;
         }
 
         &:active {
-            border-color: $--main-black;
+            // border-color: $--main-black;
             background: $--yellow-pressed;
         }
 
@@ -391,7 +413,7 @@ input[type=checkbox]:checked + .label_checkbox {
     grid-template-columns: repeat(12, 1fr);
 
     @media screen and (max-width: $--screen-sm-min) {
-        &:not(.footer-bottom-layout) {
+        &:not(.footer-bottom-layout):not(.sys-components__container):not(.sertification__container) {
             grid-template-columns: repeat(5, 1fr);
         }
     }
@@ -511,42 +533,42 @@ input[type=checkbox]:checked + .label_checkbox {
     
 }
 
-// .card {
-//     border-radius: calc($--border-radius-default * 2);
-//     border: 2px solid $--main-gray;
-// }
+.card {
+    border-radius: calc($--border-radius-default * 2);
+    border: 2px solid $--gray-medium;
+}
 
-// .title-ladder {
-//     margin-bottom: 50px;
-//     position: relative;
-//     &:first-of-type {
-//         top: -19px;
-//         @media screen and (max-width: $--screen-md-min) {
-//             top: -14px;
-//         }
-//     }
+.title-ladder {
+    margin-bottom: 50px;
+    position: relative;
+    &:first-of-type {
+        top: -19px;
+        @media screen and (max-width: $--screen-md-min) {
+            top: -14px;
+        }
+    }
     
-//     span:first-of-type {
-//         grid-column: 2/11;
-//     }
+    span:first-of-type {
+        grid-column: 2/13;
+    }
     
-//     span:last-of-type {
-//         grid-column: 3/11;
-//     }
+    span:last-of-type {
+        grid-column: 3/13;
+    }
 
     
-//     @media screen and (max-width: $--screen-sm-min) {
-//         margin-bottom: 8vw;
+    @media screen and (max-width: $--screen-sm-min) {
+        margin-bottom: 8vw;
 
-//         span:first-of-type {
-//             grid-column: 1/6;
-//         }
+        span:first-of-type {
+            grid-column: 1/6;
+        }
         
-//         span:last-of-type {
-//             grid-column: 2/6;
-//         }
-//     }
-// }
+        span:last-of-type {
+            grid-column: 2/6;
+        }
+    }
+}
 
 
 
@@ -662,4 +684,12 @@ input[type=checkbox]:checked + .label_checkbox {
 li {
     list-style-position: inside;
     margin: .5em 0 .5em 1em;
+}
+
+.light-gallery__modal {
+    z-index: 10001 !important;
+}
+
+.light-gallery__prev, .light-gallery__next {
+    display: none !important;
 }
