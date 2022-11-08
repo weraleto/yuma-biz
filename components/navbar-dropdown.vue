@@ -13,11 +13,11 @@
         </div>
         <div class="dropdown__items">
             <template v-if="showContacts">
-                <div style="margin-bottom: 20px">
+                <div style="margin-bottom: 20px" class="dropdown__item">
                     <h3 class="text6" style="margin-bottom: 4px">Офис в Санкт-Петербурге</h3>
                     <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
                 </div>
-                <div>
+                <div class="dropdown__item">
                     <h3 class="text6" style="margin-bottom: 4px">Офис в Москве</h3>
                     <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
                 </div>
@@ -87,16 +87,11 @@ export default {
     &-link__dropdown {
         cursor: pointer;
         position: relative;
-        // min-width: 220px;
-        // min-width: 180px;
-        
         display: flex;
         align-items: center;
         justify-content: space-between;
         background-color: white;
-        // @media screen and (max-width: $--screen-lg-min) {
-        //     min-width: 205px;
-        // }
+
         @media screen and (max-width: $--screen-sm-min) {
             min-width: 100%;
             flex-direction: column;
@@ -156,7 +151,7 @@ export default {
     border-radius: 12px;
     padding: 16px;
     opacity: 0;
-    white-space: nowrap;
+    white-space: pre-line;
     z-index: -1;
     visibility: hidden;
     transform: translate(0, -100px);
@@ -169,26 +164,20 @@ export default {
         overflow: hidden;
         transform: none;
         padding: 0;
-        // border: 2px solid;
-        // border-radius: 10px;
         min-width: 100%;
         margin-bottom: 0;
     }
 }
 .navigation-link__dropdown.opened {
-    // .dropdown__header {
-    //     color: $--main-gray;
-    // }
     .dropdown__items {
         z-index: 9999;
         visibility: visible;
         opacity: 1;
-        // transform: none;
         transform: translate(0, 12px);
+
         @media screen and (max-width: $--screen-md-min) {
             max-height: 500px;
             padding-left: 16px;
-            // padding: 15px;
             margin-bottom: 20px;
         }
     }
