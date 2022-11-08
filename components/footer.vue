@@ -186,7 +186,6 @@ export default {
         &-layout {
             grid-template-columns: auto;
             align-items: center;
-            justify-items: center;
             padding-top: 23px;
             padding-bottom: 23px;
         }
@@ -197,7 +196,7 @@ export default {
         }
     }
     &-disclaimer {
-        // grid-column: 3/9;
+        color: $--gray-medium;
 
         @media screen and (max-width: $--screen-md-min) {
             grid-column: 1/2;
@@ -205,7 +204,6 @@ export default {
         @media screen and (max-width: $--screen-sm-min) {
             grid-column: 1/4;
             grid-row: 2/3;
-            text-align: center;
         }
     }
     &-socials {

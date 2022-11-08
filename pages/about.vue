@@ -111,12 +111,12 @@
                 <div class="sertification__container grid-layout">
                     <div class="card sertification__card" @click="sertIdx=0">
                         <p class="title1">
-                            ИСО 9001
+                            ISO 9001
                         </p>
                     </div>
                     <div class="card sertification__card" @click="sertIdx=1">
                         <p class="title1">
-                            ИСО 27001
+                            ISO 27001
                         </p>
                     </div>
                 </div>

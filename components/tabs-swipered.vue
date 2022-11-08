@@ -7,6 +7,7 @@
                     :tab="tab" 
                     :image-folder-name="imageFolderName" 
                     :swiper-options="getSwiperConfiguration(tab.type, String(i))"
+                    :picture-bordered="true"
                 />
             </el-tab-pane>
         </el-tabs>
@@ -103,7 +104,15 @@
 
         &--horizontal {
             margin-bottom: 40px;
+            @media screen and (max-width: $--screen-lg-min) {
+                &.tab-picture.has-border-radius  {
+                    picture, img {
+                        border-radius: 0;
+                    }
+                }
+            }
         }
+
 
         @media screen and (max-width: $--screen-md-min) {
             height: 35vw;
@@ -117,6 +126,12 @@
             &--vertical {
                 position: relative;
                 left: -16px;
+
+                &.tab-picture.has-border-radius  {
+                    picture, img {
+                        border-radius: 0;
+                    }
+                }
             }
 
             img, picture, source {
