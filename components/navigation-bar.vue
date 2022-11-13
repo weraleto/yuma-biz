@@ -15,6 +15,8 @@
                                 :menu-opened="mobileMenuOpened" 
                                 :show-contacts="it.showContacts"
                                 :class="it.class || ''"
+                                :ref="`navDropdown-${idx}`"
+                                @open="changeDropdownStatus(idx)"
                             />
                             </template>
                             <template v-else>
@@ -98,16 +100,35 @@ export default {
                     showContacts: true,
                     class: 'hidden-mobile'
                 },
-            ]
+            ],
+            dropdownStatuses: {}
         }
     },
     mounted() {
+        this.navItems.forEach((it, idx)=>{
+            if (it.is_dropdown){
+                this.dropdownStatuses[idx] = false
+            }
+        })
         window.addEventListener('resize', () => {
             if (this.mobileMenuOpened) {
                 this.mobileMenuOpened=false
                 this.activePopup='menu'
             }
         })
+    },
+    methods: {
+        changeDropdownStatus(idx) {
+            this.dropdownStatuses[idx] = true
+            let activeDropdowns = Object.keys(this.dropdownStatuses).filter(
+                key=>key != idx && this.dropdownStatuses[key]
+            )
+            if (activeDropdowns.length) {
+                activeDropdowns.forEach(it=>{
+                    this.$refs['navDropdown-'+it][0].requestDropdownClose()
+                })
+            }
+        }
     }
 
 }

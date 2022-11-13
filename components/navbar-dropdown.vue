@@ -58,10 +58,7 @@ export default {
     },
     methods: {
         requestDropdownClose() {
-            const ctx = this
-            setTimeout(()=>{
-                ctx.dropdownOpened = false
-            }, 2000)
+            this.dropdownOpened = false
         }
     },
     computed: {
@@ -73,6 +70,11 @@ export default {
         menuOpened() {
             if (!this.menuOpened) {
                 this.dropdownOpened = false
+            }
+        },
+        dropdownOpened(val) {
+            if (val) {
+                this.$emit('open')
             }
         }
     }
