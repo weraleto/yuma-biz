@@ -156,6 +156,9 @@ export default {
     visibility: hidden;
     transform: translate(0, -100px);
     transition: all .3s ease;
+    @media screen and (min-width: calc($--screen-sm-min + 1px)) {
+        box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
+    }
     @media screen and (max-width: $--screen-sm-min) {
         display: flex;
         flex-direction: column;
@@ -179,6 +182,7 @@ export default {
             max-height: 500px;
             padding-left: 16px;
             margin-bottom: 20px;
+            padding-top: 10px;
         }
     }
 }

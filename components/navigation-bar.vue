@@ -96,7 +96,7 @@ export default {
                     is_dropdown: true,
                     title: 'Контакты',
                     showContacts: true,
-                    class: 'only-desktop'
+                    class: 'hidden-mobile'
                 },
             ]
         }
@@ -124,6 +124,7 @@ export default {
     right: 0;
     background-color: #fff;
     z-index: 10000;
+    box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
 
     &.opened {
         border-color: transparent;
