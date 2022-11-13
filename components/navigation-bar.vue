@@ -19,6 +19,7 @@
                                 :ref="`navDropdown-${idx}`"
                                 @open="changeDropdownStatus(idx)"
                                 @closemenu="mobileMenuOpened=false"
+                                @click.stop
                             />
                             </template>
                             <template v-else>

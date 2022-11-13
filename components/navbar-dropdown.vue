@@ -26,7 +26,7 @@
                 </div>
             </template>
             <template v-else>
-                <nuxt-link @click.stop.native="$emit('closemenu')" :to="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
+                <nuxt-link @click.native="$emit('closemenu')" :to="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
                     :class="{'active': $route.path == link.path}"
                     ><span>{{link.name}}</span></nuxt-link>
             </template>
