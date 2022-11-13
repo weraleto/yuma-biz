@@ -121,12 +121,16 @@
                     </div>
                 </div>
                 <client-only>
-                    <LightGallery
-                        :images="['/sert/iso-9001.png', '/sert/iso-27001.png']"
-                        :index="sertIdx"
-                        :disable-scroll="true"
-                        @close="sertIdx = null"
-                        />
+                    <div @click="handleGalleryClick">
+                        <LightGallery
+                            :images="['/sert/iso-9001.png', '/sert/iso-27001.png']"
+                            :index="sertIdx"
+                            :disable-scroll="true"
+                            background="rgba(42, 42, 42, 0.9)"
+                            @close="sertIdx = null"
+                            ref="sertGallery"
+                            />
+                    </div>
                 </client-only>
             </section>
         </div>
@@ -182,6 +186,13 @@ export default {
                 },
             ],
             sertIdx: null
+        }
+    },
+    methods: {
+        handleGalleryClick(e) {
+            if (e.target.tagName.toLowerCase() != 'img') {
+                this.$refs.sertGallery.close()
+            }
         }
     }
 }
