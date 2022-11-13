@@ -1,5 +1,5 @@
 <template>
-  <div class="navigation-link__dropdown" :class="{'opened': dropdownOpened,}">
+  <div class="navigation-link__dropdown" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{'opened': dropdownOpened,}">
         <div class="dropdown__header"
             :class="{'active': dropdownOpened || isDropdownActive}"
              @click="dropdownOpened=!dropdownOpened">
@@ -53,12 +53,29 @@ export default {
     },
     data: () => {
         return {
-            dropdownOpened: false
+            dropdownOpened: false,
+            timer: null
         }
     },
     methods: {
         requestDropdownClose() {
             this.dropdownOpened = false
+        },
+        handleMouseEnter() {
+            let isMobile = window.innerWidth <= 767
+            if (!isMobile){
+                if (this.timer) {
+                    clearTimeout(this.timer)
+                }
+            }
+        },
+        handleMouseLeave() {
+            let isMobile = window.innerWidth <= 767
+            if (!isMobile){
+                this.timer = setTimeout(() => {
+                    this.requestDropdownClose()
+                }, 2500)
+            }
         }
     },
     computed: {
