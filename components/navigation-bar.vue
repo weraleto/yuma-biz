@@ -2,10 +2,10 @@
     <div>
         <nav class="navigation bar" :class="{'opened': mobileMenuOpened}">
             <div class="container navigation-container grid-layout">
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
-                    <img src="../assets/img/menu.svg" alt="Открыть меню">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
+                    <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
-                <div class="navigation-inner left" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
+                <div class="navigation-inner right" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
                     <div class="navigation-part left">
                         <div v-for="(it, idx) in navItems" :key="idx">
@@ -39,7 +39,7 @@
                     </div> -->
 
                 </div>
-                <div class="navigation-inner right only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
+                <div class="navigation-inner left only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
 
                     <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
@@ -59,8 +59,8 @@
                     </div>
                 </div>
                 <YumaLogo />
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
-                    <img src="../assets/img/nav-phone.svg" alt="Контакты">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
+                    <img src="../assets/img/menu.svg" alt="Открыть меню">
                 </div>
             </div>
         </nav>
