@@ -25,7 +25,7 @@
             <template v-else>
                 <a :href="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
                     :class="{'active': $route.path == link.path}"
-                    >{{link.name}}</a>
+                    ><span>{{link.name}}</span></a>
             </template>
         </div>
     </div>
@@ -183,7 +183,7 @@ export default {
         flex-direction: column;
         position: static;
         max-height: 0;
-        overflow: hidden;
+        // overflow: hidden;
         transform: none;
         padding: 0;
         min-width: 100%;
@@ -209,10 +209,11 @@ export default {
     position: relative;
     display: inline-block;
     white-space: nowrap;
+
     &:not(:last-child) {
         margin-bottom: 10px;
     }
-    &::after {
+    span::after {
         content: '';
         display: block;
         height: 2px;
@@ -224,11 +225,13 @@ export default {
         opacity: 0;
         transition: opacity .3s ease;
     }
+    span {
+        position: relative;
+        display: inline-block;
+    }
     &.active, &:hover {
-        @media screen and (min-width: calc($--screen-sm-min + 1px)) {
-            &::after {
-                opacity: 1;
-            }
+        span::after {
+            opacity: 1;
         }
     }
 }

@@ -193,6 +193,9 @@ export default {
 
             &.left {
                 gap: 20px;
+                & > div {
+                    width: 100%;
+                }
             }
 
             &.right {
