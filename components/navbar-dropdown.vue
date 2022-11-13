@@ -1,15 +1,18 @@
 <template>
-  <div class="navigation-link__dropdown" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave" :class="{'opened': dropdownOpened,}">
+    <div class="navigation-link__dropdown" 
+        @mouseenter="handleMouseEnter" 
+        @mouseleave="handleMouseLeave" 
+        :class="{'opened': dropdownOpened}"
+    >
         <div class="dropdown__header"
             :class="{'active': dropdownOpened || isDropdownActive}"
-             @click="dropdownOpened=!dropdownOpened">
+             @click.stop="dropdownOpened=!dropdownOpened">
             <span class="dropdown__selected-title text4">
                 <span class="dropdown__selected-title__text">{{title}}</span>
                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L5 5L10 0H0Z" fill="#111111"/>
                 </svg>
             </span>
-            
         </div>
         <div class="dropdown__items">
             <template v-if="showContacts">
@@ -23,9 +26,9 @@
                 </div>
             </template>
             <template v-else>
-                <a :href="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
+                <nuxt-link @click.stop.native="$emit('closemenu')" :to="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
                     :class="{'active': $route.path == link.path}"
-                    ><span>{{link.name}}</span></a>
+                    ><span>{{link.name}}</span></nuxt-link>
             </template>
         </div>
     </div>

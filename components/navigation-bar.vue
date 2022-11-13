@@ -8,25 +8,28 @@
                 <div class="navigation-inner right" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
                     <div class="navigation-part left">
-                        <div v-for="(it, idx) in navItems" :key="idx">
+                        <template v-for="(it, idx) in navItems">
                             <template v-if="it.is_dropdown">
                                 <NavDropdown :title="it.title" 
+                                :key="idx"
                                 :items="it.items || []" 
                                 :menu-opened="mobileMenuOpened" 
                                 :show-contacts="it.showContacts"
                                 :class="it.class || ''"
                                 :ref="`navDropdown-${idx}`"
                                 @open="changeDropdownStatus(idx)"
+                                @closemenu="mobileMenuOpened=false"
                             />
                             </template>
                             <template v-else>
                                 <a :href="it.path" 
+                                    :key="idx"
                                     class="navigation-link__item text4"
                                     :class="{'active': $route.path == it.path}"
                                     :target="it.external ? '_blank': '_self'"
                                 ><span>{{it.title}}</span></a>
                             </template>
-                        </div>
+                        </template>
                     </div>
                 <!-- <div class="navigation-part right">
                         <div class="navigation-btn"> -->
