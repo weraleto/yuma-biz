@@ -3,11 +3,11 @@
     <header class="header">
       <div class="container header__container">
         <h1>YUMA-pos</h1>
-        <h2>Кастомная система автоматизации c бесплатной техподдержкой 24/7</h2>
+        <h2>Система автоматизации c бесплатной техподдержкой 24/7 для роста бизнеса</h2>
         <div class="header__promo">
           <div class="header__promo--text">
             <p class="text4">Попробуйте бесплатно!</p>
-            <p class="text4">7 дней безлимитного доступа</p>
+            <p class="text4">7 дней безлимитного демо-доступа</p>
           </div>
           <button class="btn primary large text4" 
                   @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
@@ -165,10 +165,11 @@
 
     h2 {
       font-weight: 500;
-      font-size: 61px;
+      font-size: 56px;
       text-transform: uppercase;
-      @media screen and (max-width: $--screen-lg-min) {
-        font-size: 7.47vw;
+
+      @media screen and (max-width: $--screen-md-min) {
+        font-size: 7.46vw;
         line-height: 1.42em;
       }
     }
@@ -205,12 +206,16 @@
     }
 
     &__promo {
-      max-width: 264px;
+      max-width: 380px;
       margin: 60px auto 0;
       text-align: center;
 
       &--text {
         margin-bottom: 28px;
+      }
+
+      .btn {
+        margin: auto;
       }
     }
 

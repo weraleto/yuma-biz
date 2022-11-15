@@ -6,7 +6,10 @@
                 <img src="~assets/img/cross.svg" alt="Закрыть форму">
             </div>
             <div class="form-modal__content" :style="formSubmitted ? 'overflow: visible' : ''">
-                <form action="" v-if="!formSubmitted">
+                <form style="width: 100%">
+                    <script data-b24-form="inline/20/julahc" data-skip-moving="true">(function(w,d,u){var s=d.createElement('script');s.async=true;s.src=u+'?'+(Date.now()/180000|0);var h=d.getElementsByTagName('script')[0];h.parentNode.insertBefore(s,h);})(window,document,'https://cdn-ru.bitrix24.ru/b16224776/crm/form/loader_20.js');</script>
+                </form>
+                <!-- <form action="" v-if="!formSubmitted">
                     <div class="contact-form__form-group form-modal__form-group">
                         <label class="contact-form__label text6" for="">Ваше Имя</label>
                         <input v-model="form.name" class="light"
@@ -28,9 +31,9 @@
                             placeholder="+7 (ХХХ) ХХХ ХХ ХХ"
                             v-maska="phoneMask"
                             @change="formValidation.phone = phoneValid"
-                        >
+                        > -->
                         <!-- v-show="!formValidation.phone.result" -->
-                        <small class="invalid-message" :class="{'opened': !formValidation.phone.result}">
+                        <!-- <small class="invalid-message" :class="{'opened': !formValidation.phone.result}">
                             {{formValidation.phone.errorMessage}}
                         </small>
                     </div>
@@ -59,7 +62,7 @@
                         </svg>
 
                     </div>
-                </div>
+                </div> -->
             </div>
             
         </div>
@@ -98,6 +101,7 @@ export default {
 <style lang="scss">
 
 @import '@/assets/scss/_variables.scss';
+@import '@/assets/scss/_bitrix-form.scss';
 
 .modal-wrapper {
     z-index: 10010;
