@@ -31,9 +31,9 @@
           <Peculiarities id="peculiarities" :tabs-content="peculiarities" image-folder-name="peculiarities" />
       </section>
 
-      <!-- Поцесс подключения к системе -->
+      <!-- Процесс подключения к системе -->
       <section class="block-offset grid-layout container">
-        <h2 class="title1 block-offset__title">Поцесс подключения
+        <h2 class="title1 block-offset__title">Процесс подключения
           к системе</h2>
         <div class="block-offset__content text-blocks plain">
           <div class="text-blocks__col">

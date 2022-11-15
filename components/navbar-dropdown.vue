@@ -77,7 +77,7 @@ export default {
             if (!isMobile){
                 this.timer = setTimeout(() => {
                     this.requestDropdownClose()
-                }, 2500)
+                }, 1000)
             }
         }
     },
@@ -96,6 +96,9 @@ export default {
             if (val) {
                 this.$emit('open')
             }
+        },
+        $route() {
+            this.dropdownOpened = false
         }
     }
 }

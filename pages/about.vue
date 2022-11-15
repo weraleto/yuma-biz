@@ -541,4 +541,8 @@ export default {
         }
 
     }
+
+    .light-gallery img {
+        width: inherit;
+    }
 </style>

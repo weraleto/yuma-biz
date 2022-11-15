@@ -128,10 +128,16 @@ export default {
                 key=>key != idx && this.dropdownStatuses[key]
             )
             if (activeDropdowns.length) {
-                activeDropdowns.forEach(it=>{
-                    this.$refs['navDropdown-'+it][0].requestDropdownClose()
-                })
+                this.closeDropdowns(activeDropdowns)
             }
+        },
+        closeAllDropdowns() {
+            this.closeDropdowns(Object.keys(this.dropdownStatuses))
+        },
+        closeDropdowns(idxes) {
+            idxes.forEach(it=>{
+                this.$refs['navDropdown-'+it][0].requestDropdownClose()
+            })
         }
     }
 

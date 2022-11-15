@@ -1,8 +1,11 @@
 <template>
   <div class="app">
-    <Navbar />
-    <nuxt />
-    <Footer />
+    <Navbar ref="navbar" />
+
+    <div @click="handleLayoutClick">
+        <nuxt />
+        <Footer />
+    </div>
 
     <!-- <FormModal 
         form-action="contact"
@@ -58,6 +61,9 @@ export default {
     methods: {
         scrollToTop() {
             window.scrollTo(0, 0)
+        },
+        handleLayoutClick() {
+            this.$refs.navbar.closeAllDropdowns()
         }
     },
     watch: {
