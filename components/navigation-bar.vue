@@ -2,29 +2,35 @@
     <div>
         <nav class="navigation bar" :class="{'opened': mobileMenuOpened}">
             <div class="container navigation-container grid-layout">
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
-                    <img src="../assets/img/menu.svg" alt="Открыть меню">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
+                    <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
-                <div class="navigation-inner left" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
+                <div class="navigation-inner right" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
                     <div class="navigation-part left">
-                        <div v-for="(it, idx) in navItems" :key="idx">
+                        <template v-for="(it, idx) in navItems">
                             <template v-if="it.is_dropdown">
                                 <NavDropdown :title="it.title" 
+                                :key="idx"
                                 :items="it.items || []" 
                                 :menu-opened="mobileMenuOpened" 
                                 :show-contacts="it.showContacts"
                                 :class="it.class || ''"
+                                :ref="`navDropdown-${idx}`"
+                                @open="changeDropdownStatus(idx)"
+                                @closemenu="mobileMenuOpened=false"
+                                @click.stop
                             />
                             </template>
                             <template v-else>
                                 <a :href="it.path" 
+                                    :key="idx"
                                     class="navigation-link__item text4"
                                     :class="{'active': $route.path == it.path}"
                                     :target="it.external ? '_blank': '_self'"
                                 ><span>{{it.title}}</span></a>
                             </template>
-                        </div>
+                        </template>
                     </div>
                 <!-- <div class="navigation-part right">
                         <div class="navigation-btn"> -->
@@ -37,7 +43,7 @@
                     </div> -->
 
                 </div>
-                <div class="navigation-inner right only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
+                <div class="navigation-inner left only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
 
                     <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
@@ -57,8 +63,8 @@
                     </div>
                 </div>
                 <YumaLogo />
-                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
-                    <img src="../assets/img/nav-phone.svg" alt="Контакты">
+                <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
+                    <img src="../assets/img/menu.svg" alt="Открыть меню">
                 </div>
             </div>
         </nav>
@@ -96,18 +102,43 @@ export default {
                     is_dropdown: true,
                     title: 'Контакты',
                     showContacts: true,
-                    class: 'only-desktop'
+                    class: 'hidden-mobile'
                 },
-            ]
+            ],
+            dropdownStatuses: {}
         }
     },
     mounted() {
+        this.navItems.forEach((it, idx)=>{
+            if (it.is_dropdown){
+                this.dropdownStatuses[idx] = false
+            }
+        })
         window.addEventListener('resize', () => {
             if (this.mobileMenuOpened) {
                 this.mobileMenuOpened=false
                 this.activePopup='menu'
             }
         })
+    },
+    methods: {
+        changeDropdownStatus(idx) {
+            this.dropdownStatuses[idx] = true
+            let activeDropdowns = Object.keys(this.dropdownStatuses).filter(
+                key=>key != idx && this.dropdownStatuses[key]
+            )
+            if (activeDropdowns.length) {
+                this.closeDropdowns(activeDropdowns)
+            }
+        },
+        closeAllDropdowns() {
+            this.closeDropdowns(Object.keys(this.dropdownStatuses))
+        },
+        closeDropdowns(idxes) {
+            idxes.forEach(it=>{
+                this.$refs['navDropdown-'+it][0].requestDropdownClose()
+            })
+        }
     }
 
 }
@@ -124,6 +155,7 @@ export default {
     right: 0;
     background-color: #fff;
     z-index: 10000;
+    box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
 
     &.opened {
         border-color: transparent;
@@ -171,6 +203,9 @@ export default {
 
             &.left {
                 gap: 20px;
+                & > div {
+                    width: 100%;
+                }
             }
 
             &.right {

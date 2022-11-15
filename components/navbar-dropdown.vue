@@ -1,15 +1,18 @@
 <template>
-  <div class="navigation-link__dropdown" :class="{'opened': dropdownOpened,}">
+    <div class="navigation-link__dropdown" 
+        @mouseenter="handleMouseEnter" 
+        @mouseleave="handleMouseLeave" 
+        :class="{'opened': dropdownOpened}"
+    >
         <div class="dropdown__header"
             :class="{'active': dropdownOpened || isDropdownActive}"
-             @click="dropdownOpened=!dropdownOpened">
+             @click.stop="dropdownOpened=!dropdownOpened">
             <span class="dropdown__selected-title text4">
                 <span class="dropdown__selected-title__text">{{title}}</span>
                 <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M0 0L5 5L10 0H0Z" fill="#111111"/>
                 </svg>
             </span>
-            
         </div>
         <div class="dropdown__items">
             <template v-if="showContacts">
@@ -23,9 +26,9 @@
                 </div>
             </template>
             <template v-else>
-                <a :href="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
+                <nuxt-link @click.native="$emit('closemenu')" :to="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
                     :class="{'active': $route.path == link.path}"
-                    >{{link.name}}</a>
+                    ><span>{{link.name}}</span></nuxt-link>
             </template>
         </div>
     </div>
@@ -53,15 +56,29 @@ export default {
     },
     data: () => {
         return {
-            dropdownOpened: false
+            dropdownOpened: false,
+            timer: null
         }
     },
     methods: {
         requestDropdownClose() {
-            const ctx = this
-            setTimeout(()=>{
-                ctx.dropdownOpened = false
-            }, 2000)
+            this.dropdownOpened = false
+        },
+        handleMouseEnter() {
+            let isMobile = window.innerWidth <= 767
+            if (!isMobile){
+                if (this.timer) {
+                    clearTimeout(this.timer)
+                }
+            }
+        },
+        handleMouseLeave() {
+            let isMobile = window.innerWidth <= 767
+            if (!isMobile){
+                this.timer = setTimeout(() => {
+                    this.requestDropdownClose()
+                }, 1000)
+            }
         }
     },
     computed: {
@@ -74,6 +91,14 @@ export default {
             if (!this.menuOpened) {
                 this.dropdownOpened = false
             }
+        },
+        dropdownOpened(val) {
+            if (val) {
+                this.$emit('open')
+            }
+        },
+        $route() {
+            this.dropdownOpened = false
         }
     }
 }
@@ -156,12 +181,15 @@ export default {
     visibility: hidden;
     transform: translate(0, -100px);
     transition: all .3s ease;
+    @media screen and (min-width: calc($--screen-sm-min + 1px)) {
+        box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
+    }
     @media screen and (max-width: $--screen-sm-min) {
         display: flex;
         flex-direction: column;
         position: static;
         max-height: 0;
-        overflow: hidden;
+        // overflow: hidden;
         transform: none;
         padding: 0;
         min-width: 100%;
@@ -179,6 +207,7 @@ export default {
             max-height: 500px;
             padding-left: 16px;
             margin-bottom: 20px;
+            padding-top: 10px;
         }
     }
 }
@@ -186,10 +215,11 @@ export default {
     position: relative;
     display: inline-block;
     white-space: nowrap;
+
     &:not(:last-child) {
         margin-bottom: 10px;
     }
-    &::after {
+    span::after {
         content: '';
         display: block;
         height: 2px;
@@ -201,11 +231,13 @@ export default {
         opacity: 0;
         transition: opacity .3s ease;
     }
+    span {
+        position: relative;
+        display: inline-block;
+    }
     &.active, &:hover {
-        @media screen and (min-width: calc($--screen-sm-min + 1px)) {
-            &::after {
-                opacity: 1;
-            }
+        span::after {
+            opacity: 1;
         }
     }
 }
