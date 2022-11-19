@@ -218,7 +218,7 @@ export default {
                 this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
                 this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
                 this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
-                this.setElProperty(popoverEl, 'zIndex', 10001)
+                this.setElProperty(popoverEl, 'zIndex', 9999)
                 this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
     
                 this.visibleEl = this.activeEl = el.dataset.idx
