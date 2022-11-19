@@ -105,7 +105,7 @@
             <section class="section sertification">
                 <div class="section-title about-title">
                     <h2 class="title1">
-                        сертификация
+                        Сертификация
                     </h2>
                 </div>
                 <div class="sertification__container grid-layout">
@@ -132,6 +132,13 @@
                             />
                     </div>
                 </client-only>
+            </section>
+            <section class="section sertification">
+                <div class="section-title about-title">
+                    <h2 class="title1">
+                        Наше участие в отрасли
+                    </h2>
+                </div>
             </section>
         </div>
       </main>
