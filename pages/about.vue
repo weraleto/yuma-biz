@@ -133,11 +133,69 @@
                     </div>
                 </client-only>
             </section>
-            <section class="section sertification">
+            <section class="section expos">
                 <div class="section-title about-title">
                     <h2 class="title1">
                         Наше участие в отрасли
                     </h2>
+                </div>
+                <div class="expos__container">
+                    <div class="card expos__card" v-for="(e, i) in data" 
+                        :key="e.title"
+                        @click="openPopoverCard"
+                        :data-idx="i"
+                    >
+                        <div class="expos__card--img">
+                            <img class="hidden-mobile" :src="require(`../assets/img/expos/${e.img}`)" :alt="`${e.title}. ${e.sub}`">
+                            <img class="only-mobile" :src="require(`../assets/img/expos/full-${e.img}`)" :alt="`${e.title}. ${e.sub}`">
+                        </div>
+                        <div class="expos__card--text">
+                            <h3 class="title1">
+                                {{e.title}}
+                            </h3>
+                            <h4 class="subtitle">
+                                {{e.sub}}
+                            </h4>
+                            <p class="text6">
+                                {{e.text}}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="expos__popover" 
+                        :class="{'is_active': activeEl, 'is_visible': visibleEl}"
+                        ref="popoverComponent"
+                    >
+                        <div class="expos__popover--content" :class="{'visible': contentVisible}">
+                            <div class="expos__popover--close" @click="hidePopoverCard"></div>
+                            <div ref="popoverCard" class="expos__popover--heading__wrapper">
+                                <div class="expos__popover--heading">
+                                    <h4 class="subtitle">{{activeElData.sub}}</h4>
+                                    <p class="text6 hidden-mobile" v-html="activeElData.textFull"></p>
+                                </div>
+                            </div>
+                            <div ref="popoverCard1" class="expos__popover--text">
+                                <div class="only-mobile">
+                                    <p v-html="activeElData.textFull"></p>
+                                </div>
+                                <template v-if="activeElData.hasVideo">
+                                    <div class="video">
+                                        <iframe src="https://player.vimeo.com/video/772491934?h=c2a309f624&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                    <div class="video">
+                                        <iframe src="https://player.vimeo.com/video/772390935?h=fbd8cdf38b&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                </template>
+                                <template v-else>
+                                    <div>
+                                        <img src="~assets/img/expos/nov-1.jpg" :alt="activeElData.sub">
+                                    </div>
+                                    <div>
+                                        <img src="~assets/img/expos/nov-2.jpg" :alt="activeElData.sub">
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
@@ -145,6 +203,8 @@
 </template>
 
 <script>
+import {popoverMixin} from '@/mixins/mixins'
+
 export default {
     head() {
         return {
@@ -169,6 +229,7 @@ export default {
             ]
         }
     },
+    mixins: [popoverMixin],
     data: () => {
         return {
             reliability: [{
@@ -192,7 +253,27 @@ export default {
                 'back': 'Великобритания, Ирландия, США, Австралия, Швейцария, Нидерланды, Индия, ОАЭ, ЮАР, Украина, Казахстан, Беларусь, Россия.'
                 },
             ],
-            sertIdx: null
+            data: [
+                {
+                    title: 'Октябрь 2022',
+                    img: 'okt-22.png',
+                    sub: 'Международная выставка "ПИР Экспо - 2022"',
+                    text: 'Делегаты YUMA представили экосистему автоматизации в пространстве Digital Hub',
+                    hasVideo: true,
+                    textFull: 'Наши специалисты наглядно продемонстрировали гостям, как с помощью комплексной системы автоматизации YUMA-POS эффективно настроить работу заведения. От кассы и кухни до мобильного приложения и доставки.</br></br>А также показали на практике новый формат торговли и продвижения — умные микромаркеты YUMA-SMART.'
+                },
+                {
+                    title: 'Ноябрь 2022',
+                    img: 'nov-22.png',
+                    sub: 'Конференция "INTEKPROM HORECA 2022"',
+                    text: 'Специалисты YUMA делились решениями ключевых вопросов развития бизнеса',
+                    textFull: 'Отраслевое меропориятие, на котором участники из YUMA делились решениями ключевых задач развития ресторанного бизнеса в актуальных реалиях.</br></br>Собеседниками  наших специалистов стали представители гостинично-ресторанной сферы России и стран ближнего зарубежья, представители научно-исследовательских центров, консалтинговых компаний и отраслевых ассоциаций.'
+                },
+            ],
+            sertIdx: null,
+            activeEl: null,
+            visibleEl: null,
+            contentVisible: false
         }
     },
     methods: {
@@ -200,7 +281,85 @@ export default {
             if (e.target.tagName.toLowerCase() != 'img') {
                 this.$refs.sertGallery.close()
             }
-        }
+        },
+        openPopoverCard(e) {
+            const el = e.target.closest('.expos__card')
+            let popoverEl = this.$refs.popoverComponent
+            const windowWidth = window.innerWidth
+            let isMobile = windowWidth <= 767
+            if (isMobile) {
+                this.visibleEl = this.activeEl = el.dataset.idx
+                this.setElProperty(popoverEl, 'zIndex', 10001)
+                this.$store.commit('setShowModal', {key: 'otherModalsOpened', val: true})
+                
+                setTimeout(()=>{
+                    this.setElProperty(popoverEl, 'maxHeight', window.innerHeight, 'px')
+                    this.setElProperty(popoverEl, 'maxWidth', windowWidth, 'px')
+                    this.setElProperty(popoverEl, 'top', 0, 'px')
+                    this.setElProperty(popoverEl, 'left', 0, 'px')
+
+                    this.setElProperty(popoverEl.firstElementChild, 'paddingTop', 
+                        popoverEl.querySelector('.expos__popover--heading__wrapper').offsetHeight,
+                        'px'
+                    )
+
+                    this.activeCategoryCard = this.activeElData.tabs[0].title
+                    popoverEl.addEventListener('touchmove', this.handleMultipleCardsScroll)
+                    popoverEl.addEventListener('scroll', this.handleMultipleCardsScroll)
+
+                }, 100)
+
+            } else {
+                this.setElProperty(popoverEl, 'top', el.offsetTop, 'px')
+                this.setElProperty(popoverEl, 'left', el.offsetLeft, 'px')
+                this.setElProperty(popoverEl, 'maxWidth', el.clientWidth+2, 'px')
+                this.setElProperty(popoverEl, 'maxHeight', el.clientHeight+2, 'px')
+                this.setElProperty(popoverEl, 'zIndex', 9999)
+                this.params = [el.offsetTop, el.offsetLeft, el.clientWidth+2, el.clientHeight+2]
+    
+                this.visibleEl = this.activeEl = el.dataset.idx
+                
+                setTimeout(()=>{
+                    this.setElProperty(popoverEl, 'maxHeight', 300, 'vh')
+                    this.setElProperty(popoverEl, 'maxWidth', el.parentElement.clientWidth+2, 'px')
+                    this.setElProperty(popoverEl, 'top', 0, 'px')
+                    this.setElProperty(popoverEl, 'left', 0, 'px')
+                }, 100)
+                setTimeout(()=>{
+                    // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
+                    let containerHeight = [this.$refs.popoverCard, this.$refs.popoverCard1].map((it)=>{
+                        return it.offsetHeight 
+                    })
+                    containerHeight = Math.max(...containerHeight) + (windowWidth <= 1024 ? 40 : 80)
+                    this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
+                }, 350)
+            }
+            setTimeout(()=>{
+                this.contentVisible = true
+            }, 200)
+        },
+        hidePopoverCard(e) {
+            let [top, left, width, height] = this.params
+            let popoverEl = this.$refs.popoverComponent
+            this.contentVisible = false
+            this.setElProperty(popoverEl, 'top', top, 'px')
+            this.setElProperty(popoverEl, 'left', left, 'px')
+            this.setElProperty(popoverEl, 'maxWidth', width, 'px')
+            this.setElProperty(popoverEl, 'maxHeight', height, 'px')
+            document.querySelector('.expos__container').style = {}
+
+            this.params = []
+                        
+            setTimeout(()=>{
+                this.activeEl = null
+                this.$store.commit('setShowModal', {key: 'otherModalsOpened', val: false})
+                popoverEl.firstElementChild.style = null
+            }, 200)
+            setTimeout(()=>{
+                this.visibleEl = null
+                this.setElProperty(popoverEl, 'zIndex', -1)
+            }, 250)
+        },
     }
 }
 </script>
@@ -354,37 +513,18 @@ export default {
 
         }
         &__card {
+            @include cardArrow;
             min-height: 418px;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 10px;
-            position: relative;
-            cursor: pointer;
 
             &:nth-child(2n-1) {
                 grid-column: 4/7;
             }
             &:nth-child(2n) {
                 grid-column: 7/10;
-            }
-            &::after {
-                content: '';
-                width: 22px;
-                height: 22px;
-                position: absolute;
-                bottom: 25px;
-                right: 25px;
-                background: url('../assets/img/arrow.svg') no-repeat center center;
-                background-size: cover;
-                transition: transform .3s ease;
-                z-index: 1;
-            }
-
-            &:hover {
-                &::after {
-                    transform: translate(30%, 30%);
-                }
             }
 
             @media screen and (max-width: $--screen-md-min) {
@@ -408,6 +548,131 @@ export default {
             @media screen and (max-width: $--screen-xs-min) {
                 &:nth-child(2n-1), &:nth-child(2n) {
                     grid-column: 1/7;
+                }
+            }
+        }
+    }
+
+    .expos {
+        &__container {
+            @extend %popoverContainer;
+
+            display: flex;
+            gap: 40px;
+
+            @media screen and (max-width: $--screen-sm-min) {
+                flex-wrap: wrap;
+            }
+        }
+        &__card {
+            @include cardArrow(33px);
+            flex: 0 1 50%;
+            min-height: 200px;
+            padding: 33px 77px 33px 33px;
+
+            border-width: 1px;
+
+            display: flex;
+            align-items: center;
+            gap: 24px;
+
+            &--text {
+                flex: 1 1 62%;
+
+                h3 {
+                    margin-bottom: 20px;
+                }
+
+                h4 {
+                    margin-bottom: 12px;
+                }
+            }
+
+            &--img {
+                flex: 0 1 172px;
+                
+                img {
+                    object-fit: contain;
+                    border-radius: 8px;
+                }
+            }
+
+            @media screen and (max-width: $--screen-lg-min) {
+                padding: 22px 45px 22px 22px;
+
+                &::after {
+                    right: 22px;
+                    bottom: 22px;
+                }
+            }
+
+            @media screen and (max-width: $--screen-md-min) {
+                flex-direction: column;
+            }
+
+            @media screen and (max-width: $--screen-md-min) and (min-width: calc($--screen-xs-min + 1px)) {
+                &--img {
+                    flex: 0 1 150px;
+                    img {
+                        height: 166px;
+                    }
+                }
+
+                &--text h3 {
+                    font-size: 30px;
+                }
+            }
+
+            @media screen and (max-width: $--screen-sm-min) {
+                flex: 1 0 100%;
+            }
+            @media screen and (max-width: $--screen-xs-min) {
+                padding: 16px 16px 61px;
+                &::after {
+                    right: 16px;
+                    bottom: 16px;
+                }
+            }
+            
+        }
+
+        &__popover {
+            @include popover;
+
+            &--content {
+                display: flex;
+                gap: 32px;
+            }
+
+            &--text {
+                display: flex;
+                gap: 32px;
+
+                & > div.video {
+
+                    iframe {
+                        width: 100%;
+                        height: 100%;
+                    }
+                    flex: 1 1 50%;
+
+                    @media screen and (min-width: calc($--screen-md-min + 1px)) {
+                        min-height: 545.625px;
+                    }
+                    @media screen and (min-width: calc($--screen-sm-min + 1px)) and (max-width: $--screen-md-min) {
+                        min-height: 37.89vw;
+                    }
+                    @media screen and (max-width: $--screen-sm-min) {
+                        flex: 1 0 auto;
+                        min-height: 545.625px;
+                    }
+                    @media screen and (max-width: $--screen-xxs-min) {
+                        min-height: calc((100vw - 32px) * 1.81);
+                    }
+                }
+
+                @media screen and (max-width: $--screen-sm-min) {
+                    flex-direction: column;
                 }
             }
         }
@@ -469,10 +734,6 @@ export default {
 
         &:nth-child(2n) {
             grid-column: 5/10;
-
-            // @media screen and (max-width: $--screen-md-min) {
-            //     grid-column: 5/10;
-            // }
 
             @media screen and (max-width: $--screen-sm-min) {
                 grid-column: 4/10;

@@ -8,7 +8,6 @@
         >
             <div class="sys-components__item--front">
                 <h3 class="subtitle sys-components__item--front__title">{{item.title}}</h3>
-                <!-- <p>{{item.frontText}}</p> -->
             </div>
         </div>
         <div class="sys-components__popover" 
@@ -66,6 +65,7 @@
 </template>
 
 <script>
+import {popoverMixin} from '@/mixins/mixins'
 import SwiperWithPic from '@/components/swiper-with-pic'
 
 export default {
@@ -75,13 +75,10 @@ export default {
             default: () => []
         },
     },
+    mixins: [popoverMixin],
     data: () => {
         return {
-            activeEl: null,
-            visibleEl: null,
-            contentVisible: false,
             activeCategoryCard: '',
-            params: [],
             swiperOptionsBase: {
                 spaceBetween: 40,
                 breakpointsBase: 'container',
@@ -163,14 +160,6 @@ export default {
         }
     },
     components: {SwiperWithPic},
-    computed: {
-        activeElData() {
-            if (this.activeEl) {
-                return this.data[this.activeEl]
-            }
-            return {}
-        }
-    },
     methods: {
         getSwiperConfiguration(type, idx, subprefix='') {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
@@ -272,23 +261,21 @@ export default {
             let cardIdx = (this.$refs.popoverCard[0].offsetHeight - 60) < this.$refs.popoverComponent.scrollTop ? 1 : 0
             this.activeCategoryCard = this.activeElData.tabs[cardIdx].title
         },
-        setElProperty(el, prop, val, units='') {
-            el.style[prop] = `${val}${units}`
-        }
     }
 }
 </script>
 
 <style lang="scss">
 @import '@/assets/scss/_variables';
+@import '@/assets/scss/_mixins';
 
 .sys-components {
     &__container {
+
+        @extend %popoverContainer;
         gap: 20px;
         grid-auto-flow: column dense;
         grid-template-rows: repeat(3, 240px);
-        position: relative;
-        transition: min-height .2s ease-in;
 
         @media screen and (max-width: $--screen-md-min) {
             grid-template-columns: repeat(6, 1fr);
@@ -303,59 +290,7 @@ export default {
     }
 
     &__popover {
-        position: absolute;
-        background: white;
-        top: 0;
-        left: 0;
-        border-radius: $--products-default-border-radius;
-        border: 1px solid $--gray-medium;
-        width: 100%;
-        height: 100%;
-        max-width: 0;
-        max-height: 0;
-        overflow: hidden;
-        z-index: -1;
-        opacity: 0;
-        transition: opacity .2s ease-in;
-
-        &.is_visible {
-            opacity: 1;
-        }
-
-        &.is_active {
-            padding: 40px;
-            transition: all .2s ease-in;
-
-            &.is_first {
-                padding-left: 0;
-                padding-right: 0;
-            }
-        }
-
-        
-
-        &--close {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: url('~assets/img/cross.svg') no-repeat center center;
-            background-size: cover;
-            top: 42px;
-            right: 42px;
-            cursor: pointer;
-            transition: all .3s ease;
-            z-index: 7;
-
-            &:hover {
-                transform: scale(1.15);
-            }
-
-            @media screen and (max-width: $--screen-sm-min) {
-                position: fixed;
-                top: 30px;
-                right: 30px;
-            }
-        }
+        @include popover;
 
         &--card {
             position: relative;
@@ -383,95 +318,17 @@ export default {
             }
         }
 
-        &--heading {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            max-width: 471px;
-            margin-bottom: 32px;
-
-            @media screen and (max-width: $--screen-sm-min) {
-                max-width: 100%;
-                margin-bottom: 0;
-                padding: 12px 50px 12px 16px ;
-                gap: 8px;
-                border-bottom: 1px solid $--gray-medium;
-
-                &__wrapper {
-                    z-index: 6;
-                    background-color: white;
-                    position: fixed;
-                    top: 0;
-                    left: 0;
-                    right: 0;
-
-                    h4 {
-                        font-weight: 500;
-                    }
-                }
-            }
-        }
-
         &--subheading {
             padding-top: 8px;
             padding-bottom: 8px;
         }
-
-        &--content {
-            opacity: 0;
-            transition: opacity .2s ease-in-out;
-            &.visible {
-                opacity: 1;
-            }
-        }
-
-        @media screen and (max-width: $--screen-lg-min) {
-            &.is_active {
-                padding: 20px;
-            }
-            &--close {
-                top: 20px;
-                right: 20px;
-            }
-        }
-
-        @media screen and (max-width: $--screen-sm-min) {
-            position: fixed;
-            border-radius: 0;
-            border: none;
-            overflow-y: scroll;
-
-            &.is_active {
-                padding-bottom: 52px;
-            }
-        }
     }
     
     &__item {
+        @include cardArrow(33px);
         border-radius: $--products-default-border-radius;
         border: 1px solid $--gray-medium;
         padding: 36px;
-        position: relative;
-        cursor: pointer;
-
-        &::after {
-            content: '';
-            width: 22px;
-            height: 22px;
-            position: absolute;
-            bottom: 33px;
-            right: 33px;
-            background: url('../assets/img/arrow.svg') no-repeat center center;
-            background-size: cover;
-            transition: transform .3s ease;
-            z-index: 1;
-        }
-
-        &:hover {
-            &::after {
-                transform: translate(30%, 30%);
-            }
-        }
 
         &.col-1 {
             grid-column: span 3;
