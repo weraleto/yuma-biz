@@ -127,3 +127,27 @@ export const tabsMixin = {
         },
     }
 }
+
+export const popoverMixin = {
+    data: () => {
+        return {
+            activeEl: null,
+            visibleEl: null,
+            contentVisible: false,
+            params: []
+        }
+    },
+    methods: {
+        setElProperty(el, prop, val, units='') {
+            el.style[prop] = `${val}${units}`
+        }
+    },
+    computed: {
+        activeElData() {
+            if (this.activeEl) {
+                return this.data[this.activeEl]
+            }
+            return {}
+        }
+    },
+}
