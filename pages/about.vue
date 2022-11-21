@@ -642,6 +642,15 @@ export default {
             &--content {
                 display: flex;
                 gap: 32px;
+
+                padding-right: 49px;
+
+                @media screen and (max-width: $--screen-lg-min) {
+                    padding-right: 19px;
+                }
+                @media screen and (max-width: $--screen-sm-min) {
+                    padding-right: 0px;
+                }
             }
 
             &--text {
