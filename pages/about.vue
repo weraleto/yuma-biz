@@ -250,7 +250,7 @@ export default {
                 {
                 'num': 'более 12',
                 'small': 'Стран мира, где работает технология YUMA',
-                'back': 'Великобритания, Ирландия, США, Австралия, Швейцария, Нидерланды, Индия, ОАЭ, ЮАР, Украина, Казахстан, Беларусь, Россия.'
+                'back': 'Россия, Беларусь, Казахстан, Великобритания, Ирландия, Швейцария, Нидерланды, Индия, ОАЭ, ЮАР, США, Австралия и другие.'
                 },
             ],
             data: [
@@ -682,6 +682,17 @@ export default {
 
                 @media screen and (max-width: $--screen-sm-min) {
                     flex-direction: column;
+                }
+            }
+
+            @media screen and (max-width: $--screen-lg-min) {
+                &.is_active {
+                    padding-right: 45px;
+                }
+            }
+            @media screen and (max-width: $--screen-sm-min) {
+                &.is_active {
+                    padding-right: 20px;
                 }
             }
         }
