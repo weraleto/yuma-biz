@@ -222,6 +222,7 @@ export const tariffs = [{
 export const systemComponentsData = [{
         title: 'Кассовая программа + Бэк-офис',
         frontText: '32000 ₽/год на 1 точку',
+        id: 'pos-system-back-office',
         colspan: 2,
         rowspan: 1,
         description: '',
@@ -327,6 +328,7 @@ export const systemComponentsData = [{
     {
         title: 'Сайт заведения',
         frontText: '18000 ₽/год',
+        id: 'ecommerce',
         colspan: 1,
         rowspan: 1,
         description: 'Всегда актуальное меню, спецпредложения и любые виды оплаты доступны вашим покупателям в любом браузере.',
@@ -364,6 +366,7 @@ export const systemComponentsData = [{
     {
         title: 'Приложение для ваших курьеров',
         frontText: '5000 ₽/год за учетную запись курьера',
+        id: 'driver',
         colspan: 2,
         rowspan: 1,
         description: 'Приложение легко запускается на смартфонах Android и отображает статусы заказов.',
@@ -401,6 +404,7 @@ export const systemComponentsData = [{
     {
         title: 'Приложение для ваших гостей',
         frontText: '45000 ₽/год',
+        id: 'mobile',
         colspan: 1,
         rowspan: 1,
         description: 'С его помощью вы будете получать онлайн-заказы и увеличивать количество регулярных покупок.',
@@ -452,6 +456,7 @@ export const systemComponentsData = [{
     {
         title: 'Программа киоска самообслуживания',
         frontText: '6000 ₽/год за 1 шт',
+        id: 'kiosk',
         colspan: 1,
         rowspan: 2,
         description: 'На таких стационарных терминалах, подключенных к системе, покупатели смогут самостоятельно делать и оплачивать заказы. ',
@@ -486,6 +491,7 @@ export const systemComponentsData = [{
     {
         title: 'Приложение для кухни',
         frontText: '6000 ₽/год на 1 заведение',
+        id: 'kitchen',
         colspan: 1,
         rowspan: 2,
         description: 'Мгновенное взаимодействие между кассой и кухней. Вы сами решите, нужен ли теперь принтер.',
@@ -512,6 +518,7 @@ export const systemComponentsData = [{
     {
         title: 'Маркетинговая платформа',
         frontText: 'Бесплатно',
+        id: 'marketing',
         colspan: 2,
         rowspan: 1,
         description: '',
