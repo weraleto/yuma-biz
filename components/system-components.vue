@@ -5,6 +5,7 @@
             :class="[`col-${item.colspan}`, `row-${item.rowspan}`]"
             @click="openPopoverCard"
             :data-idx="i"
+            :id="item.id"
         >
             <div class="sys-components__item--front">
                 <h3 class="subtitle sys-components__item--front__title">{{item.title}}</h3>
@@ -159,6 +160,14 @@ export default {
             },
         }
     },
+    async mounted() {
+        if (this.$route.hash) {
+            if (this.activeEl || this.visibleEl) {
+                await this.hidePopoverCard()
+            }
+            document.querySelector(this.$route.hash).click()
+        }
+    },
     components: {SwiperWithPic},
     methods: {
         getSwiperConfiguration(type, idx, subprefix='') {
@@ -234,7 +243,7 @@ export default {
                 this.contentVisible = true
             }, 200)
         },
-        hidePopoverCard(e) {
+        hidePopoverCard() {
             let [top, left, width, height] = this.params
             let popoverEl = this.$refs.popoverComponent
             this.contentVisible = false
