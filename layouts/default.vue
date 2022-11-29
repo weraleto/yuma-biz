@@ -32,8 +32,10 @@ import Navbar from '@/components/navigation-bar'
 import Footer from '@/components/footer'
 import FormModal from '@/components/modal-form'
 import {mapState} from 'vuex'
+import {layoutMixin} from '@/mixins/mixins'
 export default {
     components: {Navbar, Footer, FormModal},
+    mixins: [layoutMixin],
     data: () => {
         return {
             showUpButton: false,
@@ -47,6 +49,7 @@ export default {
             ctx.showUpButton = window.pageYOffset > 5450 && st < this.lastScrollTop
             this.lastScrollTop = st <= 0 ? 0 : st;
         }, false)
+        this.loadScript()
     },
     computed: {
         ...mapState([
