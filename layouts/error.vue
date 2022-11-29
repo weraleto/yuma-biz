@@ -21,12 +21,16 @@
 </template>
 
 <script>
+import {layoutMixin} from '@/mixins/mixins'
 export default {
     name: 'Error',
     head: {
         title: 'Ошибка'
     },
-
+    mixins: [layoutMixin],
+    mounted() {
+        this.loadScript()
+    }
 }
 </script>
 
