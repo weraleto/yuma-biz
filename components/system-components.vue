@@ -426,9 +426,7 @@ export default {
 
     .tab-picture {
         picture, img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+            @extend %objectFitCover;
         }
     }
     .size-reverse-vertical {

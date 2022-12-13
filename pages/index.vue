@@ -1,28 +1,18 @@
 <template>
   <div>
-    <header class="header">
-      <div class="container header__container">
-        <h1>YUMA-pos</h1>
-        <h2>Система автоматизации c бесплатной техподдержкой 24/7 для роста бизнеса</h2>
-        <div class="header__promo">
-          <div class="header__promo--text">
-            <p class="text4">Попробуйте бесплатно!</p>
-            <p class="text4">7 дней безлимитного демо-доступа</p>
-          </div>
-          <button class="btn primary large text4" 
-                  @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
-          >Попробовать</button>
-        </div>
-      </div>
-      <div class="header__top">
-        <picture data-not-lazy>
-          <source media="(min-width:1500px)" srcset="~assets/img/header2x.jpg" data-not-lazy>
-          <source media="(min-width:700px)" srcset="~assets/img/header.jpg" data-not-lazy>
-          <source media="(min-width:0px)" srcset="~assets/img/header0.5.jpg" data-not-lazy>
-          <img src="~assets/img/header.jpg" alt="yuma pos" data-not-lazy>
-        </picture>
-      </div>
-    </header>
+    <ProductsHeader
+      title="YUMA-POS"
+      subtitle="Система автоматизации c бесплатной техподдержкой 24/7 для роста бизнеса"
+      button-text="Попробовать"
+      :button-subtext="['Попробуйте бесплатно!', '7 дней безлимитного демо-доступа']"
+    >
+      <picture data-not-lazy>
+        <source media="(min-width:1500px)" srcset="~assets/img/header2x.jpg" data-not-lazy>
+        <source media="(min-width:700px)" srcset="~assets/img/header.jpg" data-not-lazy>
+        <source media="(min-width:0px)" srcset="~assets/img/header0.5.jpg" data-not-lazy>
+        <img src="~assets/img/header.jpg" alt="yuma pos" data-not-lazy>
+      </picture>
+    </ProductsHeader>
     <main>
       <!-- Система учитывает ваши особенности бизнеса -->
       <section class="block-offset grid-layout">
@@ -35,7 +25,7 @@
       <section class="block-offset grid-layout container">
         <h2 class="title1 block-offset__title">Процесс подключения
           к системе</h2>
-        <div class="block-offset__content text-blocks plain">
+        <div class="block-offset__content text-blocks plain ladder-xs-enabled">
           <div class="text-blocks__col">
             <div class="text-blocks__item">
               <div class="text-blocks__item-step">01</div>
@@ -95,8 +85,9 @@
 </template>
 
 <script>
-  import { peculiarities, mainPageFAQ } from '@/assets/dataContent.js'
+  import { peculiarities, yumaBizFAQ } from '@/assets/dataContent.js'
   import Collapse from '../components/collapse'
+  import ProductsHeader from '../components/products-header'
   import Partners from '../components/partners'
   import Hint from '../components/popover'
   import Peculiarities from '../components/tabs-swipered'
@@ -108,7 +99,8 @@
       LeadForm,
       Partners,
       Hint,
-      Peculiarities
+      Peculiarities,
+      ProductsHeader
     },
     head() {
       return {
@@ -137,7 +129,7 @@
     data: () => {
       return {
         peculiarities: peculiarities,
-        faq: mainPageFAQ
+        faq: yumaBizFAQ
       }
     },
     methods: {}
@@ -145,84 +137,8 @@
 </script>
 
 <style lang="scss">
-  @import '@/assets/scss/_variables.scss';
-
-  .header {
-    margin-bottom: 50px;
-    h1 {
-      font-size: 134px;
-      text-transform: uppercase;
-      font-weight: 800;
-      margin-bottom: 24px;
-
-      @media screen and (max-width: $--screen-lg-min) {
-        font-size: 15vw;
-      }
-      @media screen and (max-width: $--screen-xs-min) {
-        margin-bottom: 12px;
-      }
-    }
-
-    h2 {
-      font-weight: 500;
-      font-size: 56px;
-      text-transform: uppercase;
-
-      @media screen and (max-width: $--screen-md-min) {
-        font-size: 7.46vw;
-        line-height: 1.42em;
-      }
-    }
-
-    &__top {
-      max-height: 70vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-      position: relative;
-      picture, img {
-        height: 700px;
-        width: 100%;
-        object-fit: cover;
-
-        @media screen and (max-width: 700px)  {
-          height: auto;
-          width: 100%;
-        }
-      }
-      
-    }
-
-    &__container {
-      padding-top: 110px;
-      padding-bottom: 150px;
-      @media screen and (max-width: $--screen-sm-min) {
-        padding-bottom: 72px;
-      }
-      @media screen and (max-width: $--screen-xs-min) {
-        padding-top: 32px;
-      }
-    }
-
-    &__promo {
-      max-width: 380px;
-      margin: 60px auto 0;
-      text-align: center;
-
-      &--text {
-        margin-bottom: 28px;
-      }
-
-      .btn {
-        margin: auto;
-      }
-    }
-
-    @media screen and (max-width: $--screen-xs-min) {
-      margin-bottom: 32px;
-    }
-  }
+  @import '@/assets/scss/_variables';
+  @import '@/assets/scss/components/block-offset';
 
   .faq-section {
     padding-bottom: 150px;

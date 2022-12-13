@@ -722,6 +722,8 @@ export default {
 
         cursor: pointer;
 
+        @include cardTranslate;
+
         @media screen and (max-width: $--screen-md-min) {
             height: 25vw;
         }
@@ -764,49 +766,6 @@ export default {
             }
         }
 
-        &__inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        &__front,
-        &__back {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            padding: 10px;
-        }
-
-        &__front {
-            background-color: $--main-white;
-        }
-
-        &__back {
-            top: -2px;
-            bottom: -2px;
-            left: -2px;
-            right: -2px;
-            opacity: 0;
-            background-color: $--yellow-primary;
-            border: 2px solid $--main-gray;
-            padding: 10px;
-
-            p {
-                max-width: 462px;
-                margin: auto;
-            }
-        }
-
         small {
             position: absolute;
             top: 20px;
@@ -816,15 +775,6 @@ export default {
 
             @media screen and (max-width: $--screen-md-min) {
                 font-size: .875rem;
-            }
-        }
-
-        &:hover {
-            z-index: 2;
-
-            .card-item__back {
-                animation: fadein .3s ease forwards;
-                border-color: $--main-black;
             }
         }
 
