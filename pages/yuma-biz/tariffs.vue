@@ -54,10 +54,10 @@
 
 <script>
 import { tariffs, systemComponentsData } from '@/assets/dataContent.js'
-import calculatorIcon from '../components/svg/сalculator'
-import LeadForm from '../components/contact-form'
-import systemComponents from '../components/system-components'
-import Tariffs from '../components/tabs-faq'
+import calculatorIcon from '@/components/svg/сalculator'
+import LeadForm from '@/components/contact-form'
+import systemComponents from '@/components/system-components'
+import Tariffs from '@/components/tabs-faq'
 export default {
     name: 'ProductsPage',
     head() {

@@ -67,9 +67,9 @@
                   <el-tab-pane :label="tab.label" :name="String(i)" v-for="(tab, i) in yumaSmartClients" :key="tab.label">
                     <div class="for-clients__item--picture">
                       <picture>
-                        <source media="(min-width:768px)" :srcset="require('../assets/img/smart/'+tab.img)">
-                        <source media="(min-width:0px)" :srcset="require('../assets/img/smart/0.5'+tab.img)">
-                        <img :src="require('../assets/img/smart/'+tab.img)" alt="yuma pos" >
+                        <source media="(min-width:768px)" :srcset="require('../../assets/img/smart/'+tab.img)">
+                        <source media="(min-width:0px)" :srcset="require('../../assets/img/smart/0.5'+tab.img)">
+                        <img :src="require('../../assets/img/smart/'+tab.img)" alt="yuma pos" >
                       </picture>
                     </div>
                     <p class="text4 for-clients__item--text">{{tab.text}}</p>
@@ -133,9 +133,9 @@
 <script>
   import { tabsMixin } from '@/mixins/mixins'
   import { yumaSmartFAQ, yumaSmartTargetAudience } from '@/assets/dataContent.js'
-  import Collapse from '../components/collapse'
-  import ProductsHeader from '../components/products-header'
-  import LeadForm from '../components/contact-form'
+  import Collapse from '@/components/collapse'
+  import ProductsHeader from '@/components/products-header'
+  import LeadForm from '@/components/contact-form'
   export default {
     name: 'YumaSmartPage',
     props: {

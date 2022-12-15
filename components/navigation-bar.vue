@@ -85,12 +85,12 @@ export default {
                 {
                     is_dropdown: true,
                     title: 'YUMA-POS',
-                    items: [{path: '/', name: 'О системе'}, {path: '/products', name: 'Компоненты и цены'}]
+                    items: [{path: '/yuma-biz', name: 'О системе'}, {path: '/yuma-biz/tariffs', name: 'Компоненты и цены'}]
                 },
                 {
                     is_dropdown: false,
                     title: 'О нас',
-                    path: '/about'
+                    path: '/'
                 },
                 {
                     is_dropdown: false,
