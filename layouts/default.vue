@@ -84,14 +84,18 @@ export default {
 
 <style lang="scss" >
 @import "~element-ui/packages/theme-chalk/src/message";
-@import '@/assets/scss/_variables.scss';
+@import '@/assets/scss/_variables';
 
 .app {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
     max-width: 100vw;
-    margin-top: 80px;
+    margin-top: 70px;
+
+    @media screen and (max-width: $--screen-sm-min) {
+        margin-top: 50px;
+    }
 }
 
 .el-message.el-message--error {

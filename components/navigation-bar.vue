@@ -5,12 +5,14 @@
                 <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='contacts'">
                     <img src="../assets/img/nav-phone.svg" alt="Контакты">
                 </div>
+                <YumaLogo />
                 <div class="navigation-inner right" :class="{'opened': mobileMenuOpened && activePopup=='menu'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
                     <div class="navigation-part left">
                         <template v-for="(it, idx) in navItems">
                             <template v-if="it.is_dropdown">
                                 <NavDropdown :title="it.title" 
+                                :description="it.description"
                                 :key="idx"
                                 :items="it.items || []" 
                                 :menu-opened="mobileMenuOpened" 
@@ -25,7 +27,7 @@
                             <template v-else>
                                 <a :href="it.path" 
                                     :key="idx"
-                                    class="navigation-link__item text4"
+                                    class="navigation-link__item"
                                     :class="{'active': $route.path == it.path}"
                                     :target="it.external ? '_blank': '_self'"
                                 ><span>{{it.title}}</span></a>
@@ -46,23 +48,23 @@
                 <div class="navigation-inner left only-mobile" :class="{'opened': mobileMenuOpened && activePopup=='contacts'}">
                     <img class="navigation-mobile-close" @click="mobileMenuOpened=false" src="../assets/img/cross.svg" alt="Закрыть меню">
 
-                    <h3 class="subtitle" style="margin-bottom: 8vh">Мы работаем по всей России</h3>
-                    <div style="margin-bottom: 8vh">
-                        <h3 class="subtitle" style="margin-bottom: 8px">Офис в Санкт-Петербурге</h3>
-                        <p class="text6" style="margin-bottom: 20px">
+                    <h3 class="subtitle" style="margin-bottom: 7.34vh">Мы работаем по всей России</h3>
+                    <div style="margin-bottom: 7.34vh">
+                        <h3 style="margin-bottom: 20px; font-size: 13px; color: #808080; font-weight: 400">Офис в Санкт-Петербурге</h3>
+                        <p class="text6" style="margin-bottom: 12px">
                             Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская
                         </p>
-                        <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
+                        <a class="text4" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
                     </div>
                     <div>
-                        <h3 class="subtitle" style="margin-bottom: 8px">Офис в Москве</h3>
-                        <p class="text6" style="margin-bottom: 20px">
+                        <h3 style="margin-bottom: 20px; font-size: 13px; color: #808080; font-weight: 400">Офис в Москве</h3>
+                        <p class="text6" style="margin-bottom: 12px">
                             Нововладыкинский проезд, 2 стр. 2, метро Владыкино
                         </p>
-                        <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
+                        <a class="text4" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
                     </div>
                 </div>
-                <YumaLogo />
+
                 <div class="navigation-burger only-mobile" @click="mobileMenuOpened=!mobileMenuOpened; activePopup='menu'">
                     <img src="../assets/img/menu.svg" alt="Открыть меню">
                 </div>
@@ -85,7 +87,14 @@ export default {
                 {
                     is_dropdown: true,
                     title: 'YUMA-POS',
-                    items: [{path: '/yuma-biz', name: 'О системе'}, {path: '/yuma-biz/tariffs', name: 'Компоненты и цены'}]
+                    description: 'Система автоматизации ресторанов',
+                    items: [{path: '/yuma-biz', name: 'О системе YUMA-POS'}, {path: '/yuma-biz/tariffs', name: 'Компоненты и цены'}]
+                },
+                {
+                    is_dropdown: true,
+                    title: 'YUMA-SMART',
+                    description: 'Микромаркеты самообслуживания',
+                    items: [{path: '/yuma-smart', name: 'О решении YUMA-SMART'}, {path: '/yuma-smart/tariff3-integrated-micromarkets', name: 'Готовые микромаркеты'}]
                 },
                 {
                     is_dropdown: false,
@@ -190,11 +199,16 @@ export default {
         
         &.left {
             flex-grow: 1;
-            gap: 52px;
+            gap: 56.28px;
         }
         &.right {
             flex-shrink: 1;
             max-width: 123px;
+        }
+        @media screen and (max-width: $--screen-md-min) {
+            &.left {
+                gap: 3.90vw;
+            }
         }
         @media screen and (max-width: $--screen-sm-min) {
             flex-direction: column;
@@ -217,7 +231,7 @@ export default {
     }
 
     &-inner {
-        grid-column: 1/12;
+        grid-column: 3/13;
         display: flex;
         align-items: center;
         gap: 6.46vw;
@@ -286,6 +300,7 @@ export default {
         display: flex;
         align-items: center;
         min-height: 70px;
+        font-size: 14px;
 
         span {
             position: relative;

@@ -2,6 +2,13 @@
   <div>
     <main class="main products">
         <div class="container">
+            <Breadcrumbs
+            :links="[
+                {name: 'Наши продукты'}, 
+                {name: 'YUMA-POS', to: {name: 'yuma-biz'}},
+                {name: 'Компоненты системы и цены'} 
+                ]"
+            ></Breadcrumbs>
             <!-- Компоненты системы -->
             <section class="section sys-components">
                 <div class="section-title sys-components__title">

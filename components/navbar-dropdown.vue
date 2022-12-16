@@ -7,28 +7,31 @@
         <div class="dropdown__header"
             :class="{'active': dropdownOpened || isDropdownActive}"
              @click.stop="dropdownOpened=!dropdownOpened">
-            <span class="dropdown__selected-title text4">
+            <span class="dropdown__selected-title">
                 <span class="dropdown__selected-title__text">{{title}}</span>
-                <svg width="10" height="5" viewBox="0 0 10 5" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M0 0L5 5L10 0H0Z" fill="#111111"/>
+                <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M3.99999 4.98288C3.9111 4.98288 3.8251 4.96621 3.74199 4.93288C3.65844 4.89954 3.58888 4.8551 3.53333 4.79954L0.466658 1.73288C0.344436 1.61066 0.283325 1.4551 0.283325 1.26621C0.283325 1.07732 0.344436 0.921766 0.466658 0.799544C0.588881 0.677322 0.744436 0.616211 0.933325 0.616211C1.12221 0.616211 1.27777 0.677322 1.39999 0.799544L3.99999 3.39954L6.59999 0.799544C6.72221 0.677322 6.87777 0.616211 7.06666 0.616211C7.25555 0.616211 7.4111 0.677322 7.53332 0.799544C7.65555 0.921766 7.71666 1.07732 7.71666 1.26621C7.71666 1.4551 7.65555 1.61066 7.53332 1.73288L4.46666 4.79954C4.39999 4.86621 4.32777 4.91332 4.24999 4.94088C4.17221 4.96888 4.08888 4.98288 3.99999 4.98288Z" fill="#111111"/>
                 </svg>
             </span>
         </div>
         <div class="dropdown__items">
             <template v-if="showContacts">
-                <div style="margin-bottom: 20px" class="dropdown__item">
-                    <h3 class="text6" style="margin-bottom: 4px">Офис в Санкт-Петербурге</h3>
-                    <a class="title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
+                <div style="margin-bottom: 36px" class="dropdown__item">
+                    <h3 class="dropdown__items--description no-word-break" style="margin-bottom: 12px">Офис в Санкт-Петербурге</h3>
+                    <a class="text4" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
                 </div>
                 <div class="dropdown__item">
-                    <h3 class="text6" style="margin-bottom: 4px">Офис в Москве</h3>
-                    <a class="title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
+                    <h3 class="dropdown__items--description no-word-break" style="margin-bottom: 12px">Офис в Москве</h3>
+                    <a class="text4" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
                 </div>
             </template>
             <template v-else>
+                <p class="dropdown__items--description no-word-break">{{description}}</p>
+                <div class="dropdown__items--block">
                 <nuxt-link @click.native="$emit('closemenu')" :to="link.path" v-for="link in items" :key="link.name" class="dropdown__item"
                     :class="{'active': $route.path == link.path}"
                     ><span>{{link.name}}</span></nuxt-link>
+                </div>
             </template>
         </div>
     </div>
@@ -38,6 +41,10 @@
 export default {
     props: {
         title: {
+            type: String,
+            default: ''
+        },
+        description: {
             type: String,
             default: ''
         },
@@ -133,6 +140,7 @@ export default {
     min-height: 68px;
     background-color: white;
     width: 100%;
+    font-size: 14px;
     &.active {
         .dropdown__selected-title__text::after {
             opacity: 1;
@@ -174,13 +182,26 @@ export default {
     left: 0;
     background-color: $--main-white;
     border-radius: 12px;
-    padding: 16px;
+    padding: 40px;
+    font-size: 14px;
     opacity: 0;
     white-space: pre-line;
     z-index: -1;
     visibility: hidden;
     transform: translate(0, -100px);
     transition: all .3s ease;
+
+    &--block {
+        display: flex;
+        flex-direction: column;
+        padding-top: 16px;
+    }
+
+    &--description {
+        color: $--gray-medium;
+        font-weight: 400;
+    }
+
     @media screen and (min-width: calc($--screen-sm-min + 1px)) {
         box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
     }
@@ -203,11 +224,12 @@ export default {
         opacity: 1;
         transform: translate(0, 12px);
 
-        @media screen and (max-width: $--screen-md-min) {
+        @media screen and (max-width: $--screen-sm-min) {
             max-height: 500px;
-            padding-left: 16px;
+            padding-left: 12px;
             margin-bottom: 20px;
-            padding-top: 10px;
+            padding-top: 36px;
+            padding-bottom: 24px;
         }
     }
 }

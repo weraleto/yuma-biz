@@ -16,8 +16,9 @@
     </ProductsHeader>
 
     <main>
-      <!-- что такое микромаркеты -->
       <div class="container">
+
+      <!-- что такое микромаркеты -->
         <section class="micromarket">
           <div class="micromarket__heading">
             <h3 class="title1">
@@ -56,6 +57,21 @@
                   </div>
               </div>
             </div>
+          </div>
+        </section>
+
+      <!-- оптимальные решения yuma-smart -->
+        <section class="block-offset cata-preview">
+          <h2 class="title1 block-offset__title">Оптимальные решения <span class="no-word-break">YUMA-SMART</span></h2>
+          <div class="cata-preview__container">
+            <nuxt-link :to="{name: 'yuma-smart-slug', params: {slug: it.slug}}" class="cata-preview__item card" v-for="(it, i) in yumaSmartTariffs" :key="it.n">
+              <h4 class="cata-preview__item--title subtitle">Тариф №{{ it.n }}</h4>
+              <h5 class="text6">{{it.subtitle}}</h5>
+              <div class="cata-preview__item--img">
+                <img :src="require('/assets/img/smart/tarif-'+(i + 1)+'.jpg')" :alt="`Тариф №${it.n}. ${it.subtitle}`">
+              </div>
+              <h4 class="subtitle" v-html="it.price || it.cata_price"></h4>
+            </nuxt-link>
           </div>
         </section>
 
@@ -132,7 +148,7 @@
 
 <script>
   import { tabsMixin } from '@/mixins/mixins'
-  import { yumaSmartFAQ, yumaSmartTargetAudience } from '@/assets/dataContent.js'
+  import { yumaSmartFAQ, yumaSmartTargetAudience, yumaSmartTariffs } from '@/assets/dataContent.js'
   import Collapse from '@/components/collapse'
   import ProductsHeader from '@/components/products-header'
   import LeadForm from '@/components/contact-form'
@@ -177,7 +193,8 @@
     data: () => {
       return {
         faq: yumaSmartFAQ,
-        yumaSmartClients: yumaSmartTargetAudience
+        yumaSmartClients: yumaSmartTargetAudience,
+        yumaSmartTariffs
       }
     },
     methods: {}
@@ -316,10 +333,67 @@
     }
   }
 
+  .cata-preview {
+    &__container {
+      margin-top: 52px;
+      display: flex;
+      gap: 40px;
+      width: 100%;
+    }
+    &__item {
+      @extend %cardArrowTopRight;
+      width: 100%;
+      padding: 32px 24px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+
+      &--title {
+        margin-bottom: 12px;
+      }
+
+      &--img {
+        margin: 24px 0;
+        flex: 1;
+        img {
+          height: 276px;
+          object-fit: contain;
+        }
+      }
+    }
+
+    @media screen and (min-width: 671px) and (max-width: $--screen-sm-min) {
+      &__item {
+        &--img {
+          img {
+            height: 100%;
+            object-fit: cover;
+          }
+        }
+      }
+    }
+
+    @media screen and (max-width: $--screen-sm-min) {
+      &__container {
+        gap: 20px;
+      }
+      &__item {
+        &--img {
+          margin: 8px 0;
+        }
+      }
+    }
+    @media screen and (max-width: 670px) {
+      &__container {
+        flex-direction: column;
+      }
+    }
+  }
+
   .faq-section {
     padding-bottom: 150px;
     &__content {
-      margin-top: 52px;
+      margin-top: 52px;;
       @media screen and (max-width: $--screen-sm-min) {
         margin-top: 24px;
       }

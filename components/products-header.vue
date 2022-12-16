@@ -1,6 +1,12 @@
 <template>
   <header class="header">
       <div class="container header__container">
+        <Breadcrumbs
+          :links="[
+            {name: 'Наши продукты'}, 
+            {name: title}, 
+            ]"
+        ></Breadcrumbs>
         <h1>{{title}}</h1>
         <h2>{{subtitle}}</h2>
         <div class="header__promo">
@@ -60,11 +66,13 @@ export default {
       text-transform: uppercase;
       font-weight: 800;
       margin-bottom: 24px;
+      margin-top: calc(74px - .2em);
 
       @media screen and (max-width: $--screen-lg-min) {
         font-size: 12.5vw;
       }
       @media screen and (max-width: $--screen-xs-min) {
+        margin-top: calc(32px - .2em);
         margin-bottom: 12px;
       }
     }
@@ -100,13 +108,9 @@ export default {
     }
 
     &__container {
-      padding-top: 110px;
       padding-bottom: 150px;
       @media screen and (max-width: $--screen-sm-min) {
         padding-bottom: 72px;
-      }
-      @media screen and (max-width: $--screen-xs-min) {
-        padding-top: 32px;
       }
     }
 
