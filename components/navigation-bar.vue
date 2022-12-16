@@ -88,7 +88,7 @@ export default {
                     is_dropdown: true,
                     title: 'YUMA-POS',
                     description: 'Система автоматизации ресторанов',
-                    items: [{path: '/yuma-biz', name: 'О системе YUMA-POS'}, {path: '/yuma-biz/tariffs', name: 'Компоненты и цены'}]
+                    items: [{path: '/yuma-pos', name: 'О системе YUMA-POS'}, {path: '/yuma-pos/tariffs', name: 'Компоненты и цены'}]
                 },
                 {
                     is_dropdown: true,

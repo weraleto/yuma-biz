@@ -5,7 +5,7 @@
             <Breadcrumbs
             :links="[
                 {name: 'Наши продукты'}, 
-                {name: 'YUMA-POS', to: {name: 'yuma-biz'}},
+                {name: 'YUMA-POS', to: {name: 'yuma-pos'}},
                 {name: 'Компоненты системы и цены'} 
                 ]"
             ></Breadcrumbs>
