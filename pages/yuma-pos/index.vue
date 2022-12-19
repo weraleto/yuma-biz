@@ -60,12 +60,6 @@
           </div>
         </div>
       </section>
-
-      <!-- С нами уже работают -->
-      <section class="block-offset grid-layout">
-        <h2 class="title1 container block-offset__title">С нами уже работают</h2>
-        <Partners />
-      </section>
       
       <!-- FAQ -->
       <section class="faq-section container">
@@ -88,7 +82,6 @@
   import { peculiarities, yumaBizFAQ } from '@/assets/dataContent.js'
   import Collapse from '@/components/collapse'
   import ProductsHeader from '@/components/products-header'
-  import Partners from '@/components/partners'
   import Hint from '@/components/popover'
   import Peculiarities from '@/components/tabs-swipered'
   import LeadForm from '@/components/contact-form'
@@ -97,7 +90,6 @@
     components: {
       Collapse,
       LeadForm,
-      Partners,
       Hint,
       Peculiarities,
       ProductsHeader
