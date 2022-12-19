@@ -15,7 +15,10 @@
                         <div v-if="item.prices" class="collapsible__item--price">
                             <div class="collapsible__item--price__line text6" v-for="p in item.prices" :key="p.label+p.price">
                                 <p>{{p.label}}</p>
-                                <p>{{p.price}}</p>
+                                <p style="display: flex; align-items: center">
+                                    <span class="text4">{{p.price}}</span>
+                                    <span v-if="p.price_comment" v-html="p.price_comment"></span>
+                                </p>
                             </div>
                         </div>
                     </div>
