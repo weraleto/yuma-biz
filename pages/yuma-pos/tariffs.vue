@@ -4,7 +4,6 @@
         <div class="container">
             <Breadcrumbs
             :links="[
-                {name: 'Наши продукты'}, 
                 {name: 'YUMA-POS', to: {name: 'yuma-pos'}},
                 {name: 'Компоненты системы и цены'} 
                 ]"
@@ -65,6 +64,7 @@ import calculatorIcon from '@/components/svg/сalculator'
 import LeadForm from '@/components/contact-form'
 import systemComponents from '@/components/system-components'
 import Tariffs from '@/components/tabs-faq'
+import Breadcrumbs from '@/components/breadcrumbs'
 export default {
     name: 'ProductsPage',
     head() {
@@ -94,7 +94,8 @@ export default {
         LeadForm,
         calculatorIcon,
         Tariffs,
-        systemComponents
+        systemComponents,
+        Breadcrumbs
     }, 
     data: () => {
         return {

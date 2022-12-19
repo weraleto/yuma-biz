@@ -3,7 +3,6 @@
     <div class="container">
       <Breadcrumbs
         :links="[
-          {name: 'Наши продукты'}, 
           {name: 'YUMA-SMART', to: {name: 'yuma-smart'}}, 
           {name: tariffData.name, to: {name: 'yuma-smart-slug', params: {slug: tariffData.slug}}}
           ]"

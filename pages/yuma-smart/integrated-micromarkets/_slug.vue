@@ -3,7 +3,6 @@
     <div class="container pb item-page">
       <Breadcrumbs
         :links="[
-          {name: 'Наши продукты'}, 
           {name: 'YUMA-SMART', to: {name: 'yuma-smart'}}, 
           {name: 'Тариф №3 Готовый микромаркет', to: {name: 'yuma-smart-slug', params: {slug: 'tariff3-integrated-micromarkets'}}},
           {name: itemData.name, to: {name: 'yuma-smart-integrated-micromarkets-slug', params: {slug: itemData.slug}}}
