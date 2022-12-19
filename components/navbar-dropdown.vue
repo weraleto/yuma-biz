@@ -16,7 +16,7 @@
         </div>
         <div class="dropdown__items">
             <template v-if="showContacts">
-                <div style="margin-bottom: 36px" class="dropdown__item">
+                <div style="margin-bottom: 28px" class="dropdown__item">
                     <h3 class="dropdown__items--description no-word-break" style="margin-bottom: 12px">Офис в Санкт-Петербурге</h3>
                     <a class="text4" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
                 </div>
@@ -174,6 +174,9 @@ export default {
             transform: translate(0, 8px);
             transition: opacity .3s ease;
         }
+        @media screen and (max-width: $--screen-sm-min) {
+            font-size: 18px;
+        }
     }
 }
 .dropdown__items {
@@ -194,12 +197,13 @@ export default {
     &--block {
         display: flex;
         flex-direction: column;
-        padding-top: 16px;
+        padding-top: 24px;
     }
 
     &--description {
         color: $--gray-medium;
         font-weight: 400;
+        font-size: 12px;
     }
 
     @media screen and (min-width: calc($--screen-sm-min + 1px)) {
@@ -215,6 +219,13 @@ export default {
         padding: 0;
         min-width: 100%;
         margin-bottom: 0;
+        font-size: 18px;
+        &--description {
+            font-size: 14px;
+        }
+        &--block {
+            padding-top: 28px;
+        }
     }
 }
 .navigation-link__dropdown.opened {
@@ -228,7 +239,7 @@ export default {
             max-height: 500px;
             padding-left: 12px;
             margin-bottom: 20px;
-            padding-top: 36px;
+            padding-top: 30px;
             padding-bottom: 24px;
         }
     }

@@ -25,7 +25,10 @@
               </el-radio-group>
             </div>
             <div class="item-page__action">
-              <h3 class="subtitle">{{itemData.prices[material]}} ₽</h3>
+              <div class="item-page__action--price">
+                <h3 class="subtitle-bold">{{itemData.prices[material]}} ₽</h3>
+                <span class="text5">+ 7% от оборота</span>
+              </div>
               <button class="btn primary text4"
                 @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})">Заказать</button>
             </div>
@@ -145,6 +148,16 @@ $--table-header-font-color: $--main-black;
     display: flex;
     align-items: center;
     gap: 4.51vw;
+
+    &--price {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+       @media screen and (max-width: 360px) {
+        min-width: 140px;
+        transform: scale(.9) translateX(-5%);
+       }
+    }
 
     .btn {
       min-height: 60px;

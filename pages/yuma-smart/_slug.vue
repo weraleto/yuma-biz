@@ -18,7 +18,10 @@
           <p class="text6">{{ tariffData.description }}</p>
 
           <div class="smart-tariff__text--group" v-show="tariffData.price">
-            <div class="smart-tariff__text--pricing subtitle" v-html="tariffData.price" />
+            <div class="smart-tariff__text--pricing">
+              <div class="subtitle-bold">{{ tariffData.price }}</div>
+              <span class="text5">+ 7% от оборота</span>
+            </div>
             <button class="smart-tariff__text--btn btn primary text4" 
                   @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
           >Заказать</button>
@@ -38,7 +41,7 @@
               <img :src="require(`@/assets/img/smart/cata/${it.img}${it.is_frost ? 'ls' : 'lw'}.png`)" alt="Холодильник">
             </div>
             <div class="smart-tariff__items--item__bottom">
-              <h4 class="subtitle text-black">
+              <h4 class="subtitle-bold">
                 {{it.name}}
               </h4>
               <div class="specs text6">
@@ -46,9 +49,12 @@
                 <p>Литраж: {{ it.litres }} л</p>
               </div>
               <div class="actions">
-                <span class="subtitle">
-                  от {{it.prices[0]}} ₽
-                </span>
+                <div>
+                  <div class="subtitle-bold">
+                    от {{it.prices[0]}} ₽
+                  <span class="text5">+ 7% от оборота</span>  
+                  </div>
+                </div>
                 <button class="smart-tariff__items--btn large btn primary text4" 
                         @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
                 >Заказать</button>
@@ -112,6 +118,9 @@ export default {
     }
     &--pricing {
       flex: 0 1 152px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
     }
     &--btn {
       flex: 0 1 157px;
@@ -169,8 +178,11 @@ export default {
           gap: 5px;
           align-items: center;
 
-          span {
-            min-width: 140px;
+          div:first-child {
+            display: flex;
+            align-items: flex-start;
+            flex-direction: column;
+            gap: 8px;
           }
         }
       }
@@ -188,28 +200,31 @@ export default {
         }
       }
     }
-    @media screen and (max-width: $--screen-md-min) {
-      &--item {
-        max-width: calc(50% - 20px);
-      }
-    }
-    @media screen and (max-width: 630px) {
-      margin-top: 56px;
+    @media screen and (max-width: 1180px) {
       &--container {
         gap: 20px;
         margin-top: 44px;
       }
       &--item {
+        max-width: calc(50% - 20px);
+        flex: 1 0 50%;
+      }
+    }
+    @media screen and (max-width: $--screen-sm-min) {
+      margin-top: 56px;
+      &--item {
         flex: 1 0 100%;
         max-width: 100%;
       }
     }
-    @media screen and (max-width: 330px) {
+    @media screen and (max-width: 360px) {
       &--item {
         &__bottom {
           .actions {
-            span {
-              font-size: 18px;
+            gap: 0;
+            div:first-child {
+              min-width: 140px;
+              transform: scale(.9) translateX(-5%);
             }
           }
         }

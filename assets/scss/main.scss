@@ -104,7 +104,7 @@ body {
 
 section, .section {
     padding-top: 50px;
-    padding-bottom: 120px;
+    padding-bottom: 100px;
     &.pt-large {
         padding-top: 120px;
     }
@@ -183,6 +183,11 @@ section, .section {
     font-size: 22px;
 }
 
+.subtitle-bold {
+    @extend .subtitle;
+    font-weight: 500;
+}
+
 .text4 {
     font-size: 18px;
     font-weight: 500;
@@ -199,10 +204,6 @@ section, .section {
 
 .text-bold {
     font-weight: 500;
-}
-
-.text-black {
-    font-weight: 700;
 }
 
 .no-word-break {

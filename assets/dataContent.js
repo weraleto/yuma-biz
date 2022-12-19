@@ -1234,7 +1234,7 @@ export const yumaSmartTariffs = [
         img: 'tarif-1.jpg',
         subtitle: 'Обновим ваш умный холодильник',
         description: 'Мы заменим имеющийся модуль управления. Вы получите наш YUMA-SMARTBOX и программную платформу со скидкой 20%, т.е. за 43920 рублей. Или мы заполним ваш микромаркет на сумму этой скидки.',
-        price: '43 920 ₽ +<br><span class="">7% от оборота</span>'
+        price: '43 920 ₽'
     },
     {
         n: '2',
@@ -1243,7 +1243,7 @@ export const yumaSmartTariffs = [
         img: 'tarif-2.jpg',
         subtitle: 'Подключим ваше торговое оборудование',
         description: 'Например, ваш обычный витринный холодильник или другие подходящие запираемые витрины и стеллажи. Или даже целые островки и корнеры.',
-        price: '54 990 ₽ +<br><span class="">7% от оборота</span>'
+        price: '54 990 ₽'
     },
     {
         n: '3',
@@ -1251,7 +1251,7 @@ export const yumaSmartTariffs = [
         slug: 'tariff3-integrated-micromarkets',
         subtitle: 'Предоставим готовый микромаркет',
         description: 'Мы поставим весь комплект для работы – программное обеспечение, YUMA SMART-BOX и подходящее оборудование. Вы получите полностью готовое решение для бизнеса.', 
-        cata_price: '129 990 ₽ +<br><span class="">7% от оборота</span>',
+        cata_price: 'от 129 990 ₽',
         items: yumaSmartCatalogue
     }
 ]

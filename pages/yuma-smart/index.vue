@@ -70,7 +70,10 @@
               <div class="cata-preview__item--img">
                 <img :src="require('/assets/img/smart/tarif-'+(i + 1)+'.jpg')" :alt="`Тариф №${it.n}. ${it.subtitle}`">
               </div>
-              <h4 class="subtitle" v-html="it.price || it.cata_price"></h4>
+              <div>
+                <h4 class="subtitle-bold">{{ it.price || it.cata_price }}</h4>
+                <span class="text5">+ 7% от оборота</span>
+              </div>
             </nuxt-link>
           </div>
         </section>
@@ -105,23 +108,23 @@
           <div class="block-offset__content all-in__container text-blocks plain">
             <div class="text-blocks__col">
               <div class="text-blocks__item">
-                <h3 class="subtitle text-black text-blocks__item-subtitle">Мобильное приложение под вашим брендом</h3>
+                <h3 class="subtitle-bold text-blocks__item-subtitle">Мобильное приложение под вашим брендом</h3>
                 <p class="text6">С вашей собственной маркетинговой платформой: аналитикой покупательских предпочтений, функциями таргетированной рекламы, системой лояльности с баллами и другими гибкими настройками. Всё включено.</p>
               </div>
               <div class="text-blocks__item">
-                <h3 class="subtitle text-black text-blocks__item-subtitle">Учет, склад, инвентаризация</h3>
+                <h3 class="subtitle-bold text-blocks__item-subtitle">Учет, склад, инвентаризация</h3>
                 <p class="text6">В полном объеме и с управлением через ваш единый личный кабинет. Полноценный учет, инвентаризации и все функции управления складом и заказами, актуальные для сферы общественного питания.</p>
               </div>
             </div>
             <div class="text-blocks__col">
               <div class="text-blocks__item">
-                <h3 class="subtitle text-black text-blocks__item-subtitle">Техподдержка 24/7. <br>
+                <h3 class="subtitle-bold text-blocks__item-subtitle">Техподдержка 24/7. <br>
                   Выезд в день обращения
                 </h3>
                 <p class="text6">Мы решаем любые вопросы по торговому оборудованию и ПО, которые возникают у владельцев микромаркетов и покупателей. Дистанционно или с оперативным выездом.</p>
               </div>
               <div class="text-blocks__item">
-                <h3 class="subtitle text-black text-blocks__item-subtitle">Оптимальное решение задач</h3>
+                <h3 class="subtitle-bold text-blocks__item-subtitle">Оптимальное решение задач</h3>
                 <p class="text6">Эквайринг, брендирование торгового оборудования - мы сделаем всё, что вам потребуется. Вы получите полноценный микромаркет, оформленный в вашем стиле и полностью готовый к работе.</p>
               </div>
             </div>

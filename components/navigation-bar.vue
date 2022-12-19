@@ -211,7 +211,7 @@ export default {
             width: 100%;
 
             &.left {
-                gap: 20px;
+                gap: 32px;
                 & > div {
                     width: 100%;
                 }
@@ -330,6 +330,7 @@ export default {
         @media screen and (max-width: $--screen-sm-min) {
             min-height: unset;
             margin-bottom: 20px;
+            font-size: 18px;
         }
     }
 
@@ -359,6 +360,14 @@ export default {
             .btn {
                 max-height: 48px;
             }
+        }
+    }
+
+    .logo {
+        width: 72px;
+
+        @media screen and (max-width: $--screen-sm-min) {
+            width: 69px;
         }
     }
 }

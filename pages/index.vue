@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Начало проектной работы</h3>
+                                <h3 class="subtitle-bold">Начало проектной работы</h3>
                                 <p class="text6">Запуск отдельных проектов автоматизации бизнес-процессов для сферы торговли и услуг на международном рынке.</p>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 <span>2009</span>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Определение ниши</h3>
+                                <h3 class="subtitle-bold">Определение ниши</h3>
                                 <p class="text6">Концентрация на задачах ресторанного бизнеса и смежной торговли.</p>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Разработка комплексной системы YUMA</h3>
+                                <h3 class="subtitle-bold">Разработка комплексной системы YUMA</h3>
                                 <p class="text6">Начало работы с отдельными российскими предприятиями, готовыми к внедрению инноваций.</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <span>2018</span>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Фокус развития на российском рынке</h3>
+                                <h3 class="subtitle-bold">Фокус развития на российском рынке</h3>
                                 <p class="text6">Начат поэтапный выход YUMA на широкий российский рынок.</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Запуск направления бескассовой торговли</h3>
+                                <h3 class="subtitle-bold">Запуск направления бескассовой торговли</h3>
                                 <p class="text6">Выпущен новый продукт — микромаркеты YUMA-SMART</p>
                             </div>
                         </div>
@@ -132,6 +132,10 @@
                             />
                     </div>
                 </client-only>
+            </section>
+            <section class="block-offset grid-layout">
+                <h2 class="title1 block-offset__title">С нами уже работают</h2>
+                <Partners />
             </section>
             <section class="section expos">
                 <div class="section-title about-title">
@@ -204,6 +208,7 @@
 
 <script>
 import {popoverMixin} from '@/mixins/mixins'
+import Partners from '@/components/partners'
 
 export default {
     head() {
@@ -230,6 +235,7 @@ export default {
         }
     },
     mixins: [popoverMixin],
+    components: {Partners},
     data: () => {
         return {
             reliability: [{
@@ -370,7 +376,7 @@ export default {
 
     .about {
         &-title {
-            margin-bottom: 100px;
+            margin-bottom: 90px;
             @media screen and (max-width: $--screen-md-min) {
                 margin-bottom: 50px;
             }
@@ -378,6 +384,7 @@ export default {
     }
 
     .stages {
+        padding-top: 100px;
         &__container {
             gap: 0 40px;
             // justify-items: center;
@@ -493,6 +500,10 @@ export default {
                     font-size: 16px;
                 }
             }
+        }
+
+        @media screen and (max-width: $--screen-sm-min) {
+            padding-top: 50px;
         }
     }
 
