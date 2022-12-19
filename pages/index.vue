@@ -133,10 +133,12 @@
                     </div>
                 </client-only>
             </section>
+        </div>
             <section class="block-offset grid-layout">
-                <h2 class="title1 block-offset__title">С нами уже работают</h2>
+                <h2 class="title1 container block-offset__title">С нами уже работают</h2>
                 <Partners />
             </section>
+        <div class="container">
             <section class="section expos">
                 <div class="section-title about-title">
                     <h2 class="title1">
