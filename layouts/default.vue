@@ -91,7 +91,7 @@ export default {
     flex-direction: column;
     overflow-x: hidden;
     max-width: 100vw;
-    margin-top: 70px;
+    margin-top: 64px;
 
     @media screen and (max-width: $--screen-sm-min) {
         margin-top: 50px;

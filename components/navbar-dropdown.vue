@@ -137,7 +137,7 @@ export default {
     align-items: center;
     position: relative;
     z-index: 10000;
-    min-height: 68px;
+    min-height: 64px;
     background-color: white;
     width: 100%;
     font-size: 14px;

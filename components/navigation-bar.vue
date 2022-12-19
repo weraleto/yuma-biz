@@ -98,11 +98,6 @@ export default {
                 },
                 {
                     is_dropdown: false,
-                    title: 'О нас',
-                    path: '/'
-                },
-                {
-                    is_dropdown: false,
                     external: true,
                     title: 'Техподдержка',
                     path: 'https://support.yumapos.ru/'
@@ -164,7 +159,7 @@ export default {
     right: 0;
     background-color: #fff;
     z-index: 10000;
-    box-shadow: 0px 8px 60px rgba(46, 46, 46, 0.1);
+    box-shadow: 0px 2px 80px rgba(0, 0, 0, 0.1);
 
     &.opened {
         border-color: transparent;
@@ -299,7 +294,7 @@ export default {
         position: relative;
         display: flex;
         align-items: center;
-        min-height: 70px;
+        min-height: 64px;
         font-size: 14px;
 
         span {
