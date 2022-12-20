@@ -10,7 +10,10 @@
       ></Breadcrumbs>
       <div class="item-page__wrapper">
         <div class="item-page__col">
-          <h1 class="item-page__title title1 block-offset__title" v-html="itemData.name" />
+          <div class="item-page__title--wrapper">
+            <h1 class="item-page__title title1 block-offset__title" v-html="itemData.name"></h1> 
+            <Hint placement="right-start" :content="popoverData" />
+          </div>
           <div class="item-page__pic only-mobile">
             <img :src="require('/assets/img/smart/cata/'+imageName+'.png')" :alt="itemData.slug">
           </div>
@@ -63,13 +66,15 @@ import ElTableColumn from 'element-ui/lib/table-column'
 import ElRadioGroup from 'element-ui/lib/radio-group'
 import ElRadio from 'element-ui/lib/radio'
 import Breadcrumbs from '@/components/breadcrumbs'
+import Hint from '@/components/popover'
 export default {
     components: {
         ElTable,
         ElTableColumn,
         ElRadioGroup,
         ElRadio,
-        Breadcrumbs
+        Breadcrumbs,
+        Hint
     },
   data: () => {
     return {
@@ -98,6 +103,15 @@ export default {
           materialName = 'LS'
       }
       return this.itemData.img + materialName.toLowerCase()
+    },
+    popoverData() {
+      return `<div class="text4">В комплекте с оборудованием вы получите:</div>
+      <ul>
+        <li>Программная платформа YUMA-SMART</li>
+        <li>Модуль управления YUMA SMART-BOX</li>
+        <li>Сопутствующие компоненты (видеокамера, подсветка, электронный замок и все необходимые датчики, полностью подключенные и готовые к работе)</li>
+        <li>Брендирование боковых стен и светового короба - по вашему желанию</li>
+      </ul>`
     }
   }
 }
@@ -137,6 +151,13 @@ $--table-header-font-color: $--main-black;
     }
     @media screen and (max-width: $--screen-sm-min) {
       display: flex;
+    }
+  }
+
+  &__title {
+    &--wrapper {
+      display: flex;
+      gap: 11px;
     }
   }
 
