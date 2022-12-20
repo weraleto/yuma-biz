@@ -141,7 +141,7 @@ export default {
     background-color: white;
     width: 100%;
     font-size: 14px;
-    &.active {
+    &.active, &:hover {
         .dropdown__selected-title__text::after {
             opacity: 1;
         }
@@ -201,7 +201,7 @@ export default {
     }
 
     &--description {
-        color: $--gray-medium;
+        color: $--main-gray;
         font-weight: 400;
         font-size: 12px;
     }

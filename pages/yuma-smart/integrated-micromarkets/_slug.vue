@@ -34,8 +34,14 @@
             </div>
           </div>
           <div>
-            <el-table :data="itemData.features" stripe :highlight-current-row="false" :fit="true">
-              <el-table-column prop="prop_name" label="Характеристики" class-name="text-bold">
+            <div class="table-header" @click="showExtraInfo=!showExtraInfo">
+              <span>Характеристики</span>
+              <svg width="8" height="5" viewBox="0 0 8 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3.99999 4.98385C3.9111 4.98385 3.8251 4.96719 3.74199 4.93385C3.65844 4.90052 3.58888 4.85608 3.53333 4.80052L0.466658 1.73385C0.344436 1.61163 0.283325 1.45608 0.283325 1.26719C0.283325 1.0783 0.344436 0.922743 0.466658 0.800521C0.588881 0.678298 0.744436 0.617188 0.933325 0.617188C1.12221 0.617188 1.27777 0.678298 1.39999 0.800521L3.99999 3.40052L6.59999 0.800521C6.72221 0.678298 6.87777 0.617188 7.06666 0.617188C7.25555 0.617188 7.4111 0.678298 7.53332 0.800521C7.65555 0.922743 7.71666 1.0783 7.71666 1.26719C7.71666 1.45608 7.65555 1.61163 7.53332 1.73385L4.46666 4.80052C4.39999 4.86719 4.32777 4.9143 4.24999 4.94185C4.17221 4.96985 4.08888 4.98385 3.99999 4.98385Z" fill="#111111"/>
+              </svg>
+            </div>
+            <el-table v-if="showExtraInfo" :data="itemData.features" stripe :highlight-current-row="false" :fit="true">
+              <el-table-column prop="prop_name" label="" class-name="text-bold">
               </el-table-column>
               <el-table-column prop="prop_val" label="" >
               </el-table-column>
@@ -69,6 +75,7 @@ export default {
     return {
       itemData: {},
       material: 0,
+      showExtraInfo: false
     }
   },
   asyncData({ params, error }) {
@@ -100,10 +107,11 @@ export default {
 @import '@/assets/scss/_variables.scss';
 
 $--radio-checked-font-color: $--main-black;
+$--radio-input-border: 1px solid #999999;
 $--color-text-regular: $--main-black;
-$--radio-checked-input-border-color: $--yellow-hover;
-$--radio-checked-icon-color: $--yellow-hover;
-$--font-size-base: 1.125rem;
+$--radio-checked-input-border-color: $--yellow-primary;
+$--radio-checked-icon-color: $--yellow-primary;
+$--font-size-base: 15px;
 $--table-header-font-color: $--main-black;
 
 
@@ -133,6 +141,9 @@ $--table-header-font-color: $--main-black;
   }
 
   &__col {
+    &:nth-child(2) {
+      width: 70%;
+    }
     @media screen and (max-width: $--screen-sm-min) {
       width: 100%;
     }
@@ -170,22 +181,31 @@ $--table-header-font-color: $--main-black;
   }
 
   &__radio {
-    margin-top: 12px;
-    margin-bottom: 24px;
+    margin-top: 8px;
+    margin-bottom: 32px;
 
     label {
       display: block;
-      line-height: 40px;
+      line-height: 28px;
+      font-weight: normal;
     }
   }
 
   &__main-specs {
-    margin: 16px 0 42px;
+    margin: 24px 0 18px;
+  }
+
+  .table-header {
+    padding: 24px 0;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8.28px;
   }
 
   .el-table th.el-table__cell {
-    padding-bottom: 24px;
-    font-weight: 400;
+    display: none;
   }
 }
 </style>

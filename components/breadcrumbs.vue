@@ -54,7 +54,7 @@ $--color-text-placeholder: #000;
         }
     }
     .el-breadcrumb__item:last-child .el-breadcrumb__inner {
-        color: $--gray-medium;
+        color: $--main-gray;
     }
 
     @media screen and (max-width: $--screen-sm-min) {

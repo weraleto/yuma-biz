@@ -1,4 +1,5 @@
 <template>
+  <div>
   <main class="main pb smart-tariff">
     <div class="container">
       <Breadcrumbs
@@ -63,20 +64,25 @@
           </nuxt-link>
         </div>
       </div>
+
     </div>
   </main>
+  <LeadForm  v-if="tariffData.items" theme="light" title="Не можете определиться?"
+    subtitle="Наши специалисты помогут вам подобрать лучшее решение" />
+  </div>
 </template>
 
 <script>
 import { yumaSmartTariffs } from '@/assets/dataContent'
 import Breadcrumbs from '@/components/breadcrumbs'
+import LeadForm from '@/components/contact-form'
 export default {
   data: () => {
     return {
       tariffData: {}
     }
   },
-  components: { Breadcrumbs },
+  components: { Breadcrumbs, LeadForm },
   asyncData({ params, error }) {
     const tariffData = yumaSmartTariffs.reduce((prev, next) => {
       return next.slug === params.slug ? next : prev
@@ -157,8 +163,8 @@ export default {
       padding: 36px;
 
       &__top {
-        width: 79.8%;
-        height: 353px;
+        width: 70.8%;
+        height: 300px;
         // margin-bottom: 16px;
 
         img, picture {
@@ -170,7 +176,7 @@ export default {
         width: 100%;
         
         .specs {
-          margin: 12px 0;
+          margin: 12px 0 32px;
         }
         .actions {
           display: flex;
@@ -195,9 +201,6 @@ export default {
     @media screen and (max-width: $--screen-lg-min) {
       &--item {
         padding: 16px;
-        &__top {
-          height: 353px;
-        }
       }
     }
     @media screen and (max-width: 1180px) {
@@ -219,6 +222,9 @@ export default {
     }
     @media screen and (max-width: 360px) {
       &--item {
+        &__top {
+          height: 253px;
+        }
         &__bottom {
           .actions {
             gap: 0;

@@ -96,7 +96,7 @@ export default {
 @import '@/assets/scss/_variables.scss';
 
 .contact-form {
-    padding: 120px 0 108px;
+    padding: 120px 0 170px;
 
     background: url('~assets/img/left-plane.svg'), url('~assets/img/right-plane.svg');
     background-position: 0 calc(100% - 115px), 100% 0;
@@ -112,6 +112,7 @@ export default {
         grid-column: 2/12;
         display: flex;
         justify-content: space-between;
+        align-items: center;
         // align-items: center;
         
         @media screen and (max-width: $--screen-md-min) {
@@ -128,6 +129,7 @@ export default {
 
         h3 {
             margin-bottom: 28px;
+            line-height: 1.5;
             @media screen and (max-width: $--screen-sm-min) {
                 margin-bottom: 24px;
             }
@@ -261,11 +263,12 @@ export default {
         background-size: 61.25% auto, auto auto;
     }
     @media screen and (max-width: $--screen-md-min) {
-        padding: 60px 0 100px;
-        background-position: 0 calc(100% - 100px), 100% -50px;
+        padding: 60px 0 120px;
+        background-position: 0 calc(100% - 60px), 100% -50px;
     }
     @media screen and (max-width: $--screen-sm-min) {
         background: none;
+        padding: 60px 0;
     }
 }
 </style>
