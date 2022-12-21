@@ -36,7 +36,7 @@
                                 :index-subprefix="String(i)"
                                 image-folder-name="components"
                                 :tab="tab"
-                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, String(i))"
+                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, String(i), pictureSize=tab.pictureSize)"
                                 :picture-bordered="true"
                             />
                         </template>
@@ -55,7 +55,7 @@
                             :i="activeEl"
                             image-folder-name="components"
                             :tab="activeElData.tab"
-                            :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl)"
+                            :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl, pictureSize=activeElData.tab.pictureSize)"
                             :picture-bordered="true"
                         />
                     </template>
@@ -170,10 +170,11 @@ export default {
     },
     components: {SwiperWithPic},
     methods: {
-        getSwiperConfiguration(type, idx, subprefix='') {
+        getSwiperConfiguration(type, idx, subprefix='', pictureSize=null) {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
-            if (idx > 0 && this.data[idx].tab.pictureSize && this.data[idx].tab.pictureSize == 'small') {
+            if (pictureSize && pictureSize == 'small') {
                 config = this.swiperOptionsVerticalSmall
+                console.log(1)
             }
             return {
                 ...this.swiperOptionsBase,
@@ -496,6 +497,13 @@ export default {
                     &--vertical {
                         height: auto;
                     }
+                }
+            }
+        }
+        @media screen and (max-width: $--screen-xs-min) {
+            .tab-picture {
+                &--vertical {
+                    height: auto;
                 }
             }
         }
