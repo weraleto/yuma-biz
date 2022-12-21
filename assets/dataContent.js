@@ -1263,6 +1263,7 @@ export const yumaSmartTariffs = [
         n: '3',
         name: 'Тариф №3 Готовый микромаркет',
         slug: 'tariff3-integrated-micromarkets',
+        img: 'tarif-3.jpg',
         subtitle: 'Предоставим готовый микромаркет',
         description: 'Мы поставим весь комплект для работы – программное обеспечение, YUMA SMART-BOX и подходящее оборудование. Вы получите полностью готовое решение для бизнеса.', 
         cata_price: 'от 129 990 ₽',

@@ -10,6 +10,9 @@
       ></Breadcrumbs>
 
       <div class="smart-tariff__container">
+        <div class="smart-tariff__picture hidden-mobile" v-if="tariffData.img">
+          <img :src="require('/assets/img/smart/'+tariffData.img)" :alt="`Тариф №${tariffData.n}. ${tariffData.subtitle}`">
+        </div>
         <div class="smart-tariff__text">
           <h1 class="title1">Тариф №{{ tariffData.n }}</h1>
           <div class="smart-tariff__picture only-mobile" v-if="tariffData.img">
@@ -27,9 +30,6 @@
                   @click.prevent="$store.commit('setShowModal', {key: 'showApplyForm', val: true})"
           >Заказать</button>
           </div>
-        </div>
-        <div class="smart-tariff__picture hidden-mobile" v-if="tariffData.img">
-          <img :src="require('/assets/img/smart/'+tariffData.img)" :alt="`Тариф №${tariffData.n}. ${tariffData.subtitle}`">
         </div>
       </div>
       <div class="smart-tariff__items" v-if="tariffData.items">
@@ -104,13 +104,15 @@ export default {
   &__container {
     padding-top: 56px;
     display: flex;
-    width: 100%;
-    gap: 16.1vw;
+    justify-content: center;
+    width: 58.33%;
+    gap: 10%;
+    margin: auto;
   }
 
   &__text {
     width: 100%;
-    max-width: 538px;
+    max-width: 400px;
     
     h2 {
       margin: 40px 0 20px;
@@ -136,7 +138,7 @@ export default {
 
   &__picture {
     width: 100%;
-    max-width: 370px;
+    max-width: 218px;
   }
 
   &__items {
@@ -241,9 +243,13 @@ export default {
   @media screen and (max-width: $--screen-md-min) {
     &__container {
       gap: 20px;
+      width: 100%;
     }
   }
   @media screen and (max-width: $--screen-sm-min) {
+    &__container {
+      padding-top: 36px;
+    }
     &__text {
       max-width: unset;
       h2 {
@@ -251,10 +257,13 @@ export default {
       }
     }
     &__picture {
-      margin: 36px auto 0;
+      margin: 20px auto 0;
     }
   }
   @media screen and (max-width: $--screen-xs-min) {
+    &__picture {
+      max-width: 124px;
+    }
     &__text {
       &--group {
         gap: 34px;
