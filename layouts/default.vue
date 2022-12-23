@@ -38,18 +38,24 @@ export default {
     mixins: [layoutMixin],
     data: () => {
         return {
-            showUpButton: false,
+            // showUpButton: false,
             lastScrollTop: 0
         }
     },
+    beforeMount() {
+        if (this.$route.name == 'index') {
+            this.$router.push('/yuma-pos')
+        }
+    },
     mounted() {
-        let ctx = this
-        window.addEventListener('scroll', function(){
-            let st = window.pageYOffset; 
-            ctx.showUpButton = window.pageYOffset > 5450 && st < this.lastScrollTop
-            this.lastScrollTop = st <= 0 ? 0 : st;
-        }, false)
-        this.loadScript()
+        // let ctx = this
+        // window.addEventListener('scroll', function(){
+        //     let st = window.pageYOffset; 
+        //     ctx.showUpButton = window.pageYOffset > 5450 && st < this.lastScrollTop
+        //     this.lastScrollTop = st <= 0 ? 0 : st;
+        // }, false)
+        // this.loadScript()
+        // console.log(this.$route)
     },
     computed: {
         ...mapState([
