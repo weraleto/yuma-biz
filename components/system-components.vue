@@ -36,7 +36,7 @@
                                 :index-subprefix="String(i)"
                                 image-folder-name="components"
                                 :tab="tab"
-                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, String(i), pictureSize=tab.pictureSize)"
+                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, pictureSize=tab.pictureSize, subprefix=String(i))"
                                 :picture-bordered="true"
                             />
                         </template>
@@ -170,11 +170,10 @@ export default {
     },
     components: {SwiperWithPic},
     methods: {
-        getSwiperConfiguration(type, idx, subprefix='', pictureSize=null) {
+        getSwiperConfiguration(type, idx, pictureSize=undefined, subprefix='') {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
             if (pictureSize && pictureSize == 'small') {
                 config = this.swiperOptionsVerticalSmall
-                console.log(1)
             }
             return {
                 ...this.swiperOptionsBase,
@@ -232,13 +231,15 @@ export default {
                     this.setElProperty(popoverEl, 'top', 0, 'px')
                     this.setElProperty(popoverEl, 'left', 0, 'px')
                 }, 100)
-                setTimeout(()=>{
-                    // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
-                    let containerHeight = this.$refs.popoverCard.reduce((prev, next)=>{
-                        return prev += next.offsetHeight 
-                    }, 80)
-                    this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
-                }, 350)
+                if (el.dataset.idx == 0) {
+                    setTimeout(()=>{
+                        // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
+                        let containerHeight = this.$refs.popoverCard.reduce((prev, next)=>{
+                            return prev += next.offsetHeight 
+                        }, 80)
+                        this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
+                    }, 350)
+                }
             }
             setTimeout(()=>{
                 this.contentVisible = true
