@@ -43,7 +43,7 @@
                       <h4 class="title2"> Модуль yuma<br>smart-box</h4>
                   </div>
                   <div class="micromarket__cards--item__back card-item__back">
-                      <p class="text5">Модуль управленияYUMA-smartbox — это мини-компьютер, который превратит торговое оборудование в умный микромаркет.</p>
+                      <p class="text5">Модуль управления YUMA-smartbox — это мини-компьютер, который превратит торговое оборудование в умный микромаркет.</p>
                   </div>
               </div>
             </div>
@@ -104,12 +104,13 @@
 
         <!-- YUMA-smart. все включено. -->
         <section class="block-offset all-in grid-layout">
-          <h2 class="title1 block-offset__title">YUMA-smart. все включено.</h2>
+          <h2 class="title1 block-offset__title">YUMA-smart. Все включено.</h2>
           <div class="block-offset__content all-in__container text-blocks plain">
             <div class="text-blocks__col">
               <div class="text-blocks__item">
                 <h3 class="subtitle-bold text-blocks__item-subtitle">Мобильное приложение под вашим брендом</h3>
-                <p class="text6">С вашей собственной маркетинговой платформой: аналитикой покупательских предпочтений, функциями таргетированной рекламы, системой лояльности с баллами и другими гибкими настройками. Всё включено.</p>
+                <p class="text6">С вашей собственной маркетинговой платформой: аналитикой покупательских предпочтений, функциями таргетированной рекламы, системой лояльности с баллами и другими гибкими настройками. 
+                </p>
               </div>
               <div class="text-blocks__item">
                 <h3 class="subtitle-bold text-blocks__item-subtitle">Учет, склад, инвентаризация</h3>
