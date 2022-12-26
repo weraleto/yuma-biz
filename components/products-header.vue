@@ -83,7 +83,7 @@ export default {
     }
 
     &__top {
-      max-height: 70vh;
+      max-height: 700px;
       overflow: hidden;
       display: flex;
       justify-content: center;

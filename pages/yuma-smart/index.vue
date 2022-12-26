@@ -60,24 +60,6 @@
           </div>
         </section>
 
-      <!-- оптимальные решения yuma-smart -->
-        <section class="block-offset cata-preview">
-          <h2 class="title1 block-offset__title">Оптимальные решения <span class="no-word-break">YUMA-SMART</span></h2>
-          <div class="cata-preview__container">
-            <nuxt-link :to="{name: 'yuma-smart-slug', params: {slug: it.slug}}" class="cata-preview__item card" v-for="(it, i) in yumaSmartTariffs" :key="it.n">
-              <h4 class="cata-preview__item--title subtitle">Тариф №{{ it.n }}</h4>
-              <h5 class="text6">{{it.subtitle}}</h5>
-              <div class="cata-preview__item--img">
-                <img :src="require('/assets/img/smart/tarif-'+(i + 1)+'.jpg')" :alt="`Тариф №${it.n}. ${it.subtitle}`">
-              </div>
-              <div>
-                <h4 class="subtitle-bold">{{ it.price || it.cata_price }}</h4>
-                <span class="text5">+ 7% от оборота</span>
-              </div>
-            </nuxt-link>
-          </div>
-        </section>
-
         <!-- кому подходит yuma-smart -->
         <section class="block-offset grid-layout for-clients">
           <h2 class="title1 block-offset__title">Кому подходит <span class="no-word-break">YUMA-SMART</span></h2>
@@ -100,6 +82,24 @@
                   </el-tab-pane>
               </el-tabs>
             </div>
+        </section>
+
+        <!-- оптимальные решения yuma-smart -->
+        <section class="block-offset cata-preview">
+          <h2 class="title1 block-offset__title">Оптимальные решения <span class="no-word-break">YUMA-SMART</span></h2>
+          <div class="cata-preview__container">
+            <nuxt-link :to="{name: 'yuma-smart-slug', params: {slug: it.slug}}" class="cata-preview__item card" v-for="(it, i) in yumaSmartTariffs" :key="it.n">
+              <h4 class="cata-preview__item--title subtitle">Тариф №{{ it.n }}</h4>
+              <h5 class="text6">{{it.subtitle}}</h5>
+              <div class="cata-preview__item--img">
+                <img :src="require('/assets/img/smart/tarif-'+(i + 1)+'.jpg')" :alt="`Тариф №${it.n}. ${it.subtitle}`">
+              </div>
+              <div>
+                <h4 class="subtitle-bold">{{ it.price || it.cata_price }}</h4>
+                <span class="text5">+ 7% от оборота</span>
+              </div>
+            </nuxt-link>
+          </div>
         </section>
 
         <!-- YUMA-smart. все включено. -->

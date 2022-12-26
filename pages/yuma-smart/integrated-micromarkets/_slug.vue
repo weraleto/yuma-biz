@@ -11,8 +11,10 @@
       <div class="item-page__wrapper">
         <div class="item-page__col">
           <div class="item-page__title--wrapper">
-            <h1 class="item-page__title title1 block-offset__title" v-html="itemData.name"></h1> 
-            <Hint placement="right-start" :content="popoverData" />
+            <h1 class="item-page__title title1 block-offset__title"><span>{{itemData.name}}</span>
+            <Hint placement="right-start" trigger-size="24" :content="popoverData" />  
+            </h1> 
+            
           </div>
           <div class="item-page__pic only-mobile">
             <img :src="require('/assets/img/smart/cata/'+imageName+'.png')" :alt="itemData.slug">
@@ -218,7 +220,7 @@ $--table-header-font-color: $--main-black;
 
   .table-header {
     padding: 24px 0;
-    font-size: 14px;
+    font-size: 15px;
     cursor: pointer;
     display: flex;
     align-items: center;

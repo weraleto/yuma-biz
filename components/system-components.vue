@@ -23,7 +23,7 @@
                             <div class="sys-components__popover--heading">
                                 <h4 class="subtitle hidden-mobile">{{tab.title}}</h4>
                                 <h4 class="subtitle hidden-desktop">Кассовая программа + бэк-офис</h4>
-                                <p class="text6 hidden-mobile">{{tab.description}}</p>
+                                <p class="text6 hidden-mobile" v-html="tab.description"></p>
                                 <!-- <p class="text6 hidden-desktop">{{activeElData.frontText}}</p> -->
                             </div>
                             <div class="sys-components__popover--subheading hidden-desktop container">
