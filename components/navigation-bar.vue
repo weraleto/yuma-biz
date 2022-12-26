@@ -98,6 +98,11 @@ export default {
                 },
                 {
                     is_dropdown: false,
+                    title: 'О нас',
+                    path: '/about'
+                },
+                {
+                    is_dropdown: false,
                     external: true,
                     title: 'Техподдержка',
                     path: 'https://support.yumapos.ru/'
