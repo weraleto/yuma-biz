@@ -5,14 +5,32 @@
       subtitle="Микромаркеты с вашим мобильным приложением для покупателей"
       button-text="Начать"
       :button-subtext="['Начните продавать свежую еду и напитки без персонала.', 'Комфорт для посетителей. Прибыль для вас.']"
-      picture-alignment="flex-start"
+      picture-alignment="center"
     >
-      <picture data-not-lazy>
-         <source media="(min-width:1500px)" srcset="~assets/img/smart/header2x.jpg" data-not-lazy>
-        <source media="(min-width:700px)" srcset="~assets/img/smart/header.jpg" data-not-lazy>
-        <source media="(min-width:0px)" srcset="~assets/img/smart/header0.5.jpg" data-not-lazy>
-        <img src="~assets/img/smart/header.jpg" alt="yuma pos" data-not-lazy>
-      </picture>
+      <div class="smart-header__banner">
+        <div class="smart-header__banner--container">
+          <div class="smart-header__banner--pic">
+            <picture data-not-lazy>
+              <source media="(min-width:1400px)" srcset="@/assets/img/smart/banner-p2x.png" data-not-lazy>
+              <source media="(min-width:500px)" srcset="@/assets/img/smart/banner-p.png" data-not-lazy>
+              <source media="(min-width:0px)" srcset="@/assets/img/smart/banner-m.png" data-not-lazy>
+              <img src="@/assets/img/smart/banner-p.png" alt="Баннер микромаркеты" data-not-lazy>
+            </picture>
+          </div>
+          <div class="smart-header__banner--smartphone desktop">
+            <video src="@/static/video.mp4" 
+              poster="@/static/video-poster.jpg"
+              autoplay="autoplay" loop="loop" muted="true" defaultMuted playsinline
+            ></video>
+          </div>
+        </div>
+      </div>
+      <div class="smart-header__banner--smartphone mobile">
+        <video src="@/static/video.mp4" 
+          poster="@/static/video-poster.jpg"
+          autoplay="autoplay" loop="loop" muted="true" defaultMuted playsinline
+        ></video>
+      </div>
     </ProductsHeader>
 
     <main>
@@ -145,8 +163,6 @@
       <LeadForm theme="light" title="НАЧНЕМ? ЭТО ЛЕГКО"
         subtitle="Расскажем. Подключим. Обучим." />
     </main>
-
-
   </div>
 </template>
 
@@ -219,6 +235,137 @@
       .header__promo--text {
         p {
           display: inline;
+        }
+      }
+    }
+  }
+
+  .header__top {
+    overflow: visible;
+
+    @media screen and (max-width: $--screen-xs-min) {
+      flex-direction: column;
+      max-height: unset;
+    }
+  }
+
+  .header__container {
+    @media screen and (max-width: $--screen-xs-min) {
+      padding-bottom: 151px;
+    }
+  }
+
+  .smart-header__banner {
+    background: url('@/assets/img/smart/banner.png') no-repeat center center;
+    min-height: 579px;
+    max-height: 579px;
+    width: 100%;
+    background-size: cover;
+    position: relative;
+
+    &--container {
+      max-width: 941px;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    &--pic {
+      width: 90.43%;
+      height: 111.39%;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 5;
+      img, picture {
+        object-fit: unset;
+        height: 100%;
+      }
+    }
+    &--smartphone {
+      position: absolute;
+      height: 110.53%;
+      width: 32.10%;
+      border-radius: 40px;
+      bottom: 0;
+      right: 0;
+      z-index: 6;
+      transform: translate(0, 4.81%);
+      overflow: hidden;
+      background-color: #fff;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: url('@/assets/img/smart/smartphone.png') no-repeat center center;
+        background-size: 100% 100%;
+      }
+
+      video {
+        position: absolute;
+        top: 14px;
+        left: 50%;
+        width: 93%;
+        height: 93%;
+        transform: translate(-50%, 0);
+      }
+      &.mobile {
+        display: none;
+      }
+      @media screen and (max-width: $--screen-xs-min) {
+        &.desktop {
+          display: none;
+        }
+      }
+    }
+    @media screen and (max-width: 941px) {
+      min-height: 61.53vw;
+      max-height: 61.53vw;
+      &--smartphone {
+        right: 16px;
+        border-radius: 4.25vw;
+
+        video {
+          top: 1.7vw;
+        }
+      }
+    }
+    @media screen and (max-width: $--screen-xs-min) {
+      background: url('@/assets/img/smart/banner-bg-mob.png') no-repeat center center;
+      background-size: cover;
+      min-height: 120.8vw;
+      max-height: 120.8vw;
+
+      &--container {
+        left: 0;
+        transform: none;
+      }
+      &--pic {
+        width: 100%;
+        height: 111.39%;
+      }
+      &--smartphone {
+        width: 211px;
+        height: 442px;
+        min-height: 442px;
+        transform: none;
+        margin: 32px 0 0;
+        right: 0;
+        &.mobile {
+          display: block;
+          position: relative;
+        }
+
+        video {
+          width: 94%;
+          height: 94%;
+          top: 2vw;
         }
       }
     }
