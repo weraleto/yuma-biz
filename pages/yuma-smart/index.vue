@@ -309,10 +309,10 @@
 
       video {
         position: absolute;
-        top: 14px;
+        top: -3px;
         left: 50%;
-        width: 93%;
-        height: 93%;
+        width: 95%;
+        height: 95%;
         transform: translate(-50%, 0);
       }
       &.mobile {
@@ -332,7 +332,7 @@
         border-radius: 4.25vw;
 
         video {
-          top: 1.7vw;
+          top: -0.3vw;
         }
       }
     }
@@ -358,14 +358,13 @@
         margin: 32px 0 0;
         right: 0;
         &.mobile {
+          border-radius: 29px;
           display: block;
           position: relative;
         }
 
         video {
-          width: 94%;
-          height: 94%;
-          top: 2vw;
+          top: -.5vw;
         }
       }
     }

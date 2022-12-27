@@ -56,6 +56,11 @@ export default {
 .header {
     margin-top: 118px;
     margin-bottom: 50px;
+
+    &__top {
+      display: flex;
+      justify-content: center;
+    }
     h1 {
       font-size: 134px;
       text-transform: uppercase;
@@ -80,25 +85,6 @@ export default {
         font-size: 7.46vw;
         line-height: 1.42em;
       }
-    }
-
-    &__top {
-      max-height: 700px;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      position: relative;
-      picture, img {
-        height: 700px;
-        width: 100%;
-        object-fit: cover;
-
-        @media screen and (max-width: 700px)  {
-          height: auto;
-          width: 100%;
-        }
-      }
-      
     }
 
     &__container {

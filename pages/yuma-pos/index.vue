@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="pos">
     <ProductsHeader
       title="YUMA-POS"
       subtitle="Система автоматизации c бесплатной техподдержкой 24/7 для роста бизнеса"
@@ -128,9 +128,31 @@
   }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
   @import '@/assets/scss/_variables';
   @import '@/assets/scss/components/block-offset';
+
+  #pos {
+
+    .header {
+      &__top {
+        max-height: 700px;
+        overflow: hidden;
+        position: relative;
+        picture, img {
+          height: 700px;
+          width: 100%;
+          object-fit: cover;
+  
+          @media screen and (max-width: 700px)  {
+            height: auto;
+            width: 100%;
+          }
+        }
+        
+      }
+    }
+  }
 
   .faq-section {
     padding-bottom: 150px;
