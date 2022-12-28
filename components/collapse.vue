@@ -15,7 +15,10 @@
                         <div v-if="item.prices" class="collapsible__item--price">
                             <div class="collapsible__item--price__line text6" v-for="p in item.prices" :key="p.label+p.price">
                                 <p>{{p.label}}</p>
-                                <p>{{p.price}}</p>
+                                <div class="collapsible__item--price__el">
+                                    <span class="text4 no-word-break">{{p.price}}</span>
+                                    <span v-if="p.price_comment" v-html="p.price_comment"></span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -121,6 +124,7 @@ export default {
             display: flex;
             width: 100%;
             justify-content: space-between;
+            align-items: flex-start;
             gap: 1em;
 
             &:not(:last-child) {
@@ -129,9 +133,15 @@ export default {
             & > *{
                 max-width: 50%;
             }
-            & :last-child {
-                text-align: right;
-            }
+        }
+
+        &__el {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            text-align: right;
+            justify-content: flex-end;
+            gap: 0;
         }
     }
 

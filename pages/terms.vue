@@ -563,6 +563,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '@/assets/scss/_variables.scss';
+@import '@/assets/scss/components/block-offset';
+
 .terms {
     .block-offset__title {
         span:first-child {

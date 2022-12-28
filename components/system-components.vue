@@ -23,7 +23,7 @@
                             <div class="sys-components__popover--heading">
                                 <h4 class="subtitle hidden-mobile">{{tab.title}}</h4>
                                 <h4 class="subtitle hidden-desktop">Кассовая программа + бэк-офис</h4>
-                                <p class="text6 hidden-mobile">{{tab.description}}</p>
+                                <p class="text6 hidden-mobile" v-html="tab.description"></p>
                                 <!-- <p class="text6 hidden-desktop">{{activeElData.frontText}}</p> -->
                             </div>
                             <div class="sys-components__popover--subheading hidden-desktop container">
@@ -36,7 +36,7 @@
                                 :index-subprefix="String(i)"
                                 image-folder-name="components"
                                 :tab="tab"
-                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, String(i))"
+                                :swiper-options="getSwiperConfiguration(tab.type, activeEl, pictureSize=tab.pictureSize, subprefix=String(i))"
                                 :picture-bordered="true"
                             />
                         </template>
@@ -55,7 +55,7 @@
                             :i="activeEl"
                             image-folder-name="components"
                             :tab="activeElData.tab"
-                            :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl)"
+                            :swiper-options="getSwiperConfiguration(activeElData.tab.type, activeEl, pictureSize=activeElData.tab.pictureSize)"
                             :picture-bordered="true"
                         />
                     </template>
@@ -170,9 +170,9 @@ export default {
     },
     components: {SwiperWithPic},
     methods: {
-        getSwiperConfiguration(type, idx, subprefix='') {
+        getSwiperConfiguration(type, idx, pictureSize=undefined, subprefix='') {
             let config = type == 'horizontal' ? this.swiperOptionsHorizontal : this.swiperOptionsVertical;
-            if (idx > 0 && this.data[idx].tab.pictureSize && this.data[idx].tab.pictureSize == 'small') {
+            if (pictureSize && pictureSize == 'small') {
                 config = this.swiperOptionsVerticalSmall
             }
             return {
@@ -231,13 +231,15 @@ export default {
                     this.setElProperty(popoverEl, 'top', 0, 'px')
                     this.setElProperty(popoverEl, 'left', 0, 'px')
                 }, 100)
-                setTimeout(()=>{
-                    // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
-                    let containerHeight = this.$refs.popoverCard.reduce((prev, next)=>{
-                        return prev += next.offsetHeight 
-                    }, 80)
-                    this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
-                }, 350)
+                if (el.dataset.idx == 0) {
+                    setTimeout(()=>{
+                        // containerHeight = sum of two cards + top and bottom container paddings + gap between cards
+                        let containerHeight = this.$refs.popoverCard.reduce((prev, next)=>{
+                            return prev += next.offsetHeight 
+                        }, 80)
+                        this.setElProperty(popoverEl.parentElement, 'minHeight', containerHeight, 'px')
+                    }, 350)
+                }
             }
             setTimeout(()=>{
                 this.contentVisible = true
@@ -426,9 +428,7 @@ export default {
 
     .tab-picture {
         picture, img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
+            @extend %objectFitCover;
         }
     }
     .size-reverse-vertical {
@@ -498,6 +498,13 @@ export default {
                     &--vertical {
                         height: auto;
                     }
+                }
+            }
+        }
+        @media screen and (max-width: $--screen-xs-min) {
+            .tab-picture {
+                &--vertical {
+                    height: auto;
                 }
             }
         }

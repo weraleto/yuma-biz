@@ -2,6 +2,12 @@
   <div>
     <main class="main products">
         <div class="container">
+            <Breadcrumbs
+            :links="[
+                {name: 'YUMA-POS', to: {name: 'yuma-pos'}},
+                {name: 'Компоненты системы и цены'} 
+                ]"
+            ></Breadcrumbs>
             <!-- Компоненты системы -->
             <section class="section sys-components">
                 <div class="section-title sys-components__title">
@@ -54,10 +60,11 @@
 
 <script>
 import { tariffs, systemComponentsData } from '@/assets/dataContent.js'
-import calculatorIcon from '../components/svg/сalculator'
-import LeadForm from '../components/contact-form'
-import systemComponents from '../components/system-components'
-import Tariffs from '../components/tabs-faq'
+import calculatorIcon from '@/components/svg/сalculator'
+import LeadForm from '@/components/contact-form'
+import systemComponents from '@/components/system-components'
+import Tariffs from '@/components/tabs-faq'
+import Breadcrumbs from '@/components/breadcrumbs'
 export default {
     name: 'ProductsPage',
     head() {
@@ -87,7 +94,8 @@ export default {
         LeadForm,
         calculatorIcon,
         Tariffs,
-        systemComponents
+        systemComponents,
+        Breadcrumbs
     }, 
     data: () => {
         return {

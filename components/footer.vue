@@ -20,7 +20,7 @@
             <div class="footer-col-2">
                 <p class="subtitle only-desktop" style="margin-bottom: 8px">Офис в Санкт-Петербурге</p>
                 <a class="footer-top__link footer-top__link--phone title3 hidden-desktop" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
-                <p class="text6 footer-top__contact-description text6">Наб. реки Смоленки, 5-7, Технопарк, офис 337, метро Василеостровская</p>
+                <p class="text6 footer-top__contact-description text6">Наб. реки Смоленки, 5-7, Технопарк, офис 337, ст.м. Василеостровская</p>
             </div>
             <div class="footer-col-2 contact-col only-desktop">
                 <a class="footer-top__link footer-top__link--phone title3" href="tel:+7 (812) 309 50 32">+7 (812) 309 50 32</a>
@@ -28,7 +28,7 @@
             <div class="footer-col-3">
                 <p class="subtitle only-desktop" style="margin-bottom: 8px">Офис в Москве</p>
                 <a class="footer-top__link footer-top__link--phone title3 hidden-desktop" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>
-                <p class="text6 footer-top__contact-description text6">Нововладыкинский проезд, 2 стр. 2, метро Владыкино</p>
+                <p class="text6 footer-top__contact-description text6">Нововладыкинский проезд, 2 стр. 2, ст.м. Владыкино</p>
             </div>
             <div class="footer-col-3 contact-col only-desktop">
                 <a class="footer-top__link footer-top__link--phone title3" href="tel:+7 (495) 108 11 78">+7 (495) 108 11 78</a>

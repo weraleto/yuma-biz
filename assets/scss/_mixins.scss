@@ -17,6 +17,30 @@
     }
 }
 
+%cardArrowTopRight {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+        content: '';
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        top: 33px;
+        right: 25px;
+        background: url('@/assets/img/arrow-right-up.svg') no-repeat center center;
+        background-size: cover;
+        transition: transform .3s ease;
+        z-index: 1;
+    }
+
+    &:hover {
+        &::after {
+            transform: translate(30%, -30%);
+        }
+    }
+}
+
 @mixin cardArrow ($position: 25px) {
     position: relative;
     cursor: pointer;
@@ -28,7 +52,7 @@
         position: absolute;
         bottom: $position;
         right: $position;
-        background: url('../assets/img/arrow.svg') no-repeat center center;
+        background: url('@/assets/img/arrow.svg') no-repeat center center;
         background-size: cover;
         transition: transform .3s ease;
         z-index: 1;
@@ -153,6 +177,71 @@
 
         &.is_active {
             padding-bottom: 52px;
+        }
+    }
+}
+
+%objectFitCover {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+%stepNumber {
+    font-size: 70px;
+    font-weight: 900;
+}
+
+@mixin cardTranslate($colorHover: $--yellow-primary) {
+    &__inner {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+    }
+
+    &__front,
+    &__back {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        padding: 10px;
+    }
+
+    &__front {
+        background-color: $--main-white;
+    }
+
+    &__back {
+        top: -2px;
+        bottom: -2px;
+        left: -2px;
+        right: -2px;
+        opacity: 0;
+        background-color: $colorHover;
+        border: 2px solid $--main-gray;
+        padding: 10px;
+
+        p {
+            max-width: 462px;
+            margin: auto;
+        }
+    }
+
+    &:hover {
+        z-index: 2;
+
+        .card-item__back {
+            animation: fadein .3s ease forwards;
+            border-color: $--main-black;
         }
     }
 }

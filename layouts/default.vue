@@ -38,18 +38,24 @@ export default {
     mixins: [layoutMixin],
     data: () => {
         return {
-            showUpButton: false,
+            // showUpButton: false,
             lastScrollTop: 0
         }
     },
+    beforeMount() {
+        if (this.$route.name == 'index') {
+            this.$router.push('/yuma-pos')
+        }
+    },
     mounted() {
-        let ctx = this
-        window.addEventListener('scroll', function(){
-            let st = window.pageYOffset; 
-            ctx.showUpButton = window.pageYOffset > 5450 && st < this.lastScrollTop
-            this.lastScrollTop = st <= 0 ? 0 : st;
-        }, false)
-        this.loadScript()
+        // let ctx = this
+        // window.addEventListener('scroll', function(){
+        //     let st = window.pageYOffset; 
+        //     ctx.showUpButton = window.pageYOffset > 5450 && st < this.lastScrollTop
+        //     this.lastScrollTop = st <= 0 ? 0 : st;
+        // }, false)
+        // this.loadScript()
+        // console.log(this.$route)
     },
     computed: {
         ...mapState([
@@ -84,14 +90,18 @@ export default {
 
 <style lang="scss" >
 @import "~element-ui/packages/theme-chalk/src/message";
-@import '@/assets/scss/_variables.scss';
+@import '@/assets/scss/_variables';
 
 .app {
     display: flex;
     flex-direction: column;
     overflow-x: hidden;
     max-width: 100vw;
-    margin-top: 80px;
+    margin-top: 64px;
+
+    @media screen and (max-width: $--screen-sm-min) {
+        margin-top: 50px;
+    }
 }
 
 .el-message.el-message--error {

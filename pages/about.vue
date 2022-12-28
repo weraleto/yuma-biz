@@ -21,7 +21,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Начало проектной работы</h3>
+                                <h3 class="subtitle-bold">Начало проектной работы</h3>
                                 <p class="text6">Запуск отдельных проектов автоматизации бизнес-процессов для сферы торговли и услуг на международном рынке.</p>
                             </div>
                         </div>
@@ -32,7 +32,7 @@
                                 <span>2009</span>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Определение ниши</h3>
+                                <h3 class="subtitle-bold">Определение ниши</h3>
                                 <p class="text6">Концентрация на задачах ресторанного бизнеса и смежной торговли.</p>
                             </div>
                         </div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Разработка комплексной системы YUMA</h3>
+                                <h3 class="subtitle-bold">Разработка комплексной системы YUMA</h3>
                                 <p class="text6">Начало работы с отдельными российскими предприятиями, готовыми к внедрению инноваций.</p>
                             </div>
                         </div>
@@ -56,7 +56,7 @@
                                 <span>2018</span>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Фокус развития на российском рынке</h3>
+                                <h3 class="subtitle-bold">Фокус развития на российском рынке</h3>
                                 <p class="text6">Начат поэтапный выход YUMA на широкий российский рынок.</p>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                 </div>
                             </div>
                             <div class="inner stages__item--inner">
-                                <h3 class="subtitle text-bold">Запуск направления бескассовой торговли</h3>
+                                <h3 class="subtitle-bold">Запуск направления бескассовой торговли</h3>
                                 <p class="text6">Выпущен новый продукт — микромаркеты YUMA-SMART</p>
                             </div>
                         </div>
@@ -133,6 +133,12 @@
                     </div>
                 </client-only>
             </section>
+        </div>
+            <section class="block-offset grid-layout">
+                <h2 class="title1 container block-offset__title">С нами уже работают</h2>
+                <Partners />
+            </section>
+        <div class="container">
             <section class="section expos">
                 <div class="section-title about-title">
                     <h2 class="title1">
@@ -204,6 +210,7 @@
 
 <script>
 import {popoverMixin} from '@/mixins/mixins'
+import Partners from '@/components/partners'
 
 export default {
     head() {
@@ -230,6 +237,7 @@ export default {
         }
     },
     mixins: [popoverMixin],
+    components: {Partners},
     data: () => {
         return {
             reliability: [{
@@ -370,7 +378,7 @@ export default {
 
     .about {
         &-title {
-            margin-bottom: 100px;
+            margin-bottom: 90px;
             @media screen and (max-width: $--screen-md-min) {
                 margin-bottom: 50px;
             }
@@ -378,6 +386,7 @@ export default {
     }
 
     .stages {
+        padding-top: 100px;
         &__container {
             gap: 0 40px;
             // justify-items: center;
@@ -493,6 +502,10 @@ export default {
                     font-size: 16px;
                 }
             }
+        }
+
+        @media screen and (max-width: $--screen-sm-min) {
+            padding-top: 50px;
         }
     }
 
@@ -722,6 +735,8 @@ export default {
 
         cursor: pointer;
 
+        @include cardTranslate;
+
         @media screen and (max-width: $--screen-md-min) {
             height: 25vw;
         }
@@ -764,49 +779,6 @@ export default {
             }
         }
 
-        &__inner {
-            position: relative;
-            width: 100%;
-            height: 100%;
-            text-align: center;
-        }
-
-        &__front,
-        &__back {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 20px;
-            padding: 10px;
-        }
-
-        &__front {
-            background-color: $--main-white;
-        }
-
-        &__back {
-            top: -2px;
-            bottom: -2px;
-            left: -2px;
-            right: -2px;
-            opacity: 0;
-            background-color: $--yellow-primary;
-            border: 2px solid $--main-gray;
-            padding: 10px;
-
-            p {
-                max-width: 462px;
-                margin: auto;
-            }
-        }
-
         small {
             position: absolute;
             top: 20px;
@@ -816,15 +788,6 @@ export default {
 
             @media screen and (max-width: $--screen-md-min) {
                 font-size: .875rem;
-            }
-        }
-
-        &:hover {
-            z-index: 2;
-
-            .card-item__back {
-                animation: fadein .3s ease forwards;
-                border-color: $--main-black;
             }
         }
 
