@@ -351,7 +351,7 @@
         height: 111.39%;
       }
       &--smartphone {
-        width: 211px;
+        width: 210px;
         height: 442px;
         min-height: 442px;
         transform: none;
